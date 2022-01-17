@@ -1,0 +1,86 @@
+body {
+    font-family: "Microsoft Yahei", "Helvetica Neue";
+    /* font-family:-apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif; */
+    margin: 0 auto;
+    width: 80%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5333rem;
+}
+
+.logo {
+    margin-left: -.4rem;
+    width: 5rem;
+    margin-right: 0.1rem;
+}
+.contact {
+    text-align: right;
+    line-height: 1rem;
+    font-size: .3733rem;
+    font-weight: 700;
+    color: #888;
+    margin-right: -.3rem;
+}
+
+.title {
+    margin: .8rem 0;
+}
+
+.title h2 {
+    font-size: .88rem;
+    margin-bottom: 0;
+    font-weight: 400;
+    color: #EF4C53;
+    ;
+}
+
+.slogan {
+    font-size: .6rem;
+    margin-top: .2667rem;
+}
+
+.attention {
+    display: block;
+    margin-top: .5333rem;
+    font-size: .63rem;
+    text-align: center;
+    color: rgb(209, 148, 68);
+    font-weight: 700;
+}
+
+.verify {
+    display: flex;
+}
+
+#verification {
+    flex: 40%;
+    width: 20px;
+    font-size: .4rem;
+}
+
+.send-verify {
+    flex: 60%;
+    margin-left: .5333rem;
+    font-size: .5333rem;
+}
+.register{
+    margin-top: .4rem;
+    background-color: #EF4C53;
+    color:#fff;
+    margin-bottom: 0;
+}
+#register-agree{
+    width: .4rem;
+    height: .4rem;
+}
+label{
+    display: flex;
+    font-size: .3733rem;
+    margin-top: .1333rem;
+}
+label input{
+    margin-right: .1333rem;
+}
