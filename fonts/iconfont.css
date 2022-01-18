@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3147760 */
-  src: url('iconfont.woff2?t=1642425088628') format('woff2'),
-       url('iconfont.woff?t=1642425088628') format('woff'),
-       url('iconfont.ttf?t=1642425088628') format('truetype');
+  src: url('iconfont.woff2?t=1642496598935') format('woff2'),
+       url('iconfont.woff?t=1642496598935') format('woff'),
+       url('iconfont.ttf?t=1642496598935') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,51 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-duoyun:before {
+  content: "\e61e";
+}
+
+.icon-leidian:before {
+  content: "\e61f";
+}
+
+.icon-qing:before {
+  content: "\e620";
+  color:orange;
+}
+
+.icon-xiaoyu:before {
+  content: "\e622";
+}
+
+.icon-xue:before {
+  content: "\e623";
+}
+
+.icon-yintian:before {
+  content: "\e624";
+}
+
+.icon-baoxiandingdan:before {
+  content: "\e895";
+}
+
+.icon-dingdanjihe:before {
+  content: "\e898";
+}
+
+.icon-dingdanyichenggong:before {
+  content: "\e899";
+}
+
+.icon-xuanzhuan:before {
+  content: "\e636";
+}
+
+.icon-weibiaoti5:before {
+  content: "\e63e";
 }
 
 .icon-quanbudingdan:before {

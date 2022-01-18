@@ -51,7 +51,17 @@
     text-decoration: underline;
     color:rgb(43, 43, 241);
 }
+.red{
+    color: #EF4C53;
+}
+.blue{
+    color:rgb(43, 43, 241);
+}
+.yellow{
+    color: rgb(241, 192, 55);
+}
 header{
+    position: -webkit-sticky;
     position: sticky;
     width: 100%;
     top: 0;
@@ -63,4 +73,10 @@ img{
 a{
     text-decoration: none;
     color:#000;
+}
+ul{
+    padding: 0;
+}
+li{
+    list-style: none;
 }

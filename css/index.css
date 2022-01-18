@@ -1,0 +1,333 @@
+body {
+    box-sizing: border-box;
+    padding: .5rem;
+    letter-spacing: .0267rem;
+
+}
+
+.info-header {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: .3rem;
+}
+
+.header {
+    font-family: "iconfont";
+    display: flex;
+    padding: .4rem 0;
+    /* margin: 0 -.1rem; */
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-color: #fff;
+
+}
+
+.logo {
+    width: 1rem;
+    height: 1rem;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-ico {
+    position: absolute;
+    top: .2rem;
+    left: .3rem;
+    font-size: .64rem;
+}
+
+.search-text {
+    padding-left: 1rem;
+}
+
+.service {
+    font-size: 1.0667rem;
+    font-weight: 700;
+    line-height: 1rem;
+}
+
+.message {
+    font-size: .6667rem;
+    line-height: 1rem;
+}
+
+.hello {
+    flex: 100%;
+    display: flex;
+    font-family: "宋体";
+    margin: .5rem .1rem;
+}
+
+.time {
+    margin-right: .2rem;
+    font-weight: 700;
+    font-size: .6rem;
+}
+
+.user {
+    font-size: .5333rem;
+    line-height: .8rem;
+}
+.weather{
+    flex:50%;
+    text-align: center;
+    font-family: "iconfont";
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.choices {
+    font-family: "iconfont";
+    flex: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin: .2rem 0;
+}
+
+.small-ico {
+    font-size: .8rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.loans .small-ico {
+    color: rgba(245, 112, 112, 0.911);
+}
+
+.store .small-ico {
+    color: rgb(241, 192, 55);
+}
+
+.myorder .small-ico {
+    color: rgb(227, 76, 93);
+}
+
+.small-text {
+    font-size: .4267rem;
+}
+
+.recommand {
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0;
+    margin-bottom: 1rem;
+}
+
+.recommand-title {
+    font-size: .5333rem;
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem 0;
+}
+
+.change {
+    font-family: "iconfont";
+    font-size: .3rem;
+    line-height: .8rem;
+    color: #EF4C53;
+}
+
+.recommand-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recommand-box {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 31%;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px #ccc;
+    padding: .3rem;
+    font-size: .33rem;
+    text-align: center;
+    background-color: #fcf4f4;
+}
+
+.re-name {
+    /* 1. 先强制一行内显示文本 */
+    white-space: nowrap;
+    /*(默认normal自动换行)*/
+    /* 2. 超出部分隐藏 */
+    overflow: hidden;
+    /* 3.文字用省略号替代超出部分 */
+    text-overflow: ellipsis;
+
+    margin-bottom: .4rem;
+    text-align: center;
+}
+
+.re-num {
+    color: #EF4C53;
+    font-size: .4267rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+}
+
+.re-info {
+    margin-bottom: .3rem;
+    font-size: 12px;
+}
+
+.ads {
+    display: flex;
+    flex-direction: column;
+    font-size: .4267rem;
+    letter-spacing: .0533rem;
+}
+
+.ad-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: .5rem;
+    margin-bottom: .8rem;
+}
+
+.ad-more {
+    font-family: "iconfont";
+    color: #888;
+}
+
+.ads ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-box {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-bottom: 1.5rem;
+}
+
+.ad-rank {
+    width: .8rem;
+    height: .8rem;
+    font-size: .5333rem;
+    text-align: center;
+    line-height: .8rem;
+    border-radius: 50%;
+    margin-right: .3rem;
+    color: #fcf4f4;
+}
+
+.cl1 {
+    background-image: linear-gradient(to right bottom, red, rgb(255, 115, 0));
+}
+
+.cl2 {
+    background-image: linear-gradient(to right bottom, rgb(255, 115, 0), orange);
+}
+
+.cl3 {
+    background-image: linear-gradient(to right bottom, orange, rgb(230, 230, 39));
+}
+
+.ad-num {
+    font-size: .6rem;
+    color: #EF4C53;
+    font-weight: 700;
+    margin-bottom: .2rem;
+    letter-spacing: 0;
+}
+
+.ad-info {
+    font-size: .37rem;
+    color: #888;
+}
+
+.ad-name {
+    font-size: .4rem;
+    margin-bottom: .4rem;
+
+    /* 1. 先强制一行内显示文本 */
+    white-space: nowrap;
+    /*(默认normal自动换行)*/
+    /* 2. 超出部分隐藏 */
+    overflow: hidden;
+    /* 3.文字用省略号替代超出部分 */
+    text-overflow: ellipsis;
+}
+
+.ad-intro {
+    font-size: .37rem;
+    color: #888;
+    /* 1. 先强制一行内显示文本 */
+    white-space: nowrap;
+    /*(默认normal自动换行)*/
+    /* 2. 超出部分隐藏 */
+    overflow: hidden;
+    /* 3.文字用省略号替代超出部分 */
+    text-overflow: ellipsis;
+}
+
+.remind {
+    font-family: "iconfont";
+    display: flex;
+    flex-direction: column;
+    margin: .3rem 0 ;
+}
+
+.remind-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: .5rem;
+    margin-bottom: .8rem;
+}
+
+.remind-title span {
+    color: rgb(197, 26, 60);
+    font-weight: 600;
+}
+
+.remind-title .temp {
+    color: #888;
+    font-weight: normal;
+    font-size: .3rem;
+}
+
+.remind-more {
+    color: #888;
+    line-height: .5rem;
+}
+
+.total-order {
+    display: flex;
+    flex-direction: column;
+}
+
+.orderbox {
+    display: flex;
+    margin-bottom: .5rem;
+}
+
+.order-ico {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.6rem;
+    margin-right: .3rem;
+    font-weight: 700;
+}
+
+.orderbox p {
+    font-size: .5rem;
+    line-height: .6rem;
+    text-align: center;
+    /* 1. 先强制一行内显示文本 */
+    white-space: nowrap;
+    /*(默认normal自动换行)*/
+    /* 2. 超出部分隐藏 */
+    overflow: hidden;
+    /* 3.文字用省略号替代超出部分 */
+    text-overflow: ellipsis;
+}
+
+.order-num {
+    font-size: .55rem;
+    margin: 0 .1333rem;
+    color: rgb(90, 146, 90);
+}
