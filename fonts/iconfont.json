@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "24330528",
+      "name": "常用_收起",
+      "font_class": "changyong_shouqi",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
       "icon_id": "31139",
       "name": "多云-天气",
       "font_class": "duoyun",

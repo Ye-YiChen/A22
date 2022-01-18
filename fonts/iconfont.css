@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3147760 */
-  src: url('iconfont.woff2?t=1642496598935') format('woff2'),
-       url('iconfont.woff?t=1642496598935') format('woff'),
-       url('iconfont.ttf?t=1642496598935') format('truetype');
+  src: url('iconfont.woff2?t=1642507813037') format('woff2'),
+       url('iconfont.woff?t=1642507813037') format('woff'),
+       url('iconfont.ttf?t=1642507813037') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-changyong_shouqi:before {
+  content: "\e6ae";
 }
 
 .icon-duoyun:before {
@@ -23,7 +27,6 @@
 
 .icon-qing:before {
   content: "\e620";
-  color:orange;
 }
 
 .icon-xiaoyu:before {

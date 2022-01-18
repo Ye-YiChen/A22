@@ -1,0 +1,167 @@
+.header {
+    font-family: "iconfont";
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem .3rem .3rem;
+    font-size: .45rem;
+    box-sizing: border-box;
+    line-height: .45rem;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.page-name {
+    font-weight: 700;
+}
+
+.service {
+    font-size: 1rem;
+    line-height: .5rem;
+    font-weight: 700;
+}
+
+.pro-info {
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #ddd;
+    text-align: center;
+    padding: .3rem;
+}
+
+.pro-name {
+    font-size: .5rem;
+    margin: .1rem;
+}
+
+.pro-type {
+    font-size: .45rem;
+}
+
+.label-box ul {
+    display: flex;
+    justify-content: center;
+}
+
+.pro-label {
+    margin: .2rem;
+    border: .04rem solid #EF4C53;
+    padding: .1rem .2rem;
+    font-size: .4rem;
+    color: #EF4C53;
+    border-radius: .15rem;
+}
+
+.parameter-box {
+    display: flex;
+    font-size: .4rem;
+    justify-content: center;
+}
+
+.pro-parameter {
+    margin: .1rem .8rem;
+}
+
+.parameter-num {
+    margin-bottom: .4rem;
+}
+
+.example {
+    position: relative;
+    background-color: #eee;
+    border-radius: .3333rem;
+    font-size: .3733rem;
+    margin: .4rem;
+    padding: 0 .39rem;
+    text-align-last: justify;
+    line-height: .5rem;
+}
+
+.arrow {
+    position: absolute;
+    top: -0.52rem;
+    left: 1.5rem;
+    width: 0;
+    height: 0;
+    /* 为了照顾兼容性 */
+    line-height: 0;
+    font-size: 0;
+    /* 其他边框透明 */
+    border: 10px solid transparent;
+    border-bottom-color: #eee;
+}
+
+.short-info {
+    font-family: "iconfont";
+    display: flex;
+    justify-content: space-between;
+    font-size: .4rem;
+    font-weight: 700;
+    line-height: .4rem;
+    padding: .3rem .5rem;
+    border-top: 10px solid #ddd;
+    /* border-bottom: 10px solid #ddd; */
+}
+
+.small-ico {
+    font-size: .5333rem;
+}
+
+.rule,
+.specific {
+    display: flex;
+    flex-direction: column;
+    padding: .3rem .5rem;
+    font-size: .35rem;
+    border-top: 10px solid #ddd;
+    /* border-bottom: 10px solid #ddd; */
+
+}
+
+.rule-title,
+.specific-title {
+    font-family: "宋体";
+    font-weight: 700;
+    font-size: .4rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.rule-more,
+.specific-more {
+    font-family: "iconfont";
+    color: #888;
+}
+
+.rule-box,
+.specific-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+.rule-detail,
+.specific-detail {
+    display: flex;
+    text-align: left;
+    margin-bottom: .8rem;
+}
+
+.rule-name,
+.specific-name {
+    flex: 1;
+}
+
+.rule-intro,
+.specific-intro {
+    flex: 1;
+}
+
+.scheduled-btn{
+    border-radius: 0;
+    margin: 0;
+    box-shadow: 0;
+    background-image: linear-gradient(to right, #EF4C53, rgb(255, 115, 0));
+    color:#fff;
+}
