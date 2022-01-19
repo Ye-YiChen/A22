@@ -1,0 +1,155 @@
+body{
+    background-color: #ddd;
+}
+.header {
+    font-family: "iconfont";
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem .3rem .3rem;
+    font-size: .45rem;
+    box-sizing: border-box;
+    line-height: .45rem;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.page-name {
+    font-weight: 700;
+    padding-left: 1rem;
+}
+.icos{
+    display: flex;
+}
+.search{
+    font-weight: 700;
+    font-size: .48rem;
+    margin-right: .1rem;
+}
+.service {
+    font-size: 1rem;
+    line-height: .5rem;
+    font-weight: 700;
+}
+.logo-pic{
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    background: url(../images/red-bgc.png) no-repeat;
+    background-size: 960px 540px;
+    height: 1.5rem;
+}
+.logo-pic img{
+    width: 6rem;
+    margin: 0 auto;
+}
+
+.pro-show{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    /* padding: .4rem; */
+    background-color: #fff;
+    font-size: .45rem;
+}
+.pro-box{
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: .05rem; */
+    border-bottom: .04rem solid #eee;
+    margin: 0 .4rem;
+    padding: .4rem 0;
+
+}
+.pro-title {
+    font-family: "iconfont";
+    display: flex;
+    align-items: center;
+    font-size: .3733rem;
+    margin-bottom: .4rem;
+}
+.min-logo{
+    width: .6rem;
+    margin-right: .3rem;
+}
+.pro-name{
+    max-width: 4.5rem;
+    /* 1. 先强制一行内显示文本 */
+    white-space: nowrap;
+    /*(默认normal自动换行)*/
+    /* 2. 超出部分隐藏 */
+    overflow: hidden;
+    /* 3.文字用省略号替代超出部分 */
+    text-overflow: ellipsis;
+    font-size: .45rem;
+}
+.pro-detail{
+    flex: 1;
+    text-align: right;
+    margin-right: .5rem;
+}
+.pro-body{
+    display: flex;
+    justify-content: space-between;
+    font-size: .35rem;
+}
+.pro-advantage{
+    flex: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.adv-num{
+    font-size: .45rem;
+    margin-bottom: .3rem;
+}
+.pro-info{
+    flex: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.pro-important{
+    font-size: .38rem;
+    margin-bottom: .4rem;
+}
+.s-time{
+    font-size: .4rem;
+}
+.d-time{
+    color: red;
+    font-weight: 700;
+}
+.label-box{
+    display: flex;
+    text-align: center;
+}
+.pro-label {
+    margin: .3rem;
+    margin-left: 0;
+    border: .04rem solid #EF4C53;
+    padding: .1rem .2rem;
+    font-size: .3rem;
+    color: #EF4C53;
+    border-radius: .15rem;
+}
+.remind{
+    position: relative;
+    border-radius: .1333rem;
+    padding: .15rem .3rem;
+    width: 8rem;
+    font-size: .3rem;
+    background-color: rgb(243, 220, 220);
+}
+.arrow-top {
+    position: absolute;
+    top: -.53rem;
+    left: .8rem;
+    width: 0;
+    height: 0;
+    /* 为了照顾兼容性 */
+    line-height: 0;
+    font-size: 0;
+    /* 其他边框透明 */
+    border: 10px solid transparent;
+    border-bottom-color: rgb(243, 220, 220);
+}

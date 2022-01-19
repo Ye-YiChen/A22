@@ -76,7 +76,7 @@
     line-height: .5rem;
 }
 
-.arrow {
+.arrow-top {
     position: absolute;
     top: -0.52rem;
     left: 1.5rem;
@@ -158,6 +158,78 @@
     flex: 1;
 }
 
+.footer{
+    position:sticky;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+.state{
+    display: flex;
+    justify-content: space-between;
+    font-size: .5rem;
+    text-align: center;
+    line-height: .5rem;
+    background-color: rgb(119, 55, 55);
+    padding: 0;
+    /* padding: .2rem .5rem; */
+    box-sizing: border-box;
+    border-bottom: .1333rem solid #ccc;
+    border-radius: .2333rem;
+    color: #fff;
+}
+.min-logo{
+    width: 1rem;
+    padding: .2rem 0 .2rem .3rem;
+}
+.pro-left{
+    line-height: 1.1rem;
+    font-size: .5rem;
+    letter-spacing: .0267rem;
+    padding: .2rem .5rem .2rem 0;
+
+    /* 不允许换行 */
+    white-space: nowrap;
+}
+.time-box{
+    /* flex: 25%; */
+    position: relative;
+    background-color: rgb(252, 227, 230);
+    padding: .2rem .5rem;
+    box-sizing: border-box;
+}
+.arrow-left{
+    position: absolute;
+    top: 0rem;
+    left:-1.5rem;
+    width: 0;
+    height: 0;
+    /* 为了照顾兼容性 */
+    line-height: 0;
+    font-size: 0;
+    /* 其他边框透明 */
+    border: .8rem solid transparent;
+    border-right-color: rgb(252, 227, 230);
+}
+.time-left{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.time-title{
+    font-size: .1rem;
+    margin-bottom: .1rem;
+}
+.time-h,.time-m,.time-s{
+    background-color: #EF4C53;
+    padding: .1rem;
+    border-radius: .1rem;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: .3rem;
+    line-height: .3rem;
+    font-weight: 700;
+}
 .scheduled-btn{
     border-radius: 0;
     margin: 0;
