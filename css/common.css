@@ -1,5 +1,5 @@
 body{
-    letter-spacing: .0133rem;
+    letter-spacing: .0267rem;
 }
 .wide-btn{
     display: block;
@@ -65,6 +65,9 @@ body{
 }
 .green{
     color: rgb(90, 146, 90);
+}
+.fade{
+    color: #333;
 }
 header{
     position: -webkit-sticky;

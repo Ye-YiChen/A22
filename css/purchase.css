@@ -1,0 +1,130 @@
+body{
+    background-color: #ddd;
+}
+
+input{
+    border: none;
+    padding: .5rem 0;
+    padding-left: .3rem;
+    outline: none;
+}
+.header {
+    font-family: "iconfont";
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem .3rem .3rem;
+    font-size: .45rem;
+    box-sizing: border-box;
+    line-height: .45rem;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.page-name {
+    font-weight: 700;
+}
+
+.service {
+    font-size: 1rem;
+    line-height: .5rem;
+    font-weight: 700;
+}
+.box{
+    background-color: #fff;
+    margin-top: .2rem;
+    padding-right:  .5rem;
+    /* padding-left: 0rem; */
+    font-size: .4rem;
+}
+.purchaser-info{
+    display: flex;
+    flex-direction: column;
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .25rem 0 ;
+    margin-left: .5rem;
+    border-bottom: 1.5px solid #eee;
+}
+.fade{
+    font-size: .35rem;
+}
+.tip{
+    display: flex;
+    justify-content: end;
+    padding: .13rem;
+    margin-left: .5rem;
+    font-size: .25rem;
+}
+.pro-name{
+    /* flex: 1; */
+    width: 4rem;
+    height: auto;
+    white-space: wrap;
+    word-break: break-all;
+}
+.num-box{
+    justify-content: start;
+    align-items: center;
+}
+
+.agree-detail{
+    font-size: .2rem;
+    padding: .2rem 0;
+    padding-left: .5rem;
+}
+.agree-detail li {
+    display: inline-block;
+}
+.mind{
+    font-size: .35rem;
+    font-weight: 700;
+    border: 0;
+}
+.tip{
+    font-family: "iconfont";
+    border-bottom: 1.5px solid #eee;
+    padding-bottom: .4rem;
+}
+.type{
+    resize: none;
+    width: 100%;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+    margin-left: .5rem;
+    padding: .5rem 0;
+    padding-right: .5rem;
+
+    white-space: wrap;
+    word-wrap: break-all;
+    overflow: visible;
+    outline: 0 none;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 1.5px solid #eee;
+}
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem 0;
+}
+
+.remind{
+    text-align: center;
+    font-size: .3rem;
+    padding-bottom: .4rem ;
+}
+.purchase-btn{
+    border: 0;
+    border-radius: .4rem;
+    width: 8rem;
+    height: 1rem;
+    background-color: #EF4C53;
+    color:#fff;
+    text-align: center;
+    padding: .1rem 0;
+}
