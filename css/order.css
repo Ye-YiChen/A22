@@ -64,6 +64,9 @@ body{
     background-color: rgb(248, 245, 82);
 }
 
+.ads p{
+    white-space: nowrap;
+}
 .order-tab {
     display: flex;
     text-align: center;

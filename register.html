@@ -13,36 +13,42 @@
     <!-- flexible.js rem为屏幕像素除以10 -->
     <script src="./js/flexible.js"></script>
     <script src="./js/jQuery.min.js"></script>
+    <link rel="stylesheet" href="./fonts/iconfont.css">
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./css/register.css">
 </head>
 
 <body>
     <header class="header">
-        <div class="logo">
-            <a href="register.html"><img src="./images/wide-logo1.png" alt=""></a>
-        </div>
+        <h2>欢迎注册</h2>
         <div class="contact">意见反馈</div>
     </header>
-    <div class="title">
-        <h2>欢迎注册</h2>
-        <p class="slogan">老百姓自己的银行<br> <span class="attention">三湘银行</span></p>
-    </div>
-    <form action="" id="register">
-        <input type="text" placeholder="用户名" id="username" class="wide-input">
-        <input type="password" placeholder="密码" id="password" class="wide-input">
-        <input type="text" placeholder="手机号码" id="phonenumber" class="wide-input">
-        <input type="text" placeholder="身份证" id="IDnumber" class="wide-input">
-        <div class="verify">
-            <input type="text" placeholder="短信验证码" id="verification" class="small-input">
-            <button class="small-btn disabled-btn send-verify ">发送验证码</button>
+    <div class="main">
+        <div class="logo">
+            <a href="register.html"><img src="./images/min-logo.png" alt=""></a>
         </div>
-        <button class="wide-btn register">立即注册</button>
-        <label for="register-agree">
-            <input type="checkbox" name="register-agree" id="register-agree">
-            <span>我已阅读并同意<a href="#" class="details">相关服务条款</a>和<a href="#" class="details">隐私政策</a></span>
-        </label>
-    </form>
+        <div class="title">
+            <p class="slogan">老百姓自己的银行<br> </p>
+        </div>
+        <form action="" id="register">
+            <label class="input-ico"for="phonenumber"><span>&#xe6c1;</span><input type="text" placeholder="手机号码" id="phonenumber" class="wide-input"></label>
+            <label class="input-ico"for="IDname"><span>&#xe601;</span><input type="text" placeholder="姓名" id="IDname" class="wide-input"></label>
+            <label class="input-ico"for="IDnumber"><span style="left: .35rem;">&#xe625;</span><input type="text" placeholder="身份证" id="IDnumber" class="wide-input"></label>
+            <label class="input-ico"for="password"><span>&#xe62e;</span><input type="password" placeholder="密码" id="password" class="wide-input"></label>
+            <label class="input-ico">
+                <span>&#xe604;</span>
+                <input type="text" placeholder="短信验证码" id="verification" class="wide-input">
+                <button class="wide-btn abled-btn send-verify">发送验证码</button>
+            </label>
+            <button class="wide-btn register">立即注册</button>
+            <label id="agree" for="register-agree">
+                <input type="checkbox" name="register-agree" id="register-agree">
+                <span>我已阅读并同意<a href="#" class="details">相关服务条款</a>和<a href="#" class="details">隐私政策</a></span>
+            </label>
+        </form>
+        <div class="login-box">已有账号,直接登陆</div>
+    </div>
+    <div class="canvans"></div>
 </body>
 
 </html>
