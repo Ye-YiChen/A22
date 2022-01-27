@@ -6,7 +6,6 @@
     font-size: .45rem;
     box-sizing: border-box;
     line-height: .45rem;
-    background-color: #fff;
     z-index: 10;
 }
 
@@ -23,7 +22,8 @@
 .pro-info {
     display: flex;
     flex-direction: column;
-    border-top: 2px solid #ddd;
+    margin-top: .2667rem;
+    background-color: #fff;
     text-align: center;
     padding: .3rem;
 }
@@ -55,14 +55,22 @@
     display: flex;
     font-size: .4rem;
     justify-content: center;
+    align-items: center;
 }
 
 .pro-parameter {
-    margin: .1rem .8rem;
+    width: 40%;
+    height: 2rem;
+    margin: .1rem .6rem;
+    border: .03rem solid #EF4C53;
+    border-radius: .2rem;
+    box-shadow: .0267rem .0267rem .2667rem #ccc;
+    padding: .2rem;
+    box-sizing: border-box;
 }
 
 .parameter-num {
-    margin-bottom: .4rem;
+    margin-bottom: .2rem;
 }
 
 .example {
@@ -86,7 +94,7 @@
     line-height: 0;
     font-size: 0;
     /* 其他边框透明 */
-    border: 10px solid transparent;
+    border: .2667rem solid transparent;
     border-bottom-color: #eee;
 }
 
@@ -98,7 +106,8 @@
     font-weight: 700;
     line-height: .4rem;
     padding: .3rem .5rem;
-    border-top: 10px solid #ddd;
+    margin-top: .2667rem;
+    background-color: #fff;
     /* border-bottom: 10px solid #ddd; */
 }
 
@@ -112,7 +121,8 @@
     flex-direction: column;
     padding: .3rem .5rem;
     font-size: .35rem;
-    border-top: 10px solid #ddd;
+    margin-top: .2667rem;
+    background-color: #fff;
     /* border-bottom: 10px solid #ddd; */
 
 }
@@ -122,9 +132,11 @@
     font-family: "宋体";
     font-weight: 700;
     font-size: .4rem;
+    height: .96rem;
     display: flex;
     justify-content: space-between;
-    margin-bottom: .5rem;
+    align-items: center;
+    border-bottom: .0267rem solid #000;
 }
 
 .rule-more,
@@ -145,7 +157,11 @@
 .specific-detail {
     display: flex;
     text-align: left;
-    margin-bottom: .8rem;
+    height: 1.3333rem;
+    justify-content: start;
+    align-items: center;
+    /* margin-bottom: .8rem; */
+    border-bottom: .0267rem solid #ccc;
 }
 
 .rule-name,
@@ -158,13 +174,19 @@
     flex: 1;
 }
 
-.footer{
-    position:sticky;
+.suggest div {
+    border-bottom: .0267rem solid #ccc;
+
+}
+
+.footer {
+    position: sticky;
     bottom: 0;
     display: flex;
     flex-direction: column;
 }
-.state{
+
+.state {
     display: flex;
     justify-content: space-between;
     font-size: .5rem;
@@ -178,11 +200,13 @@
     border-radius: .2333rem;
     color: #fff;
 }
-.min-logo{
+
+.min-logo {
     width: 1rem;
     padding: .2rem 0 .2rem .3rem;
 }
-.pro-left{
+
+.pro-left {
     line-height: 1.1rem;
     font-size: .5rem;
     letter-spacing: .0267rem;
@@ -191,17 +215,19 @@
     /* 不允许换行 */
     white-space: nowrap;
 }
-.time-box{
+
+.time-box {
     /* flex: 25%; */
     position: relative;
     background-color: rgb(252, 227, 230);
     padding: .2rem .5rem;
     box-sizing: border-box;
 }
-.arrow-left{
+
+.arrow-left {
     position: absolute;
     top: 0rem;
-    left:-1.5rem;
+    left: -1.5rem;
     width: 0;
     height: 0;
     /* 为了照顾兼容性 */
@@ -211,16 +237,21 @@
     border: .8rem solid transparent;
     border-right-color: rgb(252, 227, 230);
 }
-.time-left{
+
+.time-left {
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
 }
-.time-title{
+
+.time-title {
     font-size: .1rem;
     margin-bottom: .1rem;
 }
-.time-h,.time-m,.time-s{
+
+.time-h,
+.time-m,
+.time-s {
     background-color: #EF4C53;
     padding: .1rem;
     border-radius: .1rem;
@@ -230,10 +261,11 @@
     line-height: .3rem;
     font-weight: 700;
 }
-.scheduled-btn{
+
+.scheduled-btn {
     border-radius: 0;
     margin: 0;
     box-shadow: 0;
     background-image: linear-gradient(to right, #EF4C53, rgb(255, 115, 0));
-    color:#fff;
+    color: #fff;
 }

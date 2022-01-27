@@ -1,5 +1,5 @@
 html {
-    background-image: linear-gradient(to right top, rgb(236, 202, 208), #EF4C53);
+    background-image: linear-gradient(to right bottom, rgb(236, 202, 208), #EF4C53);
 }
 
 body {
@@ -15,6 +15,7 @@ body {
     justify-content: space-between;
     margin-top: .8rem;
     margin-bottom: 1.8rem;
+    background-color: transparent;
 }
 
 h2 {
@@ -63,6 +64,8 @@ h2 {
     width: 8rem;
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 .4rem #EF4C53;
+    margin: 0;
     margin-bottom: 1.5rem;
     padding: .2rem 1rem;
     border-radius: .2rem;
@@ -89,12 +92,12 @@ h2 {
 
 .send-verify {
     position: absolute;
-    top: .25rem;
+    top: .3rem;
     right: 0;
     border-radius: .4rem;
     box-shadow: .0533rem .0533rem #ccc;
     margin: 0;
-    width: 2rem;
+    width: auto;
     height: .8rem;
     font-size: .32rem;
 }
@@ -154,6 +157,7 @@ label input {
     background-color: rgba(255, 255, 255, 0.342);
     border-radius: 0 0 .2rem .2rem;
 }
+
 @keyframes run {
     0% {
         background-position: 0 0;
@@ -170,7 +174,7 @@ label input {
     left: 0;
     width: 100%;
     height: 525px;
-    background: url(../images/steamer.png) no-repeat;
+    background: url(../images/steamer.png);
     animation: run 15s linear infinite backwards;
     z-index: -99;
 }

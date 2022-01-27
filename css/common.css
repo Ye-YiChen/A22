@@ -1,11 +1,41 @@
-html{
+html {
     min-height: 100%;
-    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    background-color: rgb(253, 241, 241);
 }
-body{
+
+body {
     letter-spacing: .0267rem;
 }
-.wide-btn{
+
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    background-color: rgb(245, 68, 76);
+    color: #fff;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #eb2932;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.wide-btn {
     display: block;
     width: 100%;
     height: 1.2rem;
@@ -15,24 +45,28 @@ body{
     border: 0;
     box-shadow: .1rem .1rem #ccc;
 }
-.small-btn{
+
+.small-btn {
     display: inline-block;
     height: 1.2rem;
     border-radius: .4rem;
     font-size: .5867rem;
     border: 0;
 }
-.abled-btn{
+
+.abled-btn {
     background-color: #EF4C53;
     color: #fff;
     height: 1rem;
 }
-.disabled-btn{
+
+.disabled-btn {
     color: #ccc;
     background-color: #f0f0f0;
     height: 1rem;
 }
-.wide-input{
+
+.wide-input {
     width: 100%;
     height: 1rem;
     border-radius: .45rem;
@@ -46,48 +80,47 @@ body{
     color: #232332;
     font-size: .35rem;
 }
-.small-input{
+
+.small-input {
     height: 1rem;
     border-radius: .1333rem;
     border: 2px solid #e0e0e0;
-    padding-left: 10px; 
+    padding-left: 10px;
     box-sizing: border-box;
     outline: none;
     color: #232332;
     font-size: .4267rem;
 }
-.red{
+
+.red {
     color: #EF4C53;
 }
-.blue{
-    color:rgb(43, 43, 241);
+
+.blue {
+    color: rgb(43, 43, 241);
 }
-.yellow{
+
+.yellow {
     color: rgb(241, 192, 55);
 }
-.green{
+
+.green {
     color: rgb(90, 146, 90);
 }
-.fade{
+
+.fade {
     color: #333;
 }
-header{
-    position: -webkit-sticky;
-    position: sticky;
-    width: 100%;
-    top: 0;
-}
-img{
-    width: 100%;
-    height: auto;
-}
-a{
-    text-decoration: none;
-    color:#eb2932;
-}
-ul{
-    padding: 0;
-}
-li{
-    list-style: none;
+
+.back-btn {
+    display: none;
+    position: fixed;
+    text-align: right;
+    bottom: .5rem;
+    right: 0;
+    font-family: "iconfont";
+    font-size: .8rem;
+    color: #eb2932;
+    padding: .4rem;
+    z-index: 99;
 }
