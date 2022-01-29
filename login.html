@@ -23,11 +23,23 @@
 </head>
 
 <body>
+    <!-- 加载动画 -->
+    <div class="loader-box"> 
+        <div class="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+          </div>
+    </div>
+    
     <div class="main">
         <div class="logo"><a href="login.html"><img src="./images/nor-logo1.png" alt="三湘银行"></a></div>
         <h2 class="title">欢 迎 登 录</h2>
         <form action="" class="login">
-            <label id="u-ico" for="username"><span>&#xe601;</span><input type="text" name="username" v-model.number placeholder="手机号/身份号" id="username"></label>
+            <label id="u-ico" for="phonenumber"><span>&#xe601;</span><input type="text" name="username" v-model.number placeholder="手机号/身份号" id="username"></label>
             <label id="p-ico" for="password"><span>&#xe62e;</span><input type="password" name="password" id="password" placeholder="密码"></label>
             <div class="more-action">
                 <label for="remember">

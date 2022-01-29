@@ -19,9 +19,11 @@
 
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./css/register.css">
+    <script src="./js/register.js"></script>
 </head>
 
 <body>
+    
     <header class="header">
         <h2>欢迎注册</h2>
         <div class="contact">意见反馈</div>
@@ -35,29 +37,40 @@
         </div>
         <form action="" id="register">
             <label class="input-ico" for="phonenumber"><span>&#xe6c1;</span><input type="text" placeholder="手机号码"
-                    id="phonenumber" class="wide-input"></label>
-            <label class="input-ico" for="IDname"><span>&#xe601;</span><input type="text" placeholder="姓名" id="IDname"
-                    class="wide-input"></label>
+                    name="phonenumber" id="phonenumber" class="wide-input"></label>
+            <label class="input-ico" for="IDname"><span>&#xe601;</span><input type="text" placeholder="姓名" name="IDname"
+                    id="IDname" class="wide-input"></label>
             <label class="input-ico" for="IDnumber"><span style="left: .35rem;">&#xe625;</span><input type="text"
-                    placeholder="身份证" id="IDnumber" class="wide-input"></label>
-            <label class="input-ico" for="username"><span>&#xe601;</span><input type="text" placeholder="用户名"
-                    id="username" class="wide-input"></label>
+                    placeholder="身份证" name="IDnumber" id="IDnumber" class="wide-input"></label>
+            <!-- <label class="input-ico" for="username"><span>&#xe601;</span><input type="text" placeholder="用户名"
+                    name="username" id="username" class="wide-input"></label> -->
             <label class="input-ico" for="password"><span>&#xe62e;</span><input type="password" placeholder="密码"
-                    id="password" class="wide-input"></label>
+                    name="password" id="password" class="wide-input"></label>
             <label class="input-ico">
                 <span>&#xe604;</span>
-                <input type="text" placeholder="短信验证码" id="verification" class="wide-input">
+                <input type="text" placeholder="短信验证码" name="verification" id="verification" class="wide-input">
                 <button class="wide-btn abled-btn send-verify">发送验证码</button>
             </label>
             <button class="wide-btn register">立即注册</button>
             <label id="agree" for="register-agree">
-                <input type="checkbox" name="register-agree" id="register-agree">
+                <input type="checkbox" name="otp" id="register-agree">
                 <span>我已阅读并同意<a href="#" class="details">相关服务条款</a>和<a href="#" class="details">隐私政策</a></span>
             </label>
         </form>
         <div class="login-box">已有账号,直接登陆</div>
     </div>
     <div class="canvans"></div>
+    <!-- 加载动画 -->
+    <div class="loader-box">
+        <div class="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+          </div>
+    </div>
 </body>
 
 </html>

@@ -13,4 +13,14 @@ $(function () {
         return false;
     })
     // 返回顶部按钮 end
+ 
+    // ajax动画 start
+    $(document).on('ajaxStart',function(){
+        $('.loader-box').css('display', 'block');
+    })
+    $(document).on('ajaxStart',function(){
+        $('.loader-box').css('display', 'none');
+    })
+    // ajax动画 end
+
 })

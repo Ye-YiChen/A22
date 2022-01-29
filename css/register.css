@@ -97,9 +97,10 @@ h2 {
     border-radius: .4rem;
     box-shadow: .0533rem .0533rem #ccc;
     margin: 0;
-    width: auto;
+    width: 2rem;
     height: .8rem;
     font-size: .32rem;
+    text-align: center;
 }
 
 .register {
