@@ -73,13 +73,13 @@
     margin-bottom: .2rem;
 }
 
-.example {
+.remind {
     position: relative;
     background-color: #eee;
     border-radius: .3333rem;
     font-size: .3733rem;
     margin: .4rem;
-    padding: 0 .39rem;
+    padding: .2rem .39rem;
     text-align-last: justify;
     line-height: .5rem;
 }
@@ -143,6 +143,7 @@
 .specific-more {
     font-family: "iconfont";
     color: #888;
+    border: none !important;
 }
 
 .rule-box,
@@ -173,14 +174,18 @@
 .specific-intro {
     flex: 1;
 }
-
+.suggest{
+    
+    margin-bottom: 3rem;
+}
 .suggest div {
     border-bottom: .0267rem solid #ccc;
-
 }
 
 .footer {
-    position: sticky;
+    position: fixed;
+    width: 100%;
+    /* height: 2.9333rem; */
     bottom: 0;
     display: flex;
     flex-direction: column;
@@ -240,7 +245,7 @@
 
 .time-left {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     box-sizing: border-box;
 }
 
@@ -249,9 +254,9 @@
     margin-bottom: .1rem;
 }
 
-.time-h,
-.time-m,
-.time-s {
+#time-h,
+#time-m,
+#time-s {
     background-color: #EF4C53;
     padding: .1rem;
     border-radius: .1rem;

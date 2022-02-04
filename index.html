@@ -15,11 +15,12 @@
     <script src="./js/flexible.js"></script>
     <script src="./js/jQuery.min.js"></script>
     <script src="./js/common.js"></script>
-
+    <script src="./js/vue2-6-12.min.js"></script>
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./css/swiper-bundle.min.css">
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js"></script>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
             <div class="weather icon-qing"></div>
         </div>
     </div>
-    <div class="main">
+    <div class="main" id='index' v-cloak>
         <!-- Swiper1 -->
         <div class="swiper mySwiper1">
             <div class="swiper-wrapper">
@@ -70,23 +71,13 @@
             <div class="recommand-title">
                 <span class="re-ico">&#xe651;</span>
                 <span>为您推荐</span>
-                <span class="change">换一批 &#xe636;</span>
+                <span class="change" @click='changeRecommand()'>换一批 &#xe636;</span>
             </div>
             <div class="recommand-main">
-                <div class="recommand-box">
-                    <div class="re-name">“安心62天”无忧存利债券</div>
-                    <div class="re-num">2.7%</div>
-                    <div class="re-info">业绩比较基准</div>
-                </div>
-                <div class="recommand-box">
-                    <div class="re-name">国泰价值</div>
-                    <div class="re-num">2.7%</div>
-                    <div class="re-info">月涨幅</div>
-                </div>
-                <div class="recommand-box">
-                    <div class="re-name">“安心62天”无忧存利债券</div>
-                    <div class="re-num">2.7%</div>
-                    <div class="re-info">业绩比较基准</div>
+                <div class="recommand-box" v-for="item in recommand" :key="item.re_id">
+                    <div class="re-name">{{item.re_name}}</div>
+                    <div class="re-num">{{item.re_num}}</div>
+                    <div class="re-info">{{item.re_info}}</div>
                 </div>
             </div>
         </div>
@@ -95,12 +86,7 @@
             <!-- Swiper2 -->
             <div class="swiper mySwiper2">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">可 以 超 级 长 的 新 闻 1 ！ ！</div>
-                    <div class="swiper-slide">可 以 超 级 长 的 新 闻 2 ！ ！</div>
-                    <div class="swiper-slide">可 以 超 级 长 的 新 闻 3 ！ ！</div>
-                    <div class="swiper-slide">可 以 超 级 长 的 新 闻 4 ！ ！</div>
-                    <div class="swiper-slide">可 以 超 级 长 的 新 闻 5 ！ ！</div>
-                    <div class="swiper-slide">可 以 超 级 长 的 新 闻 6 ！ ！</div>
+                    <div class="swiper-slide" v-for='item in announcement' :key='item.an_id'>{{item.an_info}}</div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -110,82 +96,38 @@
                 <div class="ad-title">
                     <span class="re-ico">&#xe63e;</span>
                     <span>优选贷款</span>
-                    <span class="ad-more">&#xe6ac;</span>
+                    <span class="ad-more" @click='moreLoans()'>&#xe6ac;</span>
                 </div>
                 <ul>
-                    <li class="ad-box">
-                        <div class="ad-rank cl1">1</div>
+                    <li class="ad-box" v-for='item in loans' :key='item.lo_id'>
+                        <div class="ad-rank" :class="'cl'+item.lo_rank">{{item.lo_rank}}</div>
                         <div class="ad-main">
-                            <div class="ad-num">6.3%</div>
-                            <div class="ad-info">近一年的增长率</div>
+                            <div class="ad-num">{{item.lo_num}}</div>
+                            <div class="ad-info">{{item.lo_info}}</div>
                         </div>
                         <div class="ad-body">
-                            <div class="ad-name">平台研究精选贷款</div>
-                            <div class="ad-intro">聚焦短期，闪电放贷</div>
-                        </div>
-                    </li>
-                    <li class="ad-box">
-                        <div class="ad-rank cl2">2</div>
-                        <div class="ad-main">
-                            <div class="ad-num">6.3%</div>
-                            <div class="ad-info">近一年的增长率</div>
-                        </div>
-                        <div class="ad-body">
-                            <div class="ad-name">平台研究精选贷款</div>
-                            <div class="ad-intro">聚焦短期，闪电放贷</div>
-                        </div>
-                    </li>
-                    <li class="ad-box">
-                        <div class="ad-rank cl3">3</div>
-                        <div class="ad-main">
-                            <div class="ad-num">6.3%</div>
-                            <div class="ad-info">近一年的增长率</div>
-                        </div>
-                        <div class="ad-body">
-                            <div class="ad-name">平台研究精选贷款</div>
-                            <div class="ad-intro">聚焦短期，闪电放贷</div>
+                            <div class="ad-name">{{item.lo_name}}</div>
+                            <div class="ad-intro">{{item.lo_intro}}</div>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="ad-store">
                 <div class="ad-title">
-                    <span class="re-ico" >&#xe6aa;</span>
+                    <span class="re-ico">&#xe6aa;</span>
                     <span>精选存款</span>
-                    <span class="ad-more">&#xe6ac;</span>
+                    <span class="ad-more" @click='moreStore()'>&#xe6ac;</span>
                 </div>
                 <ul>
-                    <li class="ad-box">
-                        <div class="ad-rank cl1">1</div>
+                    <li class="ad-box" v-for='item in store' :key='item.st_id'>
+                        <div class="ad-rank" :class="'cl'+item.st_rank">{{item.st_rank}}</div>
                         <div class="ad-main">
-                            <div class="ad-num">5.5%</div>
-                            <div class="ad-info">近一年的增长率</div>
+                            <div class="ad-num">{{item.st_num}}</div>
+                            <div class="ad-info">{{item.st_info}}</div>
                         </div>
                         <div class="ad-body">
-                            <div class="ad-name">平台研究精选存款</div>
-                            <div class="ad-intro">聚焦长期，可观回报</div>
-                        </div>
-                    </li>
-                    <li class="ad-box">
-                        <div class="ad-rank cl2">2</div>
-                        <div class="ad-main">
-                            <div class="ad-num">5.5%</div>
-                            <div class="ad-info">近一年的增长率</div>
-                        </div>
-                        <div class="ad-body">
-                            <div class="ad-name">平台研究精选存款</div>
-                            <div class="ad-intro">聚焦长期，可观回报</div>
-                        </div>
-                    </li>
-                    <li class="ad-box">
-                        <div class="ad-rank cl3">3</div>
-                        <div class="ad-main">
-                            <div class="ad-num">5.5%</div>
-                            <div class="ad-info">近一年的增长率</div>
-                        </div>
-                        <div class="ad-body">
-                            <div class="ad-name">平台研究精选存款</div>
-                            <div class="ad-intro">聚焦长期，可观回报</div>
+                            <div class="ad-name">{{item.st_name}}</div>
+                            <div class="ad-intro">{{item.st_intro}}</div>
                         </div>
                     </li>
                 </ul>
@@ -198,26 +140,26 @@
                 <div class="remind-more"><span class="temp">全部订单</span>&#xe6ac;</div>
             </div>
             <div class="total-order">
-                <div class="appointed orderbox">
+                <div class="appointed orderbox" v-if='remind.appointed'>
                     <div class="order-ico blue">&#xe8a2;</div>
-                    <p>您有<span class="order-num">4个预约</span>的订单</p>
+                    <p>您有<span class="order-num">{{remind.appointed}}个预约</span>的订单</p>
                 </div>
-                <div class="unpaid orderbox">
+                <div class="unpaid orderbox" v-if='remind.unpaid'>
                     <div class="order-ico red">&#xe897;</div>
-                    <p>您有<span class="order-num">2个待支付</span>的订单</p>
+                    <p>您有<span class="order-num">{{remind.unpaid}}个待支付</span>的订单</p>
                 </div>
-                <div class="paid orderbox">
+                <div class="paid orderbox" v-if='remind.paid'>
                     <div class="order-ico yellow">&#xe899;</div>
-                    <p>您有<span class="order-num">3个正在生效</span>的订单</p>
+                    <p>您有<span class="order-num">{{remind.paid}}个正在生效</span>的订单</p>
                 </div>
-                
+
             </div>
         </div>
     </div>
     <div class="back-btn">&#xe619;</div>
 
-    <!-- 加载动画 -->
-    <div class="loader-box"> 
+    <!-- 加载动画 tr-->
+    <div class="loader-box">
         <div class="loader">
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
@@ -225,10 +167,129 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__ball"></div>
-          </div>
+        </div>
     </div>
 
+    <script>
+        new Vue({
+            el: "#index",
+            data() {
+                return {
+                    recommand: [
+                        {
+                            re_name: '“安心62天”无忧存利债券',
+                            re_num: '2.7%',
+                            re_info: '业绩比较基准',
+                            re_id: 001,
+                        },
+                        {
+                            re_name: '国泰价值',
+                            re_num: '2.7%',
+                            re_info: '业绩比较基准',
+                            re_id: 002,
+                        },
+                        {
+                            re_name: '“安心62天”无忧存利债券',
+                            re_num: '2.7%',
+                            re_info: '业绩比较基准',
+                            re_id: 003
+                        },
+                    ],
+                    announcement: [
+                        {
+                            an_info: '可 以 超 级 长 的 新 闻 1 ！ ！',
+                            an_id: '001'
+                        },
+                        {
+                            an_info: '可 以 超 级 长 的 新 闻 2 ！ ！',
+                            an_id: '002'
+                        },
+                        {
+                            an_info: '可 以 超 级 长 的 新 闻 3 ！ ！',
+                            an_id: '003'
+                        },
+                        {
+                            an_info: '可 以 超 级 长 的 新 闻 4 ！ ！',
+                            an_id: '004'
+                        },
+                        {
+                            an_info: '可 以 超 级 长 的 新 闻 5 ！ ！',
+                            an_id: '005'
+                        },
 
+                    ],
+                    loans: [
+                        {
+                            lo_rank: '1',
+                            lo_num: '5.5%',
+                            lo_info: '近一年的增长率',
+                            lo_name: '平台研究精选贷款',
+                            lo_intro: '闪电放贷，解决危机',
+                            lo_id: '001',
+                        },
+                        {
+                            lo_rank: '2',
+                            lo_num: '5.8%',
+                            lo_info: '近一年的增长率',
+                            lo_name: '平台研究精选贷款',
+                            lo_intro: '闪电放贷，解决危机',
+                            lo_id: '002',
+                        },
+                        {
+                            lo_rank: '3',
+                            lo_num: '5.5%',
+                            lo_info: '近一年的增长率',
+                            lo_name: '平台研究精选贷款',
+                            lo_intro: '闪电放贷，解决危机',
+                            lo_id: '003',
+                        }
+                    ],
+                    store: [
+                        {
+                            st_rank: '1',
+                            st_num: '5.5%',
+                            st_info: '近一年的增长率',
+                            st_name: '平台研究精选存款',
+                            st_intro: '聚焦长期，可观回报',
+                            st_id: '001',
+                        },
+                        {
+                            st_rank: '2',
+                            st_num: '6.0%',
+                            st_info: '近一年的增长率',
+                            st_name: '平台研究精选存款',
+                            st_intro: '聚焦长期，可观回报',
+                            st_id: '002',
+                        },
+                        {
+                            st_rank: '3',
+                            st_num: '6.1%',
+                            st_info: '近一年的增长率',
+                            st_name: '平台研究精选存款',
+                            st_intro: '聚焦长期，可观回报',
+                            st_id: '003',
+                        },
+                    ],
+                    remind: {
+                        unpaid: 4,
+                        paid: 2,
+                        appointed: 5,
+                    }
+                }
+            },
+            methods: {
+                changeRecommand() {
+                    // 换一批推荐
+                },
+                moreLoans() {
+                    // 更多贷款
+                },
+                moreStore() {
+                    // 更多存款
+                }
+            },
+        })
+    </script>
     <!-- Swiper JS -->
     <script src="./js/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
@@ -255,7 +316,7 @@
         var swiper = new Swiper(".mySwiper2", {
             slidesPerView: 1,
             loop: true,
-            direction : 'vertical',
+            direction: 'vertical',
             autoplay: {
                 disableOnInteraction: false,
                 delay: 5000,
@@ -271,6 +332,7 @@
             },
         });
     </script>
+
 </body>
 
 </html>

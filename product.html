@@ -14,11 +14,13 @@
     <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
     <!-- flexible.js rem为屏幕像素除以10 -->
     <script src="./js/jQuery.min.js"></script>
+    <script src="./js/vue2-6-12.min.js"></script>
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <link rel="stylesheet" href="./css/product.css">
+    <script src="./js/dayjs.min.js"></script>
     <script src="./js/common.js"></script>
-
+    <script src="./js/product.js"></script>
 </head>
 
 <body>
@@ -27,124 +29,242 @@
         <div class="page-name">产品详情</div>
         <div class="service">&#xe65f;</div>
     </header>
-    <div class="pro-info">
-        <div class="pro-name">三湘理财“每月放心买”第1期</div>
-        <div class="pro-type">人名币理财产品</div>
-        <div class="label-box">
-            <ul>
-                <li class="pro-label">开放式</li>
-                <li class="pro-label">公募</li>
-                <li class="pro-label">固定收益类</li>
+    <div class="tip-box" >
+        <div class="tip-title">温馨提示</div>
+        <p>这里是个温馨提示</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
+    <div class="main" id='product'>
+        <div class="pro-info">
+            <div class="pro-name">{{pro_name}}</div>
+            <div class="pro-type">{{pro_type}}</div>
+            <div class="label-box">
+                <ul>
+                    <li class="pro-label" v-for='item in pro_labels' :key='item.la_id'>{{item.la_name}}</li>
+                </ul>
+            </div>
+            <div class="parameter-box">
+                <div class="pro-parameter" v-for="item in pro_parameter" :key="item.pa_id">
+                    <div class="parameter-num">{{item.pa_num}}</div>
+                    <div class="parameter-info">{{item.pa_info}}</div>
+                </div>
+            </div>
+            <div class="remind" v-if='remind.target'>
+                <p>{{remind.info}}</p>
+                <div class="arrow-top" :style='remind.target==1?"left:1.4rem":"left:6.5rem;"'></div>
+            </div>
+        </div>
+        <div class="short-info">
+            <div class="small-ico red">&#xe651;</div>
+            <div class="risk green">{{short_info.risk}}</div>|
+            <div class="per-money yellow">单份{{short_info.per_money}}元</div>|
+            <div class="total-num">总额{{short_info.sum}}份</div>
+        </div>
+        <div class="rule">
+            <div class="rule-title">
+                <span>交易规则</span>
+                <div class="rule-more rotateUp" @click="slide('rule')">&#xe6ae;</div>
+            </div>
+            <ul class="rule-box" ref="rule">
+                <li class="rule-detail" v-for='item in rules' :key='item.ru_id'>
+                    <span class="rule-name">{{item.ru_name}}</span>
+                    <div class="rule-intro">{{item.ru_intro}}</div>
+                </li>
             </ul>
         </div>
-        <div class="parameter-box">
-            <div class="pro-parameter">
-                <div class="parameter-num">3.15%</div>
-                <div class="parameter-info">业绩比较基准</div>
+        <div class="specific">
+            <div class="specific-title">
+                <span>产品信息</span>
+                <div class="specific-more rotateUp" @click="slide('specific')">&#xe6ae;</div>
             </div>
-            <div class="pro-parameter">
-                <div class="parameter-num">30</div>
-                <div class="parameter-info">最低持有期限(天)</div>
+            <ul class="specific-box" ref='specific'>
+                <li class="specific-detail">
+                    <span class="specific-name">销售地区</span>
+                    <div class="specific-intro">全国</div>
+                </li>
+                <li class="specific-detail">
+                    <span class="specific-name">收益类型</span>
+                    <div class="specific-intro">非保本浮动收益</div>
+                </li>
+                <li class="specific-detail">
+                    <span class="specific-name">最低持有天使</span>
+                    <div class="specific-intro">30天</div>
+                </li>
+                <li class="specific-detail">
+                    <span class="specific-name">募集方式</span>
+                    <div class="specific-intro">公募</div>
+                </li>
+                <li class="specific-detail">
+                    <span class="specific-name">投资性质</span>
+                    <div class="specific-intro">固定收益类</div>
+                </li>
+                <li class="specific-detail">
+                    <span class="specific-name">风险等级</span>
+                    <div class="specific-intro">中低风险</div>
+                </li>
+            </ul>
+        </div>
+        <div class="rule suggest">
+            <div class="rule-title">
+                <span>风险揭示书、产品说明书及投资者权益须知</span>
+                <div class="rule-more">&#xe6ac;</div>
+            </div>
+            <div class="rule-title">
+                <span>运作公告</span>
+                <div class="rule-more">&#xe6ac;</div>
+            </div>
+            <div class="rule-title">
+                <span>到期公告</span>
+                <div class="rule-more">&#xe6ac;</div>
+            </div>
+            <div class="rule-title">
+                <span>产品协议</span>
+                <div class="rule-more">&#xe6ac;</div>
             </div>
         </div>
-        <div class="example">
-            <p>主要投资货币市场工具、债券、证券投资基金、资管计划等，以投资信用债80%-100%，权益资产0-20%，货币市场工具0-20%，杠杆率120%为例，业绩基准参考市场指数及投资策略等确定，不代表产品的未来表现和实际收益。（示例仅供参考）
-            </p>
-            <div class="arrow-top"></div>
-        </div>
     </div>
-    <div class="short-info">
-        <div class="small-ico red">&#xe651;</div>
-        <div class="risk green">中低风险</div>|
-        <div class="min-money yellow">单份10,000元</div>|
-        <div class="total-num">总额10,000份</div>
-    </div>
-    <div class="rule">
-        <div class="rule-title">
-            <span>交易规则</span>
-            <div class="rule-more">&#xe6ae;</div>
-        </div>
-        <ul class="rule-box">
-            <li class="rule-detail">
-                <span class="rule-name">首笔起点金额</span>
-                <div class="rule-intro">1.00元</div>
-            </li>
-            <li class="rule-detail">
-                <span class="rule-name">首笔起点金额</span>
-                <div class="rule-intro">1.00元</div>
-            </li>
-        </ul>
-    </div>
-    <div class="specific">
-        <div class="specific-title">
-            <span>产品信息</span>
-            <div class="specific-more">&#xe6ae;</div>
-        </div>
-        <ul class="specific-box">
-            <li class="specific-detail">
-                <span class="specific-name">销售地区</span>
-                <div class="specific-intro">全国</div>
-            </li>
-            <li class="specific-detail">
-                <span class="specific-name">收益类型</span>
-                <div class="specific-intro">非保本浮动收益</div>
-            </li>
-            <li class="specific-detail">
-                <span class="specific-name">最低持有天使</span>
-                <div class="specific-intro">30天</div>
-            </li>
-            <li class="specific-detail">
-                <span class="specific-name">募集方式</span>
-                <div class="specific-intro">公募</div>
-            </li>
-            <li class="specific-detail">
-                <span class="specific-name">投资性质</span>
-                <div class="specific-intro">固定收益类</div>
-            </li>
-            <li class="specific-detail">
-                <span class="specific-name">风险等级</span>
-                <div class="specific-intro">种地风险</div>
-            </li>
-        </ul>
-    </div>
-    <div class="rule suggest">
-        <div class="rule-title">
-            <span>风险揭示书、产品说明书及投资者权益须知</span>
-            <div class="rule-more">&#xe6ac;</div>
-        </div>
-        <div class="rule-title">
-            <span>运作公告</span>
-            <div class="rule-more">&#xe6ac;</div>
-        </div>
-        <div class="rule-title">
-            <span>到期公告</span>
-            <div class="rule-more">&#xe6ac;</div>
-        </div>
-        <div class="rule-title">
-            <span>产品协议</span>
-            <div class="rule-more">&#xe6ac;</div>
-        </div>
-    </div>
-    <footer class="footer">
+    <footer class="footer" id='footer'>
         <div class="state">
             <div class="min-logo"><img src="./images/ico.png" alt=""></div>
             <!-- 最长 "剩余10,00000000份" 可正常显示 -->
-            <div class="pro-left">剩余10,0000份</div>
+            <div class="pro-left">剩余{{pro_left}}份</div>
             <div class="time-box red">
                 <div class="arrow-left"></div>
-                <div class="time-title red">距离开始还剩</div>
+                <div class="time-title red"  ref='countTitle'>距离开始还剩</div>
                 <div class="time-left">
-                    <div class="time-h">03 </div> : 
-                    <div class="time-m">45 </div> : 
-                    <div class="time-s">16</div>
+                    <div id="time-h">{{hour_l | size2}}</div> :
+                    <div id="time-m">{{minute_l | size2}}</div> :
+                    <div id="time-s">{{second_l | size2}}</div>
                 </div>
             </div>
         </div>
-        <button class="wide-btn scheduled-btn">预定</button>
+        <button class="wide-btn scheduled-btn" ref='btn' @click.once='appoint()'>预定</button>
     </footer>
 
+    <script>
+        new Vue({
+            el: '#product',
+            data() {
+                return {
+                    pro_name: '三湘理财“每月放心买”第2期',
+                    pro_type: '人民币理财产品',
+                    pro_labels: [
+                        {
+                            la_name: '开放式',
+                            la_id: '001'
+                        },
+                        {
+                            la_name: '公募',
+                            la_id: '002'
+                        },
+                        {
+                            la_name: '固定收益',
+                            la_id: '003'
+                        },
+                    ],
+                    pro_parameter: [
+                        {
+                            pa_num: '3.15%',
+                            pa_info: '业绩比较基准',
+                            pa_id: '001'
+                        },
+                        {
+                            pa_num: '60',
+                            pa_info: '最低持有期限(天)',
+                            pa_id: '002'
+                        }
+                    ],
+                    remind: {
+                        info: '主要投资货币市场工具、债券、证券投资基金、资管计划等，以投资信用债80%-100%，权益资产0-20%，货币市场工具0-20%，杠杆率120%为例，业绩基准参考市场指数及投资策略等确定，不代表产品的未来表现和实际收益。（示例仅供参考）',
+                        target: 1, // 0 不需要解释 1 对 第一个框的解释 2 对 第二个框的解释 
+                    },
+                    short_info: {
+                        risk: '中低风险',
+                        per_money: 10000,
+                        sum: 10000,
+                    },
+                    rules: [
+                        {
+                            ru_name: '首笔起点金额',
+                            ru_intro: '1.00元',
+                            ru_id: '001'
+                        },
+                        {
+                            ru_name: '单笔起点金额',
+                            ru_intro: '1.00元',
+                            ru_id: '002'
+                        }
+                    ],
+                }
+            },
+            methods: {
+                slide(el_name) {
+                    var ruleBox = this.$refs[el_name]
+                    $(ruleBox).stop().slideToggle(250)
+                    event.target.classList.toggle('rotateDown')
+                    event.target.classList.toggle('rotateUp')
+                },
+            },
+        })
+        new Vue({
+            el: '#footer',
+            data() {
+                return {
+                    hour_l: 0,
+                    minute_l: 0,
+                    second_l: 10,
+                    pro_left: 10000
+                }
+            },
+            methods: {
+                tip_box(str) {
+                    $('.tip-box').css('display', 'flex')
+                    $('.tip-box > p').text(str)
+                    $('.cover').css('display', 'block')
+                },
+                appoint(){
+                    this.tip_box("预定成功")
+                }
+            },
+            mounted() {
+                var timer = setInterval(() => {
+                    if (this.hour_l == 0 && this.second_l == 0 && this.minute_l == 0) {
+                        this.$refs.btn.innerText = "立即购买"
+                        this.$refs.countTitle.innerText = "本次秒杀结束还剩"
+                        clearInterval(timer)
+                        return false
+                    }
+                    this.second_l -= 1
+                    if (this.second_l < 0) {
+                        this.minute_l -= 1
+                        this.second_l = 59
+                    }
+                    if (this.minute_l < 0) {
+                        this.hour_l -= 1
+                        this.minute_l = 59
+                    }
+                    if (this.hour_l < 0) {
+                        this.hour_l = 23
+                    }
+                    // console.log(this.second_l);
+                }, 1000)
+                function queryProduct() {
+                    // 查询剩余产品份数
+                }
+
+            },
+            filters: {
+                // 至少显示两位 用0补充
+                size2: function (value) {
+                    if (value < 10) return "0" + value
+                    return value
+                }
+            }
+        })
+    </script>
     <!-- 加载动画 -->
-    <div class="loader-box"> 
+    <div class="loader-box">
         <div class="loader">
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
@@ -152,7 +272,7 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__ball"></div>
-          </div>
+        </div>
     </div>
 </body>
 

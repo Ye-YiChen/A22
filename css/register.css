@@ -1,7 +1,17 @@
 html {
     background-image: linear-gradient(to right bottom, rgb(236, 202, 208), #EF4C53);
 }
-
+/* 
+.bgc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    background: url(../images/red-bgc.png);
+    background-size: 20rem auto;
+    z-index: -98;
+} */
 body {
     font-family: "Microsoft Yahei", "Helvetica Neue";
     /* font-family:-apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif; */
@@ -28,7 +38,14 @@ h2 {
     text-shadow: .1rem .15rem .1333rem red;
     letter-spacing: .1rem;
 }
-
+.contact {
+    text-align: right;
+    line-height: 1rem;
+    font-size: .3733rem;
+    font-weight: 700;
+    color: #eee;
+    margin-right: -.3rem;
+}
 .logo {
     position: relative;
     /* display: flex;
@@ -50,14 +67,6 @@ h2 {
     width: 100%;
 }
 
-.contact {
-    text-align: right;
-    line-height: 1rem;
-    font-size: .3733rem;
-    font-weight: 700;
-    color: #eee;
-    margin-right: -.3rem;
-}
 
 .main {
     position: relative;
@@ -76,38 +85,36 @@ h2 {
     font-size: .5rem;
     margin-top: .2667rem;
 }
-
-.wide-input {
-    margin: .2rem;
+.slogan{
+    margin: .5rem 0;
+}
+#register > label{
+    font-family: "iconfont";
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: 0 0 .1rem #EF4C53;
+    border-radius: .45rem;
+    padding:0 ;
 }
 
-.attention {
-    display: block;
-    margin-top: .5333rem;
-    font-size: .63rem;
-    text-align: center;
-    color: rgb(209, 148, 68);
-    font-weight: 700;
-}
-
-.send-verify {
-    position: absolute;
-    top: .3rem;
-    right: 0;
-    border-radius: .4rem;
-    box-shadow: .0533rem .0533rem #ccc;
-    margin: 0;
-    width: 2rem;
-    height: .8rem;
+.alert-box{
+    display: flex;
+    /* display: none; */
+    /* visibility: hidden; */
+    font-family: "iconfont";
     font-size: .32rem;
-    text-align: center;
+    margin: 3.75px;
+    height: .5333rem;
+    box-sizing: border-box;
+    background-color: #fff;
 }
-
-.register {
-    margin-top: .8rem;
-    background-color: #EF4C53;
-    color: #fff;
-    margin-bottom: 0;
+.alert-box > div {
+    display: none;
+    justify-content: start;
+    align-items: center;
 }
 
 .input-ico {
@@ -118,15 +125,39 @@ h2 {
 }
 
 .input-ico span {
-    position: absolute;
-    top: .35rem;
-    left: .5rem;
+    margin: 0 .2rem;
     color: #a81627;
 }
 
 .input-ico input {
-    padding-left: 1.2rem;
+    border: none;
+    box-shadow: none;
 }
+.wide-input {
+    margin: 0rem;
+}
+
+
+.send-verify {
+    border-radius: .4rem;
+    box-shadow: .0533rem .0533rem #ccc;
+    margin: 0;
+    margin-right: .2rem;
+    white-space: nowrap;
+    width: 2rem;
+    height: .8rem;
+    font-size: .32rem;
+    text-align: center;
+}
+
+.register {
+    margin-top: .2rem;
+    background-color: #EF4C53;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+
 
 #register-agree {
     width: .4rem;
@@ -138,6 +169,8 @@ h2 {
     font-size: .2rem;
     margin-top: .2333rem;
     margin-bottom: .2rem;
+    border: none;
+    box-shadow: none!important;
 }
 
 label input {

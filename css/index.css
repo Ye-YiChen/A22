@@ -432,6 +432,8 @@ body {
 .orderbox {
     display: flex;
     margin-bottom: .5rem;
+    justify-content: star;
+    align-items: center;
 }
 
 .order-ico {

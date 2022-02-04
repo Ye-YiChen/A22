@@ -15,6 +15,7 @@
     <script src="./js/flexible.js"></script>
     <script src="./js/jQuery.min.js"></script>
     <script src="./js/common.js"></script>
+    <script src="./js/vue2-6-12.min.js"></script>
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <link rel="stylesheet" href="./css/market.css">
@@ -32,143 +33,30 @@
     <div class="logo-pic">
         <img src="./images/wide-logo2.png" alt="">
     </div>
-    <ul class="pro-show">
-        <li class="pro-box">
+    <ul class="pro-show" id='market' v-cloak>
+        <li class="pro-box" v-for='item in products' :key='item.pro_id'>
             <div class="pro-title">
                 <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                <div class="pro-name">月月安心买</div>
+                <div class="pro-name">{{item.pro_name}}</div>
                 <div class="pro-detail">&#xe6ac;</div>
             </div>
             <div class="pro-body">
                 <div class="pro-advantage">
-                    <div class="adv-num">2.70%</div>
-                    <div class="adv-name">业绩比较基准</div>
+                    <div class="adv-num">{{item.adv_num}}</div>
+                    <div class="adv-name">{{item.adv_name}}</div>
                 </div>
                 <div class="pro-info">
-                    <div class="pro-important">最低持有1天 | 一元起购</div>
+                    <div class="pro-important">{{item.pro_important}}</div>
                     <div class="pro-time">
-                        <span class="s-time">2022/01/21</span>
+                        <span class="s-time">{{item.s_time}}</span>
                         <span class="d-time">开始秒杀</span>
                     </div>
                     <ul class="label-box">
-                        <li class="pro-label">中低风险</li>
-                        <li class="pro-label">固定收益类</li>
+                        <li class="pro-label" v-for='label in item.labels' :key='label.la_id'>{{label.la_name}}</li>
                     </ul>
                 </div>
             </div>
-            <div class="remind red">
-                <div class="arrow-top"></div>
-                <p style="margin: 0;">业绩基准不代表未来表现和实际收益，测算详见说明</p>
-            </div>
-        </li>
-        <li class="pro-box">
-            <div class="pro-title">
-                <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                <div class="pro-name">月月安心买</div>
-                <div class="pro-detail">&#xe6ac;</div>
-            </div>
-            <div class="pro-body">
-                <div class="pro-advantage">
-                    <div class="adv-num">2.70%</div>
-                    <div class="adv-name">业绩比较基准</div>
-                </div>
-                <div class="pro-info">
-                    <div class="pro-important">最低持有1天 | 一元起购</div>
-                    <div class="pro-time">
-                        <span class="s-time">2022/01/21</span>
-                        <span class="d-time">开始秒杀</span>
-                    </div>
-                    <ul class="label-box">
-                        <li class="pro-label">中低风险</li>
-                        <li class="pro-label">固定收益类</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="remind red">
-                <div class="arrow-top"></div>
-                <p style="margin: 0;">业绩基准不代表未来表现和实际收益，测算详见说明</p>
-            </div>
-        </li>
-        <li class="pro-box">
-            <div class="pro-title">
-                <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                <div class="pro-name">月月安心买</div>
-                <div class="pro-detail">&#xe6ac;</div>
-            </div>
-            <div class="pro-body">
-                <div class="pro-advantage">
-                    <div class="adv-num">2.70%</div>
-                    <div class="adv-name">业绩比较基准</div>
-                </div>
-                <div class="pro-info">
-                    <div class="pro-important">最低持有1天 | 一元起购</div>
-                    <div class="pro-time">
-                        <span class="s-time">2022/01/21</span>
-                        <span class="d-time">开始秒杀</span>
-                    </div>
-                    <ul class="label-box">
-                        <li class="pro-label">中低风险</li>
-                        <li class="pro-label">固定收益类</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="remind red">
-                <div class="arrow-top"></div>
-                <p style="margin: 0;">业绩基准不代表未来表现和实际收益，测算详见说明</p>
-            </div>
-        </li>
-        <li class="pro-box">
-            <div class="pro-title">
-                <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                <div class="pro-name">月月安心买</div>
-                <div class="pro-detail">&#xe6ac;</div>
-            </div>
-            <div class="pro-body">
-                <div class="pro-advantage">
-                    <div class="adv-num">2.70%</div>
-                    <div class="adv-name">业绩比较基准</div>
-                </div>
-                <div class="pro-info">
-                    <div class="pro-important">最低持有1天 | 一元起购</div>
-                    <div class="pro-time">
-                        <span class="s-time">2022/01/21</span>
-                        <span class="d-time">开始秒杀</span>
-                    </div>
-                    <ul class="label-box">
-                        <li class="pro-label">中低风险</li>
-                        <li class="pro-label">固定收益类</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="remind red">
-                <div class="arrow-top"></div>
-                <p style="margin: 0;">业绩基准不代表未来表现和实际收益，测算详见说明</p>
-            </div>
-        </li>
-        <li class="pro-box">
-            <div class="pro-title">
-                <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                <div class="pro-name">月月安心买</div>
-                <div class="pro-detail">&#xe6ac;</div>
-            </div>
-            <div class="pro-body">
-                <div class="pro-advantage">
-                    <div class="adv-num">2.70%</div>
-                    <div class="adv-name">业绩比较基准</div>
-                </div>
-                <div class="pro-info">
-                    <div class="pro-important">最低持有1天 | 一元起购</div>
-                    <div class="pro-time">
-                        <span class="s-time">2022/01/21</span>
-                        <span class="d-time">开始秒杀</span>
-                    </div>
-                    <ul class="label-box">
-                        <li class="pro-label">中低风险</li>
-                        <li class="pro-label">固定收益类</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="remind red">
+            <div class="remind red" v-if='item.adv_name=="业绩比较基准"'>
                 <div class="arrow-top"></div>
                 <p style="margin: 0;">业绩基准不代表未来表现和实际收益，测算详见说明</p>
             </div>
@@ -179,7 +67,7 @@
         <div class="b-remind">温馨提示：<br>以上产品利率仅供参考，请您以实际交易利率为准</div>
     </footer>
     <!-- 加载动画 -->
-    <div class="loader-box"> 
+    <div class="loader-box">
         <div class="loader">
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
@@ -187,8 +75,133 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__ball"></div>
-          </div>
+        </div>
     </div>
+    <script>
+        new Vue({
+            el: '#market',
+            data() {
+                return {
+                    products: [
+                        {
+                            pro_name: '月月安心买1',
+                            pro_id: '001',
+                            adv_num: '2.7%',
+                            adv_name: '业绩比较基准',
+                            pro_important: '最低持有1天 | 一元起购',
+                            s_time: '2022/01/21',
+                            labels: [
+                                {
+                                    la_name: '中低风险',
+                                    la_id: '001'
+                                },
+                                {
+                                    la_name: '固定收益类',
+                                    la_id: '002'
+                                }
+
+                            ]
+                        },
+                        {
+                            pro_name: '月月安心买2',
+                            pro_id: '001',
+                            adv_num: '2.7%',
+                            adv_name: '业绩比较基准',
+                            pro_important: '最低持有1天 | 一元起购',
+                            s_time: '2022/01/21',
+                            labels: [
+                                {
+                                    la_name: '中低风险',
+                                    la_id: '001'
+                                },
+                                {
+                                    la_name: '固定收益类',
+                                    la_id: '002'
+                                }
+
+                            ]
+                        },
+                        {
+                            pro_name: '月月安心买3',
+                            pro_id: '001',
+                            adv_num: '2.7%',
+                            adv_name: '业绩比较基准',
+                            pro_important: '最低持有1天 | 一元起购',
+                            s_time: '2022/01/21',
+                            labels: [
+                                {
+                                    la_name: '中低风险',
+                                    la_id: '001'
+                                },
+                                {
+                                    la_name: '固定收益类',
+                                    la_id: '002'
+                                }
+
+                            ]
+                        },
+                        {
+                            pro_name: '月月安心买4',
+                            pro_id: '001',
+                            adv_num: '2.7%',
+                            adv_name: '业绩比较基准',
+                            pro_important: '最低持有1天 | 一元起购',
+                            s_time: '2022/01/21',
+                            labels: [
+                                {
+                                    la_name: '中低风险',
+                                    la_id: '001'
+                                },
+                                {
+                                    la_name: '固定收益类',
+                                    la_id: '002'
+                                }
+
+                            ]
+                        },
+                        {
+                            pro_name: '月月安心买5',
+                            pro_id: '001',
+                            adv_num: '2.7%',
+                            adv_name: '业绩比较基准测试',
+                            pro_important: '最低持有1天 | 一元起购',
+                            s_time: '2022/01/21',
+                            labels: [
+                                {
+                                    la_name: '中低风险',
+                                    la_id: '001'
+                                },
+                                {
+                                    la_name: '固定收益类',
+                                    la_id: '002'
+                                }
+
+                            ]
+                        },
+                        {
+                            pro_name: '月月安心买6',
+                            pro_id: '001',
+                            adv_num: '2.7%',
+                            adv_name: '业绩比较基准',
+                            pro_important: '最低持有1天 | 一元起购',
+                            s_time: '2022/01/21',
+                            labels: [
+                                {
+                                    la_name: '中低风险',
+                                    la_id: '001'
+                                },
+                                {
+                                    la_name: '固定收益类',
+                                    la_id: '002'
+                                }
+
+                            ]
+                        },
+                    ]
+                }
+            },
+        })
+    </script>
 </body>
 
 </html>

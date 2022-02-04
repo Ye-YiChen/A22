@@ -23,11 +23,18 @@
 </head>
 
 <body>
-    
+
     <header class="header">
         <h2>欢迎注册</h2>
         <div class="contact">意见反馈</div>
     </header>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
     <div class="main">
         <div class="logo">
             <a href="register.html"><img src="./images/min-logo.png" alt=""></a>
@@ -38,19 +45,54 @@
         <form action="" id="register">
             <label class="input-ico" for="phonenumber"><span>&#xe6c1;</span><input type="text" placeholder="手机号码"
                     name="phonenumber" id="phonenumber" class="wide-input"></label>
+            <div class="alert-box">
+                <div class="icon-cuowu">
+                    请输入正确的用户名
+                </div>
+                <div class="icon-zhengque">
+                </div>
+            </div>
             <label class="input-ico" for="IDname"><span>&#xe601;</span><input type="text" placeholder="姓名" name="IDname"
                     id="IDname" class="wide-input"></label>
-            <label class="input-ico" for="IDnumber"><span style="left: .35rem;">&#xe625;</span><input type="text"
-                    placeholder="身份证" name="IDnumber" id="IDnumber" class="wide-input"></label>
+            <div class="alert-box">
+                <div class="icon-cuowu">
+                    请输入正确的用户名
+                </div>
+                <div class="icon-zhengque">
+                </div>
+            </div>
+            <label class="input-ico" for="IDnumber"><span>&#xe625;</span><input type="text"
+                    placeholder="身份证" name="IDnumber" id="IDnumber" class="wide-input" style="padding-left: 0rem;"></label>
             <!-- <label class="input-ico" for="username"><span>&#xe601;</span><input type="text" placeholder="用户名"
                     name="username" id="username" class="wide-input"></label> -->
+            <div class="alert-box">
+                <div class="icon-cuowu">
+                    请输入正确的用户名
+                </div>
+                <div class="icon-zhengque">
+                </div>
+            </div>
             <label class="input-ico" for="password"><span>&#xe62e;</span><input type="password" placeholder="密码"
                     name="password" id="password" class="wide-input"></label>
+            <div class="alert-box">
+                <div class="icon-cuowu">
+                    请输入正确的用户名
+                </div>
+                <div class="icon-zhengque">
+                </div>
+            </div>
             <label class="input-ico">
                 <span>&#xe604;</span>
                 <input type="text" placeholder="短信验证码" name="verification" id="verification" class="wide-input">
                 <button class="wide-btn abled-btn send-verify">发送验证码</button>
             </label>
+            <div class="alert-box">
+                <div class="icon-cuowu">
+                    请输入正确的用户名
+                </div>
+                <div class="icon-zhengque">
+                </div>
+            </div>
             <button class="wide-btn register">立即注册</button>
             <label id="agree" for="register-agree">
                 <input type="checkbox" name="otp" id="register-agree">
@@ -69,8 +111,9 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__ball"></div>
-          </div>
+        </div>
     </div>
+    <div class="bgc"></div>
 </body>
 
 </html>

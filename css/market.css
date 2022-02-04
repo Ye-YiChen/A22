@@ -87,7 +87,7 @@
 .pro-detail{
     flex: 1;
     text-align: right;
-    margin-right: .5rem;
+    margin-right: .2rem;
 }
 .pro-body{
     display: flex;
@@ -98,6 +98,7 @@
     flex: 40%;
     display: flex;
     flex-direction: column;
+    margin-left: .2rem;
 }
 .adv-num{
     font-size: .45rem;

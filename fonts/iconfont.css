@@ -15,10 +15,15 @@
 
 .icon-cuowu:before {
   content: "\e602";
+  color: #EF4C53;
+  font-size: .4267rem;
 }
 
 .icon-zhengque:before {
   content: "\e6a0";
+  color: #5a925a;
+  font-size: .4267rem;
+
 }
 
 .icon-huidingbu:before {
