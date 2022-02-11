@@ -1,5 +1,4 @@
 $(function () {
-    const SERVER_PATH = "http://48c2385l00.qicp.vip"
     var leftTime = 60
     // 获取验证码
     $('.send-verify').on('click', function () {

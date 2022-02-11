@@ -16,8 +16,11 @@
     <script src="./js/jQuery.min.js"></script>
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <script src="./js/common.js"></script>
+    <script src="./js/vue2-6-12.min.js"></script>
+    <script src="./js/ajaxAnimation.js"></script>
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./css/purchase.css">
+    <script src="./js/purchase.js"></script>
 </head>
 
 <body>
@@ -26,65 +29,72 @@
         <div class="page-name">支付订单</div>
         <div class="service">&#xe65f;</div>
     </header>
-    <div class="purchaser-info box">
-        <div class="pro-box item">
-            <div>产品名称</div>
-            <div class="pro-name fade">月月放心买，第1季度第1期XXXXXXXXXXXX</div>
+    <div class="main">
+        <div class="purchaser-info box" id="acount-info">
+            <div class="pro-box item">
+                <div>产品名称</div>
+                <div class="pro-name fade">{{pro_name}}</div>
+            </div>
+            <div class="acount-box item">
+                <div>交易账户</div>
+                <div class="acount fade">{{acount_num | secret}}</div>
+            </div>
+            <div class="fade tip">
+                <div>可用金额</div>
+                <div class="acount-money">{{acount_money}}元</div>
+            </div>
         </div>
-        <div class="acount-box item">
-            <div>交易账户</div>
-            <div class="acount fade">6228****7077</div>
+        <div class="pro-info box" id="product-info">
+            <div class="quantity-info item" v-for="item in pr_info" :key="item.id">
+                <div>{{item.info_name}}</div>
+                <div class="quantity fade ">{{item.info_detail}}</div>
+            </div>
         </div>
-        <div class="fade tip">
-            <div>可用金额</div>
-            <div class="acount-money">100.00元</div>
+        <div class="purchaser-num box">
+            <div class="item">购买数量</div>
+            <div class="num-box item">
+                <input type="number" class="num-input" placeholder="1份起购，1份递增" v-model>
+                <span>份</span>
+            </div>
+            <div class="fade tip">
+                <div>总价</div>
+                <div class="extra-money">0.00元</div>
+            </div>
         </div>
+        <div class="agree-info box">
+            <div class="item">请阅读并同意以下内容</div>
+            <ul class="agree-detail yellow">
+                <p>
+                    <li>《理财产品购买声明》</li>、
+                    <li>《产品投资协议》</li>、
+                    <li>《代理销售协议》</li>、
+                    <li>《风险揭示书》</li>、
+                    <li>《产品说明书》</li>及
+                    <li>《投资者权益须知》</li>
+                </p>
+            </ul>
+            <div class="mind item">风险提示声明：本人已阅读并同意理财产品购买声明、产品投资协议、代理销售协议、风险揭示书、产品说明书、投资者权益须知和全部内容、愿意承担投资风险。</div>
+            <div class="tip red">&#xe656; 复制并粘贴</div>
+            <textarea class="type" placeholder="请完整输入上述风险提示声明"></textarea>
+        </div>
+        <div class="back-btn">&#xe619;</div>
+        <footer class="footer">
+            <div class="remind">温馨提示：理财非存款，产品有风险，投资需谨慎。</div>
+            <button class="purchase-btn">支付订单</button>
+        </footer>
     </div>
-    <div class="pro-info box">
-        <div class="quantity-info item">
-            <div>可购额度</div>
-            <div class="quantity fade ">剩余10000份</div>
-        </div>
-        <div class="time-box item">
-            <div>产品期限</div>
-            <div class="time fade">最低持有90天</div>
-        </div>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
     </div>
-    <div class="purchaser-num box">
-        <div class="item">购买数量</div>
-        <div class="num-box item">
-            <input type="text" class="num-input" placeholder="1份起购，1份递增">
-            <span>份</span>
-        </div>
-        <div class="fade tip">
-            <div>总价</div>
-            <div class="extra-money">0.00元</div>
-        </div>
-    </div>
-    <div class="agree-info box">
-        <div class="item">请阅读并同意以下内容</div>
-        <ul class="agree-detail yellow">
-            <p>
-                <li>《理财产品购买声明》</li>、
-                <li>《产品投资协议》</li>、
-                <li>《代理销售协议》</li>、
-                <li>《风险揭示书》</li>、
-                <li>《产品说明书》</li>及
-                <li>《投资者权益须知》</li>
-            </p>
-        </ul>
-        <div class="mind item">风险提示声明：本人已阅读并同意理财产品购买声明、产品投资协议、代理销售协议、风险揭示书、产品说明书、投资者权益须知和全部内容、愿意承担投资风险。</div>
-        <div class="tip red">&#xe656; 复制并粘贴</div>
-        <textarea class="type" placeholder="请完整输入上述风险提示声明"></textarea>
-    </div>
-    <div class="back-btn">&#xe619;</div>
-    <footer class="footer">
-        <div class="remind">温馨提示：理财非存款，产品有风险，投资需谨慎。</div>
-        <button class="purchase-btn">支付订单</button>
-    </footer>
+    <div class="cover blur"></div>
 
+
+    <script src="./js/v-purchase.js"></script>
     <!-- 加载动画 -->
-    <div class="loader-box"> 
+    <div class="loader-box">
         <div class="loader">
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
@@ -92,7 +102,7 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__ball"></div>
-          </div>
+        </div>
     </div>
 </body>
 

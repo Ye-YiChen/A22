@@ -53,14 +53,17 @@ li {
 p {
   margin: 0;
 }
-.rotateDown{
+
+.rotateDown {
   transform: rotate(180deg);
   transition: all .2s linear;
 }
-.rotateUp{
+
+.rotateUp {
   transform: rotate(0deg);
   transition: all .2s linear;
 }
+
 .small-btn {
   display: inline-block;
   height: 1.2rem;
@@ -570,11 +573,11 @@ p {
 }
 
 .tip-box {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -100%);
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -597,6 +600,7 @@ p {
 .tip-box p {
   padding: .2rem .5rem .5rem;
   /* border-bottom: .0533rem solid #fff; */
+  text-align: center;
   font-size: .4267rem;
 }
 
@@ -610,6 +614,7 @@ p {
 
 .cover {
   position: fixed;
+  display: none;
   top: 0;
   left: 0;
   width: 100%;

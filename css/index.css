@@ -65,18 +65,25 @@ body {
 
 .search-bar {
     position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #fff;
+    border-radius: .2rem;
+    border: .0533rem solid #e0e0e0;
+    box-sizing: border-box;
+
 }
 
 .search-ico {
-    position: absolute;
-    top: .2rem;
-    left: .3rem;
     font-size: .64rem;
     color: #EF4C53;
+    padding: 0 .2rem;
 }
 
 .search-text {
-    padding-left: 1rem;
+   padding: 0;
+   border: none;
 }
 
 .service {

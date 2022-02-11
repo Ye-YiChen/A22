@@ -24,6 +24,13 @@
 </head>
 
 <body>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
     <header class="header">
         <div class="logo"><a href="index.html"><img src="./images/ico-a.png" alt=""></a></div>
         <div class="search-bar">
@@ -74,7 +81,7 @@
                 <span class="change" @click='changeRecommand()'>换一批 &#xe636;</span>
             </div>
             <div class="recommand-main">
-                <div class="recommand-box" v-for="item in recommand" :key="item.re_id">
+                <div class="recommand-box" v-for="item in re_show" :key="item.re_id">
                     <div class="re-name">{{item.re_name}}</div>
                     <div class="re-num">{{item.re_num}}</div>
                     <div class="re-info">{{item.re_info}}</div>
@@ -99,7 +106,7 @@
                     <span class="ad-more" @click='moreLoans()'>&#xe6ac;</span>
                 </div>
                 <ul>
-                    <li class="ad-box" v-for='item in loans' :key='item.lo_id'>
+                    <li class="ad-box" v-for='item in lo_show' :key='item.lo_id'>
                         <div class="ad-rank" :class="'cl'+item.lo_rank">{{item.lo_rank}}</div>
                         <div class="ad-main">
                             <div class="ad-num">{{item.lo_num}}</div>
@@ -119,7 +126,7 @@
                     <span class="ad-more" @click='moreStore()'>&#xe6ac;</span>
                 </div>
                 <ul>
-                    <li class="ad-box" v-for='item in store' :key='item.st_id'>
+                    <li class="ad-box" v-for='item in st_show' :k_id="item.st_id" :key='item.st_id' @click="goStoreProduct(item.st_id)">
                         <div class="ad-rank" :class="'cl'+item.st_rank">{{item.st_rank}}</div>
                         <div class="ad-main">
                             <div class="ad-num">{{item.st_num}}</div>
@@ -170,126 +177,7 @@
         </div>
     </div>
 
-    <script>
-        new Vue({
-            el: "#index",
-            data() {
-                return {
-                    recommand: [
-                        {
-                            re_name: '“安心62天”无忧存利债券',
-                            re_num: '2.7%',
-                            re_info: '业绩比较基准',
-                            re_id: 001,
-                        },
-                        {
-                            re_name: '国泰价值',
-                            re_num: '2.7%',
-                            re_info: '业绩比较基准',
-                            re_id: 002,
-                        },
-                        {
-                            re_name: '“安心62天”无忧存利债券',
-                            re_num: '2.7%',
-                            re_info: '业绩比较基准',
-                            re_id: 003
-                        },
-                    ],
-                    announcement: [
-                        {
-                            an_info: '可 以 超 级 长 的 新 闻 1 ！ ！',
-                            an_id: '001'
-                        },
-                        {
-                            an_info: '可 以 超 级 长 的 新 闻 2 ！ ！',
-                            an_id: '002'
-                        },
-                        {
-                            an_info: '可 以 超 级 长 的 新 闻 3 ！ ！',
-                            an_id: '003'
-                        },
-                        {
-                            an_info: '可 以 超 级 长 的 新 闻 4 ！ ！',
-                            an_id: '004'
-                        },
-                        {
-                            an_info: '可 以 超 级 长 的 新 闻 5 ！ ！',
-                            an_id: '005'
-                        },
-
-                    ],
-                    loans: [
-                        {
-                            lo_rank: '1',
-                            lo_num: '5.5%',
-                            lo_info: '近一年的增长率',
-                            lo_name: '平台研究精选贷款',
-                            lo_intro: '闪电放贷，解决危机',
-                            lo_id: '001',
-                        },
-                        {
-                            lo_rank: '2',
-                            lo_num: '5.8%',
-                            lo_info: '近一年的增长率',
-                            lo_name: '平台研究精选贷款',
-                            lo_intro: '闪电放贷，解决危机',
-                            lo_id: '002',
-                        },
-                        {
-                            lo_rank: '3',
-                            lo_num: '5.5%',
-                            lo_info: '近一年的增长率',
-                            lo_name: '平台研究精选贷款',
-                            lo_intro: '闪电放贷，解决危机',
-                            lo_id: '003',
-                        }
-                    ],
-                    store: [
-                        {
-                            st_rank: '1',
-                            st_num: '5.5%',
-                            st_info: '近一年的增长率',
-                            st_name: '平台研究精选存款',
-                            st_intro: '聚焦长期，可观回报',
-                            st_id: '001',
-                        },
-                        {
-                            st_rank: '2',
-                            st_num: '6.0%',
-                            st_info: '近一年的增长率',
-                            st_name: '平台研究精选存款',
-                            st_intro: '聚焦长期，可观回报',
-                            st_id: '002',
-                        },
-                        {
-                            st_rank: '3',
-                            st_num: '6.1%',
-                            st_info: '近一年的增长率',
-                            st_name: '平台研究精选存款',
-                            st_intro: '聚焦长期，可观回报',
-                            st_id: '003',
-                        },
-                    ],
-                    remind: {
-                        unpaid: 4,
-                        paid: 2,
-                        appointed: 5,
-                    }
-                }
-            },
-            methods: {
-                changeRecommand() {
-                    // 换一批推荐
-                },
-                moreLoans() {
-                    // 更多贷款
-                },
-                moreStore() {
-                    // 更多存款
-                }
-            },
-        })
-    </script>
+    <script src="./js/v-index.js"></script>
     <!-- Swiper JS -->
     <script src="./js/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->

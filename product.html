@@ -29,7 +29,7 @@
         <div class="page-name">产品详情</div>
         <div class="service">&#xe65f;</div>
     </header>
-    <div class="tip-box" >
+    <div class="tip-box">
         <div class="tip-title">温馨提示</div>
         <p>这里是个温馨提示</p>
         <div class="cancel-box">知道了</div>
@@ -131,7 +131,7 @@
             <div class="pro-left">剩余{{pro_left}}份</div>
             <div class="time-box red">
                 <div class="arrow-left"></div>
-                <div class="time-title red"  ref='countTitle'>距离开始还剩</div>
+                <div class="time-title red" ref='countTitle'>本次秒杀开始还剩</div>
                 <div class="time-left">
                     <div id="time-h">{{hour_l | size2}}</div> :
                     <div id="time-m">{{minute_l | size2}}</div> :
@@ -139,130 +139,9 @@
                 </div>
             </div>
         </div>
-        <button class="wide-btn scheduled-btn" ref='btn' @click.once='appoint()'>预定</button>
+        <button class="wide-btn scheduled-btn" ref='btn' @click.once='press()'>预定</button>
     </footer>
-
-    <script>
-        new Vue({
-            el: '#product',
-            data() {
-                return {
-                    pro_name: '三湘理财“每月放心买”第2期',
-                    pro_type: '人民币理财产品',
-                    pro_labels: [
-                        {
-                            la_name: '开放式',
-                            la_id: '001'
-                        },
-                        {
-                            la_name: '公募',
-                            la_id: '002'
-                        },
-                        {
-                            la_name: '固定收益',
-                            la_id: '003'
-                        },
-                    ],
-                    pro_parameter: [
-                        {
-                            pa_num: '3.15%',
-                            pa_info: '业绩比较基准',
-                            pa_id: '001'
-                        },
-                        {
-                            pa_num: '60',
-                            pa_info: '最低持有期限(天)',
-                            pa_id: '002'
-                        }
-                    ],
-                    remind: {
-                        info: '主要投资货币市场工具、债券、证券投资基金、资管计划等，以投资信用债80%-100%，权益资产0-20%，货币市场工具0-20%，杠杆率120%为例，业绩基准参考市场指数及投资策略等确定，不代表产品的未来表现和实际收益。（示例仅供参考）',
-                        target: 1, // 0 不需要解释 1 对 第一个框的解释 2 对 第二个框的解释 
-                    },
-                    short_info: {
-                        risk: '中低风险',
-                        per_money: 10000,
-                        sum: 10000,
-                    },
-                    rules: [
-                        {
-                            ru_name: '首笔起点金额',
-                            ru_intro: '1.00元',
-                            ru_id: '001'
-                        },
-                        {
-                            ru_name: '单笔起点金额',
-                            ru_intro: '1.00元',
-                            ru_id: '002'
-                        }
-                    ],
-                }
-            },
-            methods: {
-                slide(el_name) {
-                    var ruleBox = this.$refs[el_name]
-                    $(ruleBox).stop().slideToggle(250)
-                    event.target.classList.toggle('rotateDown')
-                    event.target.classList.toggle('rotateUp')
-                },
-            },
-        })
-        new Vue({
-            el: '#footer',
-            data() {
-                return {
-                    hour_l: 0,
-                    minute_l: 0,
-                    second_l: 10,
-                    pro_left: 10000
-                }
-            },
-            methods: {
-                tip_box(str) {
-                    $('.tip-box').css('display', 'flex')
-                    $('.tip-box > p').text(str)
-                    $('.cover').css('display', 'block')
-                },
-                appoint(){
-                    this.tip_box("预定成功")
-                }
-            },
-            mounted() {
-                var timer = setInterval(() => {
-                    if (this.hour_l == 0 && this.second_l == 0 && this.minute_l == 0) {
-                        this.$refs.btn.innerText = "立即购买"
-                        this.$refs.countTitle.innerText = "本次秒杀结束还剩"
-                        clearInterval(timer)
-                        return false
-                    }
-                    this.second_l -= 1
-                    if (this.second_l < 0) {
-                        this.minute_l -= 1
-                        this.second_l = 59
-                    }
-                    if (this.minute_l < 0) {
-                        this.hour_l -= 1
-                        this.minute_l = 59
-                    }
-                    if (this.hour_l < 0) {
-                        this.hour_l = 23
-                    }
-                    // console.log(this.second_l);
-                }, 1000)
-                function queryProduct() {
-                    // 查询剩余产品份数
-                }
-
-            },
-            filters: {
-                // 至少显示两位 用0补充
-                size2: function (value) {
-                    if (value < 10) return "0" + value
-                    return value
-                }
-            }
-        })
-    </script>
+    <script src="./js/v-product.js"></script>
     <!-- 加载动画 -->
     <div class="loader-box">
         <div class="loader">

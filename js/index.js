@@ -1,14 +1,4 @@
 $(function(){
-    const SERVER_PATH = "http://48c2385l00.qicp.vip"
-    $.ajax({
-        type: "get",
-        url: SERVER_PATH+"/user/status",
-         // 跨域
-         xhrFields: { withCredentials: true },
-        success: function (result) {
-            $(this).text(result.data.username)
-        }
-    });
     $('.store').on('click',function(){
         window.location.href="market.html"
     })

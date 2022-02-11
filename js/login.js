@@ -1,6 +1,4 @@
 $(function () {
-    const SERVER_PATH = "http://48c2385l00.qicp.vip"
-
     $('.login-btn').on('click', function () {
         var phoneNum = $('#username').val()
         var password = $('#password').val()

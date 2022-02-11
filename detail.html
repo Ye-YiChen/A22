@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width = device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>订单详情</title>
+    <!-- 共同部分 start -->
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
+    <!-- flexible.js rem为屏幕像素除以10 -->
+    <script src="./js/flexible.js"></script>
+    <script src="./js/jQuery.min.js"></script>
+    <link rel="stylesheet" href="./fonts/iconfont.css">
+    <script src="./js/common.js"></script>
+    <script src="./js/vue2-6-12.min.js"></script>
+    <!-- 共同部分 end -->
+    <link rel="stylesheet" href="./css/detail.css">
+    <!-- <script src="./js/vue2-6-12.min.js"></script> -->
+    <script src="./js/login.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="back-ico">&#xe6ab;</div>
+        <div class="page-name">订单详情</div>
+        <div class="service">&#xe65f;</div>
+    </header>
+    <div class="main" id="root">
+        <div class="top-logo"><img src="./images/nor-logo1.png" alt=""></div>
+        <div class="card">
+            <div class="card-title">
+                <div class="pro-name">{{item.it_name}}</div>
+                <ul class="pro-box">
+                    <li class="pro-short-info">
+                        <div class="short-info-name">自有本金(元)</div>
+                        <div class="short-info-detail">{{item.it_money}}</div>
+                    </li>
+                    <li class="pro-short-info">
+                        <div class="short-info-name return-ico">累计期望回报(元)</div>
+                        <div class="short-info-detail">{{item.it_return}}</div>
+                    </li>
+                </ul>
+            </div>
+            <ul class="decoration">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <ul class="time">
+                <div class="top-time">
+                    <li>
+                        <div class="time-name">{{time.paid_time}}</div>
+                        <div class="time-detail">支付成功</div>
+                    </li>
+                    <li></li>
+                    
+                    <li>
+                        <div class="time-name">{{time.end_time}}</div>
+                        <div class="time-detail">封闭期结束</div>
+                    </li>
+                    <li></li>
+
+                </div>
+                <div class="time-pic">
+                    <img src="./images/process.png" alt="">
+                    <ul class=" special">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                
+                <div class="bottom-time">
+                    <li></li>
+
+                    <li>
+                        <div class="time-name">{{time.start_time}}</div>
+                        <div class="time-detail">开始计算期望回报</div>
+                    </li>
+                    <li></li>
+
+                    <li>
+                        <div class="time-name">{{time.destroy_time}}</div>
+                        <div class="time-detail">最晚认领时间</div>
+                    </li>
+                </div>
+
+            </ul>
+            <ul class="specific-info">
+                <li v-for="info in item_info" :key="info.id">
+                    <div class="specific-info-name">{{info.info_name}}</div>
+                    <div class="specific-info-detail">{{info.info_detail}}</div>
+                </li>
+            </ul>
+            
+        </div>
+        <footer class="footer">
+            <div class="remind">期望回报不等于实际回报，产品有风险，投资需谨慎</div>
+            <button class="purchase-btn" @click.prevent="returnIndex">回到主页</button>
+        </footer>
+    </div>
+    <script src="./js/v-detail.js"></script>
+</body>
+
+</html>
