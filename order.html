@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css">
     <!-- flexible.js rem为屏幕像素除以10 -->
     <script src="./js/flexible.js"></script>
     <script src="./js/jQuery.min.js"></script>
+    <script src="./js/vue2-6-12.min.js"></script>
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <link rel="stylesheet" href="./css/order.css">
@@ -22,6 +24,13 @@
 </head>
 
 <body>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
     <header class="header">
         <div class="back-ico">&#xe6ab;</div>
         <div class="page-name">全部订单</div>
@@ -37,133 +46,49 @@
     <div class="ads">
         <p style="margin: 0;">涉及第三方服务的订单信息，如未显示，请到购买页面查询。</p>
     </div>
-    <ul class="order-tab">
-        <li class="total-tab current">全部</li>
-        <li class="unpaid-tab">待支付</li>
-        <li class="paid-tab">已完成</li>
-        <li class="appointed-tab">已预约</li>
-        <li class="cancel-tab">已取消</li>
-
-    </ul>
-    <div class="total-order">
-        <ul class="order-c">
-            <li class="order-box">
-                <div class="order-title">
-                    <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                    <div class="pro-name">放心买系列产品</div>
-                    <div class="pro-detail">&#xe6ac;</div>
-                    <div class="order-state">已完成</div>
-                </div>
-                <div class="order-body">
-                    <div class="order-pic"><img src="./images/nor-logo1.png" alt=""></div>
-                    <div class="order-name">一月放心买第3期</div>
-                    <div class="order-num">共5份</div>
-                    <div class="order-time">
-                        <span>下单时间: </span>
-                        <div class="order-time-s"> 2022-01-18</div>
-                    </div>
-                    <div class="order-sum">
-                        <span>合计 </span>
-                        <div class="order-sum-s">￥10,000</div>
-                    </div>
-                </div>
-                <button class="small-btn order-detail">订单详情</button>
-            </li>
-            <li class="order-box">
-                <div class="order-title">
-                    <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                    <div class="pro-name">放心买系列产品</div>
-                    <div class="pro-detail">&#xe6ac;</div>
-                    <div class="order-state">已完成</div>
-                </div>
-                <div class="order-body">
-                    <div class="order-pic"><img src="./images/nor-logo1.png" alt=""></div>
-                    <div class="order-name">一月放心买第3期</div>
-                    <div class="order-num">共5份</div>
-                    <div class="order-time">
-                        <span>下单时间: </span>
-                        <div class="order-time-s"> 2022-01-18</div>
-                    </div>
-                    <div class="order-sum">
-                        <span>合计 </span>
-                        <div class="order-sum-s">￥10,000</div>
-                    </div>
-                </div>
-                <button class="small-btn order-detail">订单详情</button>
-            </li>
-            <li class="order-box">
-                <div class="order-title">
-                    <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                    <div class="pro-name">放心买系列产品</div>
-                    <div class="pro-detail">&#xe6ac;</div>
-                    <div class="order-state">已完成</div>
-                </div>
-                <div class="order-body">
-                    <div class="order-pic"><img src="./images/nor-logo1.png" alt=""></div>
-                    <div class="order-name">一月放心买第3期</div>
-                    <div class="order-num">共5份</div>
-                    <div class="order-time">
-                        <span>下单时间: </span>
-                        <div class="order-time-s"> 2022-01-18</div>
-                    </div>
-                    <div class="order-sum">
-                        <span>合计 </span>
-                        <div class="order-sum-s">￥10,000</div>
-                    </div>
-                </div>
-                <button class="small-btn order-detail">订单详情</button>
-            </li>
-            <li class="order-box">
-                <div class="order-title">
-                    <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                    <div class="pro-name">放心买系列产品</div>
-                    <div class="pro-detail">&#xe6ac;</div>
-                    <div class="order-state">已完成</div>
-                </div>
-                <div class="order-body">
-                    <div class="order-pic"><img src="./images/nor-logo1.png" alt=""></div>
-                    <div class="order-name">一月放心买第3期</div>
-                    <div class="order-num">共5份</div>
-                    <div class="order-time">
-                        <span>下单时间: </span>
-                        <div class="order-time-s"> 2022-01-18</div>
-                    </div>
-                    <div class="order-sum">
-                        <span>合计 </span>
-                        <div class="order-sum-s">￥10,000</div>
-                    </div>
-                </div>
-                <button class="small-btn order-detail">订单详情</button>
-            </li>
-            <li class="order-box">
-                <div class="order-title">
-                    <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                    <div class="pro-name">放心买系列产品</div>
-                    <div class="pro-detail">&#xe6ac;</div>
-                    <div class="order-state">已完成</div>
-                </div>
-                <div class="order-body">
-                    <div class="order-pic"><img src="./images/nor-logo1.png" alt=""></div>
-                    <div class="order-name">一月放心买第3期</div>
-                    <div class="order-num">共5份</div>
-                    <div class="order-time">
-                        <span>下单时间: </span>
-                        <div class="order-time-s"> 2022-01-18</div>
-                    </div>
-                    <div class="order-sum">
-                        <span>合计 </span>
-                        <div class="order-sum-s">￥10,000</div>
-                    </div>
-                </div>
-                <button class="small-btn order-detail">订单详情</button>
-            </li>
+    <div class="main" id="root">
+        <ul class="order-tab">
+            <li ref='tt' class="total-tab current" @click="turnTab()">全部</li>
+            <li ref='ut'class="unpaid-tab" @click="turnTab()">待支付</li>
+            <li ref='pt' class="paid-tab" @click="turnTab()">已完成</li>
+            <!-- <li ref="at" class="appointed-tab" @click="turnTab()">已预约</li> -->
+            <li ref="ct" class="cancel-tab" @click="turnTab()">已取消</li>
         </ul>
+
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide order-c">
+                    <div class=" order-box" v-for="item in orders" :key="item.item_id">
+                        <div class="order-title" @click="itemInfo()">
+                            <div class="min-logo"><img src="./images/ico.png" alt=""></div>
+                            <div class="pro-name">{{item.item_name}}</div>
+                            <div class="pro-detail">&#xe6ac;</div>
+                            <div class="order-state">已完成</div>
+                        </div>
+                        <div class="order-body">
+                            <div class="order-pic"><img src="./images/nor-logo1.png" alt=""></div>
+                            <div class="order-name">{{item.item_name}}</div>
+                            <div class="order-num">共{{item.item_sum}}份</div>
+                            <div class="order-time">
+                                <span>下单时间: </span>
+                                <div class="order-time-s">{{item.order_time | formatDate()}}</div>
+                            </div>
+                            <div class="order-sum">
+                                <span>合计 </span>
+                                <div class="order-sum-s">￥{{item.order_price}}</div>
+                            </div>
+                        </div>
+                        <button class="small-btn order-detail" :k_id="item.item_id" @click="orderInfo()">订单详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <script src="./js/v-order.js"></script>
     <div class="back-btn">&#xe619;</div>
-
     <!-- 加载动画 -->
-    <div class="loader-box"> 
+    <div class="loader-box">
         <div class="loader">
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
@@ -171,13 +96,8 @@
             <div class="loader__bar"></div>
             <div class="loader__bar"></div>
             <div class="loader__ball"></div>
-          </div>
+        </div>
     </div>
-    <!-- 似乎没必要 -->
-    <!-- <div class="unpaid-order"></div>
-    <div class="paid-order"></div>
-    <div class="appointed-order"></div>
-    <div class="cancel-order"></div> -->
 </body>
 
 </html>

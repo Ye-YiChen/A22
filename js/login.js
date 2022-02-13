@@ -50,12 +50,12 @@ $(function () {
             url: SERVER_PATH + "/user/login",
             data: {
                 "phone": phone,
-                "password": password
+                "pwd": password
             },
             xhrFields: { withCredentials: true },
             success: function (result) {
                 if (result.status) {
-                    alert(result.data.message);
+                    tip_box(result.data.message);
                     return false;
                 }
                 window.location.href = "./index.html";

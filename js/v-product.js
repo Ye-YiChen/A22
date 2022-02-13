@@ -67,23 +67,24 @@ new Vue({
         },
     },
     mounted() {
-        if(!isLogin()){
+        /* if(!isLogin()){
             tip_box('请先登录')
             $('.cancel-box').on('click', function () {
                 window.location.href='./login.html'
             })
             return false
-        }
+        } */
         this.id = getUrlParam('id'); // 获取产品id
         $.ajax({
             type: "get",
-            url: "url", // 请求地址
+            url: SERVER_PATH + "/item/detail/" + this.id, // 请求地址
+            xhrFields: { withCredentials: true },
             data: {
                 'id': this.id
             },
             success: (response) => {
                 if (response.status != 0) {
-                    alert_box('发生了意外错误，请联系管理员。')
+                    tip_box('发生了意外错误，请联系管理员。')
                 }
                 else {
                     // 产品名称 字符串
@@ -95,7 +96,7 @@ new Vue({
                     // 产品参数 对象数组 只能两个 
                     this.pro_parameter = response.data.parameter
                     // 提示信息 对象    0不提示 1 提示第一个产品参数 2 提示第二个产品参数
-                    this.remind = response.data.remind
+                    // this.remind = response.data.remind
                     // 产品概述 对象    
                     this.short_info = response.data.info
                     // 产品规则 对象数组
@@ -127,7 +128,6 @@ new Vue({
         },
         press() {
             if (this.state == 0) {
-                this.tip_box("预定成功")
                 return false
             }
             if (this.state == 1) {
@@ -144,7 +144,7 @@ new Vue({
         queryProduct(id) {
             $.ajax({
                 type: "get",
-                url: "",  // 请求产品剩余数量
+                url: SERVER_PATH + "/item/detail/" + this.id,  // 请求产品剩余数量
                 data: {
                     'id': this.id
                 },
@@ -159,17 +159,17 @@ new Vue({
             // method 0 查询开始时间 1 否则查询结束时间
             $.ajax({
                 type: "get",
-                url: "url", // 请求产品临期时间
+                url: SERVER_PATH + "/item/detail/" + this.id, // 请求产品临期时间
                 data: {
                     'id': id
                 },
                 success: (response) => {
                     if (method == 0) {
                         // 开始时间
-                        var Time = dayjs(response.data.start_time)
+                        var Time = dayjs(response.data.startTime)
                     } else {
                         // 结束时间
-                        var Time = dayjs(response.data.end_time)
+                        var Time = dayjs(response.data.endTime)
 
                     }
                     var diffTime = Time.diff(dayjs())
@@ -251,7 +251,7 @@ new Vue({
         },
         state(newValue, oldValue) {
             if (newValue == 0) {
-                this.$refs.btn.innerText = "立即预定"
+                this.$refs.btn.innerText = "即将开始"
                 this.$refs.countTitle.innerText = "本次秒杀开始还剩"
                 return false
             }

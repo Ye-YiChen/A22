@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理页面</title>
+    <!-- 共同部分 start -->
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
+    <script src="./js/jQuery.min.js"></script>
+    <link rel="stylesheet" href="./fonts/iconfont.css">
+    <script src="./js/common.js"></script>
+    <script src="./js/vue2-6-12.min.js"></script>
+    <!-- 共同部分 end -->
+    <link rel="stylesheet" href="./css/administration.css">
+    <script src="./js/administration.js"></script>
+</head>
+
+<body>
+    <!--顶部信息区-->
+    <header class="header">
+        <h1>后台管理系统</h1>
+        <nav class="user">
+            <ul>
+                <li>欢迎管理员:<strong>admin</strong></li>
+                <!-- <li><a href="modify_pass.html">修改密码</a></li> -->
+                <li><a href="javascript:void(0);">退出登录</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <div class="main">
+        <!--左侧导航区-->
+        <aside>
+            <nav class="option">
+                <ul>
+                    <li><a href="amanagement.html" target="main"  class="current">产品管理</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <article class="content">
+            <iframe src="awelcome.html" name="main"></iframe>
+            <footer class="copyright">
+                <!-- A22 -->
+            </footer>
+        </article>
+
+        
+    </div>
+</body>
+
+</html>

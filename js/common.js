@@ -1,4 +1,4 @@
-const SERVER_PATH = ''
+const SERVER_PATH = 'http://127.0.0.1:8080'
 
 
 //获取url中的参数
@@ -25,24 +25,28 @@ function tip_box(str) {
 
 
 // 请求查看用户是否登录
-function isLogin() {
-    $.ajax({
+async function isLogin() {
+    var bool = false
+    await $.ajax({
         type: "get",
-        url: this.SERVER_PATH + "/user/status",
+        url: SERVER_PATH + "/user/status",
         // 跨域
         xhrFields: { withCredentials: true },
-        success: function (result) {
+        success: (result) => {
             if (result.status != 0) {
-                tip
-                _box('发生了意外错误，请联系管理员。')
-                return false
-            } else if (!result.data) {
-                return false
+                tip_box('发生了意外错误，请联系管理员。')
+            } else if (result.data == null) {
+                console.log(result.data)
+                bool = true
             } else {
-                return true
+                console.log(result.data.name + "123")
+                bool = true
+                console.log(bool)
             }
         }
     });
+    console.log(bool)
+    return bool
 }
 
 

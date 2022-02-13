@@ -45,9 +45,9 @@ new Vue({
     },
     mounted() {
         // 未登录返回
-        if(!isLogin()){
-            // window.location.href='./login.html'
-        }
+        // if(!isLogin()){
+        //     // window.location.href='./login.html'
+        // }
 
         // 信息获取
         $.ajax({

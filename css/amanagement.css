@@ -1,0 +1,266 @@
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    /* IE6 、7 专有 */
+    *zoom: 1;
+}
+body {
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(39, 123, 196);
+    transition: .1s;
+}
+
+a:hover {
+    color: #eee;
+    font-size: 700;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    transition: .1s;
+}
+
+select {
+    border: 2px solid #ccc;
+}
+
+p {
+    margin: 0;
+}
+
+.operation {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+button:hover {
+    background-color: #EF4C53;
+    color: aliceblue;
+}
+
+.choose {
+    background-color: #EF4C53;
+    color: aliceblue;
+}
+
+#form {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#form input {
+    margin-right: 30px;
+    font-size: 14px;
+    padding: 7px;
+    background-color: #fff;
+    outline: none;
+    border: 1.5px solid #ccc;
+    border-radius: 2px;
+    transition: .2s;
+}
+
+.search-bar:focus {
+    background-color: #eee;
+}
+
+.sort {
+    margin-right: 30px;
+}
+
+#sort-select {
+    padding: 7px 0;
+    padding-left: 5px;
+    outline: none;
+}
+
+.container {
+    margin: 0;
+    /* border: 1.5px solid #ccc; */
+    border-radius: 5px;
+    /* padding: 15px; */
+}
+
+.panel-title {
+    font-size: 20px;
+    margin: 0;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 1.5px solid #000;
+    color: rgb(32, 32, 32);
+    /* background-color: rgb(248, 231, 237); */
+    background-color: #fff;
+    border-radius: 5px 0;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #ccc;
+    letter-spacing: 0px;
+    font-size: 13px;
+    transition: .2s;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(231, 229, 229);
+}
+tbody tr:nth-of-type(even){
+    background-color: rgb(234, 245, 252);
+}
+
+td {
+    flex: 1;
+}
+
+tbody tr:hover {
+    background-color: #fc6068;
+    color: #eee;
+}
+
+thead {
+    background-color: rgb(240, 245, 248);
+    font-weight: 700;
+}
+
+.before {
+    color: rgb(245, 147, 20);
+    font-weight: 700;
+}
+
+.ing {
+    color: green;
+    font-weight: 700;
+}
+
+.after {
+    color: red;
+    font-weight: 700;
+}
+
+.record {
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+}
+
+.record p {
+    margin-right: 20px;
+}
+
+.record li {
+    background-color: #eee;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 12px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.record li:hover {
+    background-color: rgb(2, 113, 176);
+    color: #eee;
+}
+
+.add-pro {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.add-set ul {
+    display: flex;
+    padding-left: 20px;
+    border-bottom: 2px solid #ccc;
+
+}
+
+.add-set li {
+    cursor: pointer;
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    margin-bottom: -2px;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.set-press {
+    border-bottom: 2px solid #fff !important;
+}
+
+.add-set li:hover {
+    background-color: #fff;
+    transition: .2s;
+}
+
+.common-set li,.special-set li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+    font-size: 14px;
+    padding-left: 20px;
+
+}
+.special-set{
+    background-color: #fff;
+}
+.set-detail,
+.special-set .set-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 2px solid #ccc; */
+    width: 200px;
+
+}
+
+.set-detail input,
+.special-set .set-name input{
+    border: 0;
+    font-size: 16px;
+    padding: 5px 0px;
+    transition: .2s;
+    outline: none;
+    background: transparent;
+}
+.add-pro-info{
+    float: right;
+    margin: 20px;
+}

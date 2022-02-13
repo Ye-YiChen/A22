@@ -2,7 +2,6 @@ new Vue({
     el: "#index",
     data() {
         return {
-            SERVER_PATH: "http://48c2385l00.qicp.vip",
             name: '登录/注册',
             re_turn: 0,
             recommand: [
@@ -149,18 +148,14 @@ new Vue({
             // 更多存款
         },
         goStoreProduct(id) {
-            if (isLogin()) {
-                window.location.href = './product.html?id=' + id
-            } else {
-                tip_box('请先登录！')
-            }
+            window.location.href = './product.html?id=' + id
         }
     },
     mounted() {
         // 用户名请求
         $.ajax({
             type: "get",
-            url: this.SERVER_PATH + "/user/status",
+            url: SERVER_PATH + "/user/status",
             // 跨域
             xhrFields: { withCredentials: true },
             success: function (result) {
@@ -175,7 +170,7 @@ new Vue({
         // 存款请求
         $.ajax({
             type: "get",
-            url: this.SERVER_PATH + "/item/list",
+            url: SERVER_PATH + "/item/deposit/list",
             // 跨域
             xhrFields: { withCredentials: true },
             success: (result) => {
@@ -194,7 +189,9 @@ new Vue({
                         this.store[i].st_info = result.data[i].info
                         this.store[i].st_intro = result.data[i].intro
                         this.store[i].st_id = result.data[i].id
-
+                        if(i != response.data.length - 1){
+                            this.store.push({})
+                        }
                     }
                 }
             },
@@ -203,7 +200,7 @@ new Vue({
         // 贷款请求
         $.ajax({
             type: "get",
-            url: this.SERVER_PATH + "/item/list", // 贷款地址
+            url: SERVER_PATH + "/item/loan/list", // 贷款地址
             // 跨域
             xhrFields: { withCredentials: true },
             success: (result) => {
@@ -222,6 +219,9 @@ new Vue({
                         this.loans[i].lo_info = result.data[i].info
                         this.loans[i].lo_intro = result.data[i].intro
                         this.loans[i].lo_id = result.data[i].id
+                        if(i != response.data.length - 1){
+                            this.loans.push({})
+                        }
                     }
                 }
             },
@@ -230,7 +230,7 @@ new Vue({
         // 新闻请求
         $.ajax({
             type: "get",
-            url: this.SERVER_PATH + "/item/list", // 新闻地址
+            url: SERVER_PATH + "/item/news", // 新闻地址
             // 跨域
             xhrFields: { withCredentials: true },
             success: (result) => {
@@ -241,6 +241,9 @@ new Vue({
                     for (let i = 0; i < result.data.length; ++i) {
                         this.announcement[i].an_info = result.data[i].info
                         this.announcement[i].an_id = result.data[i].id
+                        if(i != response.data.length - 1){
+                            this.announcement.push({})
+                        }
                     }
                 }
             },

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
+    <link rel="stylesheet" href="./fonts/iconfont.css">
+    <script src="./js/jQuery.min.js"></script>
+    <title>后台登录页面</title>
+    <link rel="stylesheet" href="./css/alogin.css">
+    <script src="./js/alogin.js"></script>
+</head>
+
+<body>
+    <h1 class="title">后台管理系统</h1>
+    <div class="login-box">
+        <div class="login-title">管理员登录</div>
+        <form action="" id="login">
+            <label for="adminname">
+                <span>&#xe601;</span>
+                <input type="text" name="adminname" id="adminname" placeholder="请输入账号">
+            </label>
+            <label id="p-ico" for="password">
+                <span>&#xe62e;</span>
+                <input type="password" name="pwd" id="pwd" placeholder="请输入密码">
+            </label>
+            <button class="login-btn">登录</button> 
+        </form>
+    </div>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
+</body>
+
+</html>

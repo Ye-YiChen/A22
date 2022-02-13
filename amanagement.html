@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品管理</title>
+    <link rel="stylesheet" href="./css/amanagement.css">
+</head>
+
+<body>
+    <div class="operation">
+        <button class="show choose">所有产品</button>
+        <button class="add">新增产品</button>
+    </div>
+    <form action="" id="form">
+        <input class="search-bar" type="text" placeholder="输入ID搜索产品">
+        <div class="sort">
+            <span>排序：</span>
+            <select name="" id="sort-select">
+                <option value="none">无</option>
+                <option value="time">时间</option>
+                <option value="money">金额</option>
+            </select>
+        </div>
+        <button class="search-btn">搜索</button>
+    </form>
+    <div class="container">
+        <!--面板的情景样式-->
+        <div class="panel" id="show-pro">
+            <div class="panel-heading">
+                <!--面板的标题-->
+                <h3 class="panel-title">所有产品</h3>
+            </div>
+            <!--面板的主体-->
+            <!--<div class="panel-body">-->
+            <!--在面板中嵌入一个表格-->
+            <table class="table">
+                <thead>
+                    <tr class="bg-success" style="font-size: 14px;">
+                        <td>产品名</td>
+                        <td>产品总数</td>
+                        <td>产品单价</td>
+                        <td>产品利率</td>
+                        <td>产品存期</td>
+                        <td>秒杀开始时间</td>
+                        <td>产品状态</td>
+                        <td>管理员</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>XXX</td>
+                        <td>10000</td>
+                        <td>10000元</td>
+                        <td>4.4%</td>
+                        <td>90天</td>
+                        <td>2020-02-03</td>
+                        <td class="before">尚未开始</td>
+                        <td>admin</td>
+                        <td><a href="javascript:;">编辑</a> | <a href="javascript:;">删除</a></td>
+                    </tr>
+                    <tr>
+                        <td>XXX</td>
+                        <td>10000</td>
+                        <td>10000元</td>
+                        <td>4.4%</td>
+                        <td>90天</td>
+                        <td>2020-02-03</td>
+                        <td class="ing">正在秒杀</td>
+                        <td>admin</td>
+                        <td><a href="javascript:;">编辑</a> | <a href="javascript:;">删除</a></td>
+                    </tr>
+                    <tr>
+                        <td>XXX</td>
+                        <td>10000</td>
+                        <td>10000元</td>
+                        <td>4.4%</td>
+                        <td>90天</td>
+                        <td>2020-02-03</td>
+                        <td class="after">秒杀结束</td>
+                        <td>admin</td>
+                        <td><a href="javascript:;">详情</a> | <a href="javascript:;">删除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="record">
+                <p>共有 <span>20</span> 条记录，当前第 <span>1</span>/<span>4</span> 页</p>
+                <li>首页</li>
+                <li>下一页</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                ...
+                <li>上一页</li>
+                <li>尾页</li>
+            </ul>
+        </div>
+        <div class="add-pro" id="add-pro">
+            <div class="panel-heading">
+                <!--面板的标题-->
+                <h3 class="panel-title">新增产品</h3>
+            </div>
+            <div class="add-set">
+                <ul>
+                    <li class="set-press">常规设置</li>
+                    <li>其他设置</li>
+                </ul>
+            </div>
+            <ul class="common-set" >
+                <li>
+                    <div class="set-name">产品名称</div>
+                    <div class="set-detail"><input type="text" placeholder="请输入产品名称"></div>
+                </li>
+                <li>
+                    <div class="set-name">产品总数</div>
+                    <div class="set-detail"><input type="number" placeholder="请输入产品数量"></div>
+                </li>
+                <li>
+                    <div class="set-name">限购数量</div>
+                    <div class="set-detail"><input type="number" placeholder="请输入限购数量"></div>
+                </li>
+                <li>
+                    <div class="set-name">产品单价</div>
+                    <div class="set-detail"><input type="number" placeholder="请输入产品单价(元)"></div>
+                </li>
+                <li>
+                    <div class="set-name">产品利率</div>
+                    <div class="set-detail"><input type="number" placeholder="请输入产品利率(%)"></div>
+                </li>
+                <li>
+                    <div class="set-name">产品存期</div>
+                    <div class="set-detail"><input type="number" placeholder="请输入产品存期(天)"></div>
+                </li>
+                <li>
+                    <div class="set-name">秒杀开始时间</div>
+                    <div class="set-detail"><input type="datetime-local"></div>
+                </li>
+                <li>
+                    <div class="set-name">秒杀结束时间</div>
+                    <div class="set-detail"><input type="datetime-local"></div>
+                </li>
+            </ul>
+            <ul class="special-set clearfix">
+                <li>
+                    <div class="set-name"><input type="text" placeholder="请输入设置名称"></div>
+                    <div class="set-detail"><input type="text" placeholder="请输入设置参数"></div>
+                </li>
+                <button class="add-pro-info">添加新设置</button>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

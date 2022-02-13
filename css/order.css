@@ -59,9 +59,10 @@
     background-color: rgb(248, 245, 82);
 }
 
-.ads p{
+.ads p {
     white-space: nowrap;
 }
+
 .order-tab {
     display: flex;
     text-align: center;
@@ -74,6 +75,8 @@
 
 .order-tab li {
     padding: .2rem .05rem;
+    transition: .1s;
+
 }
 
 .current {
@@ -82,12 +85,14 @@
 }
 
 .order-c {
+    width: 95%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: .2rem .3rem;
-    overflow: hidden;
+    margin: .3rem .3rem;
+    /* overflow: hidden; */
 }
+
 
 .order-box {
     font-family: "iconfont";
@@ -95,8 +100,10 @@
     flex-direction: column;
     border-radius: .2rem;
     background-color: #fff;
-    margin-bottom: .2rem;
+    margin-bottom: .4rem;
     padding: .4rem;
+    box-shadow: 0rem 0 .5rem #ccc;
+    z-index: 5;
 }
 
 .order-title {
@@ -104,11 +111,13 @@
     font-size: .3733rem;
     align-items: center;
 }
-.min-logo{
+
+.min-logo {
     width: .6rem;
     margin-right: .3rem;
 }
-.pro-name{
+
+.pro-name {
     max-width: 4.5rem;
     /* 1. 先强制一行内显示文本 */
     white-space: nowrap;
@@ -118,47 +127,92 @@
     /* 3.文字用省略号替代超出部分 */
     text-overflow: ellipsis;
 }
-.order-state{
+
+.order-state {
     flex: 1;
     text-align: right;
     font-size: .3rem;
 }
-.order-body{
+
+.order-body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     font-size: .2rem;
 }
-.order-pic{
+
+.order-pic {
     flex: 20%;
 }
-.order-name{
+
+.order-name {
     flex: 40%;
+    margin-left: .3rem;
+    text-align: left;
 }
-.order-num{
+
+.order-num {
     flex: 35%;
     text-align: right;
 }
-.order-time,.order-sum{
+
+.order-time,
+.order-sum {
     display: flex;
     flex-direction: row;
     margin: .2rem 0;
 }
-.order-time-s,.order-sum-s{
+
+.order-time-s,
+.order-sum-s {
     margin-left: .2rem;
     color: #EF4C53;
     font-weight: 700;
 }
-.order-detail{
+
+.order-detail {
     align-self: end;
     font-size: .3rem;
     line-height: .2rem;
     height: .5rem;
     margin-top: .15rem;
-    padding:  .1rem .3rem;
+    padding: .1rem .3rem;
     background: #EF4C53;
     color: #fff;
     border-radius: .233rem;
     box-sizing: content-box;
+}
+
+/* swiper */
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /* background: #fff; */
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
