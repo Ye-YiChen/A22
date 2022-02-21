@@ -13,4 +13,17 @@ $(function(){
         }
         return false
     })
+    $('.logout-btn').on('click',function(){
+        $.ajax({
+            type: "get",
+            url: SERVER_PATH + '',
+            success: function (response) {
+                if(response.status!=0){
+                    tip_box(response.data.message)
+                }else{
+                    window.location.href='./login.html'
+                }
+            }
+        });
+    })
 })

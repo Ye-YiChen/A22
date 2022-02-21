@@ -37,7 +37,7 @@ $(function () {
                 xhrFields: { withCredentials: true },
                 success: function (response) {
                     if (response.status != 0) {
-                        tip_box('发生了意外错误，请联系管理员。')
+                        tip_box(response.data.message)
                         return false
                     }
                     tip_box('购买成功！')

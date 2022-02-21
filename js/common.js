@@ -1,6 +1,5 @@
 const SERVER_PATH = 'http://127.0.0.1:8080'
 
-
 //获取url中的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -34,7 +33,7 @@ async function isLogin() {
         xhrFields: { withCredentials: true },
         success: (result) => {
             if (result.status != 0) {
-                tip_box('发生了意外错误，请联系管理员。')
+                tip_box(response.data.message)
             } else if (result.data == null) {
                 console.log(result.data)
                 bool = true
@@ -62,6 +61,10 @@ $(function () {
     })
     $('.back-btn').on('click', function () {
         $('body,html').animate({ scrollTop: 0 }, 500);
+        return false;
+    })
+    $('.back-ico').on('click', function () {
+        window.location.href='./index.html'
         return false;
     })
     // 返回顶部按钮 end

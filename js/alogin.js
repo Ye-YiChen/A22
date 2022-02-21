@@ -31,10 +31,10 @@ $(function () {
             },
             success: function (response) {
                 if(response.status!=0){
-                    tip_box('意外错误，请联系管理员')
+                    tip_box(response.data.message)
                     return false
                 }else{
-                    
+                    window.location.href='./administration.html'
                 }
             }
         });

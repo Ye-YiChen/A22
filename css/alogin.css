@@ -1,6 +1,4 @@
 body {
-    display: flex;
-    flex-direction: column;
     background-image: url(../images/abgi.png);
     /* background: no-repeat; */
     background-size: 100%;
@@ -8,16 +6,22 @@ body {
     height: 100%;
 }
 
-h1 {
+h1 {   
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: "宋体";
-    margin: 150px auto 50px;
+    height: 40px;
+    line-height: 40px;
     letter-spacing: 1.5px;
     font-size: 40px;
     color: #fff;
 }
 
 .login-box {
-    margin: 5px auto;
+    margin: 15% auto ;
+    width: 350px;
     background-color: rgba(95, 80, 109, .7);
     /* padding: 40px; */
     border-radius: 10px;
@@ -87,6 +91,7 @@ input {
     background: #EF4C53;
 }
 
+
 .tip-box {
     display: none;
     position: fixed;
@@ -104,32 +109,32 @@ input {
     border-radius: .5em;
     padding: 10px;
     z-index: 100;
-  }
-  
-  .tip-box .tip-title {
+}
+
+.tip-box .tip-title {
     font-size: 18px;
     font-weight: 700;
     padding: 10px 0 10px;
-  }
-  
-  .tip-box p {
+}
+
+.tip-box p {
     padding: 0px 5px 8px;
     /* border-bottom: .0533rem solid #fff; */
     text-align: center;
     font-size: 14px;
-  }
-  
-  .tip-box .cancel-box {
-      cursor: pointer;
+}
+
+.tip-box .cancel-box {
+    cursor: pointer;
     color: #eb2932;
     width: 100%;
     text-align: center;
     border-top: 1.5px solid #ccc;
     padding-top: 10px;
     font-size: 16px;
-  }
-  
-  .cover {
+}
+
+.cover {
     position: fixed;
     display: none;
     top: 0;
@@ -139,5 +144,5 @@ input {
     background-color: grey;
     z-index: 98;
     opacity: .6;
-  }
+}
   

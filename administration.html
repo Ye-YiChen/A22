@@ -10,15 +10,23 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
     <script src="./js/jQuery.min.js"></script>
-    <link rel="stylesheet" href="./fonts/iconfont.css">
+    <!-- <link rel="stylesheet" href="./fonts/iconfont.css"> -->
     <script src="./js/common.js"></script>
-    <script src="./js/vue2-6-12.min.js"></script>
+    <!-- <script src="./js/vue2-6-12.min.js"></script> -->
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./css/administration.css">
     <script src="./js/administration.js"></script>
 </head>
 
 <body>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
+
     <!--顶部信息区-->
     <header class="header">
         <h1>后台管理系统</h1>
@@ -26,7 +34,7 @@
             <ul>
                 <li>欢迎管理员:<strong>admin</strong></li>
                 <!-- <li><a href="modify_pass.html">修改密码</a></li> -->
-                <li><a href="javascript:void(0);">退出登录</a></li>
+                <li id="quit"><a href="javascript:void(0);">退出登录</a></li>
             </ul>
 
         </nav>
@@ -37,7 +45,7 @@
         <aside>
             <nav class="option">
                 <ul>
-                    <li><a href="amanagement.html" target="main"  class="current">产品管理</a></li>
+                    <li><a href="amanagement.html" target="main">产品管理1</a></li>
                 </ul>
             </nav>
         </aside>
@@ -48,7 +56,7 @@
             </footer>
         </article>
 
-        
+
     </div>
 </body>
 

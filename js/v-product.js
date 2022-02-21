@@ -37,7 +37,6 @@ new Vue({
             ],
             remind: {
                 info: '主要投资货币市场工具、债券、证券投资基金、资管计划等，以投资信用债80%-100%，权益资产0-20%，货币市场工具0-20%，杠杆率120%为例，业绩基准参考市场指数及投资策略等确定，不代表产品的未来表现和实际收益。（示例仅供参考）',
-                target: 1, // 0 不需要解释 1 对 第一个框的解释 2 对 第二个框的解释 
             },
             short_info: {
                 risk: '中低风险',
@@ -84,7 +83,7 @@ new Vue({
             },
             success: (response) => {
                 if (response.status != 0) {
-                    tip_box('发生了意外错误，请联系管理员。')
+                    tip_box(response.data.message)
                 }
                 else {
                     // 产品名称 字符串
@@ -117,8 +116,12 @@ new Vue({
             hour_l: 0,
             minute_l: 0,
             second_l: 10,
-            pro_left: 10000 // stock
+            pro_left: 10000 ,// stock
+            timer: null
         }
+    },
+    computed: {
+        timer: ''
     },
     methods: {
         tip_box(str) {
@@ -137,12 +140,12 @@ new Vue({
             if (this.state == 2) {
                 return false
             }
-            this.tip_box('预料之外的错误，请联系管理员')
+            this.tip_box(response.data.message)
             return false
         },
         // 查询指定产品数量并更新商品状态
-        queryProduct(id) {
-            $.ajax({
+        async queryProduct(id) {
+            await $.ajax({
                 type: "get",
                 url: SERVER_PATH + "/item/detail/" + this.id,  // 请求产品剩余数量
                 data: {
@@ -155,9 +158,9 @@ new Vue({
             });
         },
         // 查询时指定产品时间并更新
-        queryTime(id, method) {
+        async queryTime(id, method) {
             // method 0 查询开始时间 1 否则查询结束时间
-            $.ajax({
+            await $.ajax({
                 type: "get",
                 url: SERVER_PATH + "/item/detail/" + this.id, // 请求产品临期时间
                 data: {
@@ -183,12 +186,18 @@ new Vue({
     },
     mounted() {
         this.id = getUrlParam('id'); // 获取产品id
-        var timer = setInterval(() => {
-            if (this.hour_l == 0 && this.second_l == 0 && this.minute_l == 0) {
+        this.queryProduct(this.id)
+        this.queryTime(this.id, 0)
+        this.timer = setInterval(() => {
+            if(this.state == 1){
+                clearInterval(this.timer)
+            }
+            if (this.hour_l <= 0 && this.second_l <= 0 && this.minute_l <= 0) {
                 if (this.state == 0) {
                     this.state = 1
+                    clearInterval(this.timer)
                 }
-                clearInterval(timer)
+                clearInterval(this.timer)
                 return false
             }
             this.second_l -= 1
@@ -205,12 +214,13 @@ new Vue({
             }
             // console.log(this.second_l);
         }, 1000)
-        this.queryProduct(this.id)
-        this.queryTime(this.id, 0)
     },
     filters: {
         // 至少显示两位 用0补充
         size2: function (value) {
+            if(value < 0){
+                value = 0
+            }
             if (value < 10) return "0" + value
             return value
         }
@@ -223,11 +233,12 @@ new Vue({
             if (newValue <= 0 && this.hour_l <= 0 && this.minute_l <= 0 && this.second_l <= 0) {
                 this.queryTime(1)
                 // 定时器 销售中
-                var timer = setInterval(() => {
+                this.timer = setInterval(() => {
                     // 请求剩余商品
                     this.queryProduct(this.id)
-                    if (this.hour_l == 0 && this.second_l == 0 && this.minute_l == 0) {
-                        clearInterval(timer)
+                    // 停止计时器 状态改变
+                    if (this.hour_l <= 0 && this.second_l <= 0 && this.minute_l <= 0) {
+                        clearInterval(this.timer)
                         // 从售卖中 跳转到 售罄
                         if (this.state == 1) {
                             this.state = 2
@@ -266,9 +277,10 @@ new Vue({
                 this.hour_l = 0
                 this.minute_l = 0
                 this.second_l = 0
+                // clearInterval(this.timer)
                 return false
             }
-        }
+        },
     }
 
 })

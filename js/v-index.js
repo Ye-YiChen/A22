@@ -6,7 +6,7 @@ new Vue({
             re_turn: 0,
             recommand: [
                 {
-                    re_name: '“安心62天”无忧存利债券',
+                    re_name: '安心62天”无忧存利债券',
                     re_num: '2.7%',
                     re_info: '业绩比较基准',
                     re_id: 001,
@@ -149,7 +149,7 @@ new Vue({
         },
         goStoreProduct(id) {
             window.location.href = './product.html?id=' + id
-        }
+        },
     },
     mounted() {
         // 用户名请求
@@ -160,8 +160,7 @@ new Vue({
             xhrFields: { withCredentials: true },
             success: function (result) {
                 if (result.status != 0) {
-                    tip
-                    _box('发生了意外错误，请联系管理员。')
+                    tip_box(response.data.message)
                 } else {
                     $('.user').text(result.data.name)
                 }
@@ -175,23 +174,17 @@ new Vue({
             xhrFields: { withCredentials: true },
             success: (result) => {
                 if (result.status != 0) {
-                    tip_box('发生了意外错误，请联系管理员。')
+                    tip_box(response.data.message)
                 }
                 else {
                     for (let i = 0; i < result.data.length; ++i) {
-                        this.store[i].st_rank = result.data[i].rank
                         // 排名为空 就按顺序赋值
-                        if (!this.store[i].st_rank) {
-                            this.store[i].st_rank = i + 1
-                        }
+                        this.store[i].st_rank = i + 1
                         this.store[i].st_num = result.data[i].num
                         this.store[i].st_name = result.data[i].name
                         this.store[i].st_info = result.data[i].info
                         this.store[i].st_intro = result.data[i].intro
                         this.store[i].st_id = result.data[i].id
-                        if(i != response.data.length - 1){
-                            this.store.push({})
-                        }
                     }
                 }
             },
@@ -205,23 +198,17 @@ new Vue({
             xhrFields: { withCredentials: true },
             success: (result) => {
                 if (result.status != 0) {
-                    tip_box('发生了意外错误，请联系管理员。')
+                    tip_box(response.data.message)
                 }
                 else {
                     for (let i = 0; i < result.data.length; ++i) {
-                        this.loans[i].lo_rank = result.data[i].rank
-                        // 排名为空 就按顺序赋值
-                        if (!this.loans[i].st_rank) {
-                            this.loans[i].st_rank = i + 1
-                        }
+                    
+                        this.loans[i].lo_rank = i + 1
                         this.loans[i].lo_num = result.data[i].num
                         this.loans[i].lo_name = result.data[i].name
                         this.loans[i].lo_info = result.data[i].info
                         this.loans[i].lo_intro = result.data[i].intro
                         this.loans[i].lo_id = result.data[i].id
-                        if(i != response.data.length - 1){
-                            this.loans.push({})
-                        }
                     }
                 }
             },
@@ -235,7 +222,7 @@ new Vue({
             xhrFields: { withCredentials: true },
             success: (result) => {
                 if (result.status != 0) {
-                    tip_box('发生了意外错误，请联系管理员。')
+                    tip_box(response.data.message)
                 }
                 else {
                     for (let i = 0; i < result.data.length; ++i) {

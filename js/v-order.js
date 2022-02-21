@@ -12,21 +12,6 @@ new Vue({
                     item_id: '',
                     item_sum: 5,
                 },
-                // {
-                //     order_id: '',
-                //     order_price: '10000.00',
-                //     order_time: '2022-02-11T07:51:29.000+00:00',
-                //     item_name: '产品名字',
-                //     item_id: '',
-                //     item_sum: 5,
-                // },{
-                //     order_id: '',
-                //     order_price: '10000.00',
-                //     order_time: '2022-02-11T07:51:29.000+00:00',
-                //     item_name: '产品名字',
-                //     item_id: '',
-                //     item_sum: 5,
-                // },{}
             ]
         }
     },
@@ -37,18 +22,17 @@ new Vue({
             xhrFields: { withCredentials: true },
             success: (response) => {
                 if (response.status != 0) {
-                    tip_box('发生了意外错误，请联系管理员。')
+                    tip_box(response.data.message)
                     return false
                 }
                 else {
                     for (let i = 0; i < response.data.length; ++i) {
-                        this.user_id = response.data[i].userId
-                        // this.orders.order_name[i]=response.data[i].
                         this.orders[i].order_id = response.data[i].id
-                        this.orders[i].item_id = response.data[i].itemId
-                        this.orders[i].order_price = response.data[i].orderPrice
+                        this.orders[i].order_price = response.data[i].orderPrice * response.data[i].amount
                         this.orders[i].order_time = response.data[i].orderTime
-                        // this.orders[i].order_sum=response.data[i].
+                        this.orders[i].item_name = response.data[i].itemName
+                        this.orders[i].item_id = response.data[i].itemId
+                        this.orders[i].item_sum = response.data[i].amount
                         if(i != response.data.length - 1){
                             this.orders.push({})
                         }
