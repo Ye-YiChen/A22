@@ -228,7 +228,7 @@ new Vue({
                     for (let i = 0; i < result.data.length; ++i) {
                         this.announcement[i].an_info = result.data[i].info
                         this.announcement[i].an_id = result.data[i].id
-                        if(i != response.data.length - 1){
+                        if(i != result.data.length - 1){
                             this.announcement.push({})
                         }
                     }

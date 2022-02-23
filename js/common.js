@@ -1,4 +1,4 @@
-const SERVER_PATH = 'http://127.0.0.1:8080'
+const SERVER_PATH = '47.113.180.139:8080'
 
 //获取url中的参数
 function getUrlParam(name) {

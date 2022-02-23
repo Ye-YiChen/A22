@@ -8,27 +8,37 @@
     <script src="./js/jQuery.min.js"></script>
     <script src="./js/vue2-6-12.min.js"></script>
     <title>产品管理</title>
+    <script src="./js/common.js"></script>
     <link rel="stylesheet" href="./css/amanagement.css">
     <script src="./js/amanagement.js"></script>
 </head>
 
 <body>
+    <!-- 提示动画 -->
+    <div class="tip-box">
+        <div class="tip-title">温馨提示</div>
+        <p>请输入正确的账号</p>
+        <div class="cancel-box">知道了</div>
+    </div>
+    <div class="cover blur"></div>
+
     <div class="operation">
         <button class="show choose">所有产品</button>
         <button class="add">新增产品</button>
     </div>
     <div id="main">
         <form action="" id="form">
-            <input class="search-bar" type="text" placeholder="输入ID搜索产品">
+            <input class="search-bar" type="text" placeholder="输入ID搜索产品" v-model.trim="searchProductID">
+            <button class="search-btn" @click.prevent="search()">搜索</button>
             <div class="sort">
                 <span>排序：</span>
-                <select name="" id="sort-select">
-                    <option value="none">无</option>
-                    <option value="time">时间</option>
-                    <option value="money">金额</option>
+                <select name="" id="sort-select" v-model="rankParameter" @change="rankSort()">
+                    <option value="pro_state">产品状态</option>
+                    <option value="pro_start_time">开始时间</option>
+                    <option value="pro_price">产品单价</option>
                 </select>
+                <button class="search-btn" @click.prevent="rankReverse=-rankReverse;rankSort()">反转</button>
             </div>
-            <button class="search-btn">搜索</button>
         </form>
         <div class="container">
             <!--面板的情景样式-->
@@ -43,7 +53,7 @@
                 <table class="table">
                     <thead>
                         <tr class="bg-success" style="font-size: 14px;">
-                            <td>产品名</td>
+                            <td>产品名称</td>
                             <td>产品总数</td>
                             <td>产品单价</td>
                             <td>产品利率</td>
@@ -54,52 +64,42 @@
                             <td>操作</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>XXX</td>
-                            <td>10000</td>
-                            <td>10000元</td>
-                            <td>4.4%</td>
-                            <td>90天</td>
-                            <td>2020-02-03</td>
-                            <td class="before">尚未开始</td>
-                            <td>admin</td>
-                            <td><a href="javascript:;">编辑</a> | <a href="javascript:;">删除</a></td>
-                        </tr>
-                        <tr>
-                            <td>XXX</td>
-                            <td>10000</td>
-                            <td>10000元</td>
-                            <td>4.4%</td>
-                            <td>90天</td>
-                            <td>2020-02-03</td>
-                            <td class="ing">正在秒杀</td>
-                            <td>admin</td>
-                            <td><a href="javascript:;">编辑</a> | <a href="javascript:;">删除</a></td>
-                        </tr>
-                        <tr>
-                            <td>XXX</td>
-                            <td>10000</td>
-                            <td>10000元</td>
-                            <td>4.4%</td>
-                            <td>90天</td>
-                            <td>2020-02-03</td>
-                            <td class="after">秒杀结束</td>
-                            <td>admin</td>
-                            <td><a href="javascript:;">详情</a> | <a href="javascript:;">删除</a></td>
+                    <tbody
+                        v-for="(product,index) in show_products.slice((current_page-1)*divide_page,current_page*divide_page)"
+                        :key="product.pro_ID">
+                        <tr :class="index % 2==0 ? 'odd-color' : 'even-color'">
+                            <td>{{product.pro_name}}</td>
+                            <td>{{product.pro_sum}}</td>
+                            <td>{{product.pro_price}}元</td>
+                            <td>{{product.pro_rate}}</td>
+                            <td>{{product.pro_duration}}</td>
+                            <td>{{product.pro_start_time}}</td>
+                            <td :class="changeStateColor(product.pro_state)">{{product.pro_state | showState}}</td>
+                            <td>{{product.pro_operater}}</td>
+                            <td><a href="javascript:;" @click="editInfo()">编辑</a> | <a href="javascript:;"
+                                    @click="deleteInfo()">删除</a></td>
                         </tr>
                     </tbody>
                 </table>
                 <ul class="record">
-                    <p>共有 <span>20</span> 条记录，当前第 <span>1</span>/<span>4</span> 页</p>
+                    <p>共有 <span>{{show_products.length}}</span> 条记录，当前第
+                        <span>{{current_page}}</span>/<span>{{total_page}}</span> 页
+                    </p>
                     <li>首页</li>
-                    <li>下一页</li>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    ...
-                    <li>上一页</li>
-                    <li>尾页</li>
+                    <li @click="jumpPage()">上一页</li>
+                    <i v-show="current_page>1 && total_page >3">...</i>
+                    <li @click="jumpPage()"
+                        :class="changePageUnderline(current_page+2>total_page?total_page-2:current_page)">
+                        {{current_page+2>total_page?total_page-2:current_page}}</li>
+                    <li v-show="total_page>=2" @click="jumpPage()"
+                        :class="changePageUnderline(current_page+2>total_page?total_page-1:current_page+1)">
+                        {{current_page+2>total_page?total_page-1:current_page+1}}</li>
+                    <li v-show="total_page>=3" @click="jumpPage()"
+                        :class="changePageUnderline(current_page+2>total_page?total_page:current_page+2)">
+                        {{current_page+2>total_page?total_page:current_page+2}}</li>
+                    <i v-show="total_page - current_page>2">...</i>
+                    <li @click="jumpPage()">下一页</li>
+                    <li @click="current_page=total_page">尾页</li>
                 </ul>
             </div>
             <div class="add-pro" id="add-pro">
@@ -168,6 +168,10 @@
                             </select>
                         </div>
                     </li>
+                    <li>
+                        <div class="set-name">管理员</div>
+                        <div class="set-detail">admin</div>
+                    </li>
                 </ul>
                 <ul class="special-set clearfix">
                     <li>
@@ -184,9 +188,364 @@
             el: '#main',
             data() {
                 return {
-                    hell: 'nihao'
+                    rankReverse:1,
+                    searchProductID: '',
+                    rankParameter: 'pro_state',
+                    current_page: 1,
+                    divide_page: 5,
+                    local_products: [
+                        {
+                            pro_ID: '123',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10001,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-07',
+                            pro_end_time: '2022-12-12',
+                            pro_interest_start_time: '2022-12-12',
+                            pro_interest_end_time: '2023-12-12',
+                            pro_state: '1',
+                            pro_operater: 'admin',
+                            pro_risk: 'low' // low middle high
+                        },
+                        {
+                            pro_ID: '124',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10004,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-05',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '125',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 5002,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-01',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '2',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '126',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '127',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '128',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '129',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '130',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '131',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '136',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '146',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        }, {
+                            pro_ID: '147',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        }, {
+                            pro_ID: '148',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '149',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '150',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '156',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '166',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '176',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '186',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                        {
+                            pro_ID: '196',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        }, {
+                            pro_ID: '206',
+                            pro_name: 'XXX',
+                            pro_sum: 10000,
+                            pro_price: 10006,
+                            pro_rate: '4.4%',
+                            pro_duration: '90天',
+                            pro_start_time: '2020-02-02',
+                            pro_end_time: '2022-12-12',
+                            pro_state: '0',
+                            pro_operater: 'admin',
+                        },
+                    ],
+                    show_products: []
                 }
             },
+            methods: {
+                changeStateColor(state) {
+                    if (state == 0) {
+                        return 'before'
+                    } else if (state == 1) {
+                        return 'ing'
+                    } else {
+                        return 'after'
+                    }
+                },
+                search() {
+                    // console.log(this.searchProductID);
+                    // console.log(this.show_products);
+                    if (this.searchProductID == '') {
+                        this.show_products = this.local_products
+                        return
+                    }
+                    this.show_products = []
+                    for (var i = 0; i < this.local_products.length; i++) {
+                        if (this.local_products[i].pro_ID == this.searchProductID) {
+                            console.log(i);
+                            this.show_products.push(this.local_products[i])
+                        }
+                    }
+                },
+                rankSort() {
+                    this.show_products.sort(this.compare)
+                },
+                compare(obj1, obj2) {
+                    // 强调数字排序
+                    if(isNaN(obj1[this.rankParameter])==false){
+                        com1=Number(obj1[this.rankParameter])
+                        com2=Number(obj2[this.rankParameter])
+                    }else{
+                        com1=obj1[this.rankParameter]
+                        com2=obj2[this.rankParameter]
+                    }
+                    if (com1 < com2) {
+                        return this.rankReverse
+                    } else {
+                        return -1 * this.rankReverse
+                    }
+                },
+                jumpPage() {
+                    var toPage = event.target.innerText
+                    if (isNaN(toPage) == false) {
+                        this.current_page = Number(toPage)
+                    }
+                    else if (toPage == '下一页') {
+                        this.current_page++
+                    } else if (toPage == '上一页') {
+                        this.current_page--
+                    }
+                    if (this.current_page < 1) {
+                        tip_box('已经到顶了')
+                        this.current_page = 1
+                    }
+                    if (this.current_page > this.total_page) {
+                        tip_box('已经到底了')
+                        this.current_page = this.total_page
+                    }
+                },
+                changePageUnderline(value) {
+                    if (value == this.current_page) return 'current-page-underline'
+                    return ''
+                },
+                editInfo() {
+                    var allInfo = event.target.parentElement.parentElement.children
+                    console.log(allInfo);
+                    for (var i = 0; i < allInfo.length - 3; i++) {
+                        allInfo[i].innerHTML = '<input type="text" class="contain" value="' + allInfo[i].innerText + '">'
+                    }
+                }
+            },
+            mounted() {
+                this.show_products = this.local_products
+                // 每页展示商品数量
+                this.divide_page = 5
+            },
+            computed: {
+                // 这里还没写完 想法是 编辑以后 滑动扩展选项
+                total_page() {
+                    return Math.ceil(this.show_products.length / this.divide_page)
+                },
+            },
+            filters: {
+                showState(value) {
+                    if (value == 0) {
+                        return "尚未开始"
+                    } else if (value == 1) {
+                        return "正在秒杀"
+                    } else {
+                        return "已经结束"
+                    }
+                }
+            }
         })
     </script>
 </body>

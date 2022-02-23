@@ -109,7 +109,7 @@ h2 {
     margin: 3.75px;
     height: .5333rem;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: transparent;
 }
 .alert-box > div {
     display: none;
