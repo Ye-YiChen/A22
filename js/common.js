@@ -64,7 +64,7 @@ $(function () {
         return false;
     })
     $('.back-ico').on('click', function () {
-        window.location.href='./index.html'
+        window.location.href = './index.html'
         return false;
     })
     // 返回顶部按钮 end

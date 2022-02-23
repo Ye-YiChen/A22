@@ -140,7 +140,10 @@ tr {
     border: 1px solid #ccc;
     letter-spacing: 0px;
     font-size: 13px;
-    transition: .2s;
+    height: 55px;
+    box-sizing: border-box;
+    /* transition: .2s; */
+    --animate-duration: 0.5s;
 }
 
 .odd-color {

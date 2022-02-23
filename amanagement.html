@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/jQuery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="./js/vue2-6-12.min.js"></script>
     <title>产品管理</title>
     <script src="./js/common.js"></script>
     <link rel="stylesheet" href="./css/amanagement.css">
     <script src="./js/amanagement.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -64,20 +65,33 @@
                             <td>操作</td>
                         </tr>
                     </thead>
-                    <tbody
-                        v-for="(product,index) in show_products.slice((current_page-1)*divide_page,current_page*divide_page)"
-                        :key="product.pro_ID">
-                        <tr :class="index % 2==0 ? 'odd-color' : 'even-color'">
-                            <td>{{product.pro_name}}</td>
-                            <td>{{product.pro_sum}}</td>
-                            <td>{{product.pro_price}}元</td>
-                            <td>{{product.pro_rate}}</td>
-                            <td>{{product.pro_duration}}</td>
-                            <td>{{product.pro_start_time}}</td>
+                    <tbody>
+                        <tr :class="index % 2==0 ? 'odd-color' : 'even-color'" class=""
+                            v-for="(product,index) in show_products.slice((current_page-1)*divide_page,current_page*divide_page)"
+                            :key="product.pro_ID">
+                            <td v-show="!product.isEdit">{{product.pro_name}}</td>
+                            <td v-show="product.isEdit"><input type="text" class="contain" v-model="product.pro_name">
+                            </td>
+                            <td v-show="!product.isEdit">{{product.pro_sum}}</td>
+                            <td v-show="product.isEdit"><input type="text" class="contain" v-model="product.pro_sum">
+                            </td>
+                            <td v-show="!product.isEdit">{{product.pro_price}}元</td>
+                            <td v-show="product.isEdit"><input type="text" class="contain" v-model="product.pro_price">
+                            </td>
+                            <td v-show="!product.isEdit">{{Number(product.pro_rate*100).toFixed(2)}}%</td>
+                            <td v-show="product.isEdit"><input type="text" class="contain" v-model="product.pro_rate">
+                            </td>
+                            <td v-show="!product.isEdit">{{product.pro_duration}}</td>
+                            <td v-show="product.isEdit"><input type="text" class="contain"
+                                    v-model="product.pro_duration"></td>
+                            <td v-show="!product.isEdit">{{product.pro_start_time}}</td>
+                            <td v-show="product.isEdit"><input type="datetime-local" class="contain"
+                                    v-model="product.pro_start_time"></td>
                             <td :class="changeStateColor(product.pro_state)">{{product.pro_state | showState}}</td>
                             <td>{{product.pro_operater}}</td>
-                            <td><a href="javascript:;" @click="editInfo()">编辑</a> | <a href="javascript:;"
-                                    @click="deleteInfo()">删除</a></td>
+                            <td><a href="javascript:;" @click="editInfo(index+(current_page-1)*divide_page)">编辑</a> | <a
+                                    href="javascript:;" @click="deleteInfo(index+(current_page-1)*divide_page)">删除</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -85,7 +99,7 @@
                     <p>共有 <span>{{show_products.length}}</span> 条记录，当前第
                         <span>{{current_page}}</span>/<span>{{total_page}}</span> 页
                     </p>
-                    <li>首页</li>
+                    <li @click="current_page=1">首页</li>
                     <li @click="jumpPage()">上一页</li>
                     <i v-show="current_page>1 && total_page >3">...</i>
                     <li @click="jumpPage()"
@@ -188,7 +202,7 @@
             el: '#main',
             data() {
                 return {
-                    rankReverse:1,
+                    rankReverse: 1,
                     searchProductID: '',
                     rankParameter: 'pro_state',
                     current_page: 1,
@@ -199,7 +213,7 @@
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10001,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-07',
                             pro_end_time: '2022-12-12',
@@ -207,244 +221,286 @@
                             pro_interest_end_time: '2023-12-12',
                             pro_state: '1',
                             pro_operater: 'admin',
-                            pro_risk: 'low' // low middle high
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
+
                         },
                         {
                             pro_ID: '124',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10004,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-05',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '125',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 5002,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-01',
                             pro_end_time: '2022-12-12',
                             pro_state: '2',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '126',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '127',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '128',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '129',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '130',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '131',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '136',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '146',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         }, {
                             pro_ID: '147',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         }, {
                             pro_ID: '148',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '149',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '150',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '156',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '166',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '176',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '186',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                         {
                             pro_ID: '196',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         }, {
                             pro_ID: '206',
                             pro_name: 'XXX',
                             pro_sum: 10000,
                             pro_price: 10006,
-                            pro_rate: '4.4%',
+                            pro_rate: 0.044,
                             pro_duration: '90天',
                             pro_start_time: '2020-02-02',
                             pro_end_time: '2022-12-12',
                             pro_state: '0',
                             pro_operater: 'admin',
+                            pro_risk: 'low', // low middle high
+                            isEdit: false,
                         },
                     ],
                     show_products: []
@@ -480,12 +536,12 @@
                 },
                 compare(obj1, obj2) {
                     // 强调数字排序
-                    if(isNaN(obj1[this.rankParameter])==false){
-                        com1=Number(obj1[this.rankParameter])
-                        com2=Number(obj2[this.rankParameter])
-                    }else{
-                        com1=obj1[this.rankParameter]
-                        com2=obj2[this.rankParameter]
+                    if (isNaN(obj1[this.rankParameter]) == false) {
+                        com1 = Number(obj1[this.rankParameter])
+                        com2 = Number(obj2[this.rankParameter])
+                    } else {
+                        com1 = obj1[this.rankParameter]
+                        com2 = obj2[this.rankParameter]
                     }
                     if (com1 < com2) {
                         return this.rankReverse
@@ -516,21 +572,33 @@
                     if (value == this.current_page) return 'current-page-underline'
                     return ''
                 },
-                editInfo() {
+                editInfo(index) {
                     var allInfo = event.target.parentElement.parentElement.children
-                    console.log(allInfo);
-                    for (var i = 0; i < allInfo.length - 3; i++) {
-                        allInfo[i].innerHTML = '<input type="text" class="contain" value="' + allInfo[i].innerText + '">'
+                    for (var i = 0; i < this.show_products.length; i++) {
+                        if (i == index) continue
+                        this.show_products[i].isEdit = false
                     }
-                }
+                    this.show_products[index].isEdit = !this.show_products[index].isEdit
+                },
+                deleteInfo(index) {
+                    console.log(index);
+                    event.target.parentElement.parentElement.classList.add('animate__animated', 'animate__fadeOutLeft')
+                    event.target.parentElement.parentElement.addEventListener('animationend', () => {
+                        var removeItem = this.show_products.splice(index, 1)
+                        if (this.current_page > this.total_page) {
+                            this.current_page = this.total_page
+                        }
+                    });
+                },
             },
             mounted() {
                 this.show_products = this.local_products
                 // 每页展示商品数量
                 this.divide_page = 5
+                // 开始以默认方式排序
+                this.rankSort()
             },
             computed: {
-                // 这里还没写完 想法是 编辑以后 滑动扩展选项
                 total_page() {
                     return Math.ceil(this.show_products.length / this.divide_page)
                 },
