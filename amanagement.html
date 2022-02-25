@@ -27,7 +27,7 @@
         <button class="show choose">所有产品</button>
         <button class="add">新增产品</button>
     </div>
-    <div id="main">
+    <div id="main" v-cloak>
         <form action="" id="form">
             <input class="search-bar" type="text" placeholder="输入ID搜索产品" v-model.trim="searchProductID">
             <button class="search-btn" @click.prevent="search()">搜索</button>
@@ -85,12 +85,13 @@
                             <td v-show="product.isEdit"><input type="text" class="contain"
                                     v-model="product.pro_duration"></td>
                             <td v-show="!product.isEdit">{{product.pro_start_time}}</td>
-                            <td v-show="product.isEdit"><input type="datetime-local" class="contain"
+                            <td v-show="product.isEdit"><input type="text" class="contain"
                                     v-model="product.pro_start_time"></td>
                             <td :class="changeStateColor(product.pro_state)">{{product.pro_state | showState}}</td>
                             <td>{{product.pro_operater}}</td>
-                            <td><a href="javascript:;" @click="editInfo(index+(current_page-1)*divide_page)">编辑</a> | <a
-                                    href="javascript:;" @click="deleteInfo(index+(current_page-1)*divide_page)">删除</a>
+                            <td><a href="javascript:;" @click.stop="editInfo(index+(current_page-1)*divide_page)">编辑</a>
+                                | <a href="javascript:;"
+                                    @click.stop="deleteInfo(index+(current_page-1)*divide_page)">删除</a>
                             </td>
                         </tr>
                     </tbody>
@@ -575,7 +576,7 @@
                     return ''
                 },
                 editInfo(index) {
-                    var allInfo = event.target.parentElement.parentElement.children
+                    // var allInfo = event.target.parentElement.parentElement.children
                     for (var i = 0; i < this.show_products.length; i++) {
                         if (i == index) continue
                         this.show_products[i].isEdit = false
@@ -583,7 +584,6 @@
                     this.show_products[index].isEdit = !this.show_products[index].isEdit
                 },
                 deleteInfo(index) {
-                    console.log(index);
                     event.target.parentElement.parentElement.classList.add('animate__animated', 'animate__fadeOutLeft')
                     event.target.parentElement.parentElement.addEventListener('animationend', () => {
                         var removeItem = this.show_products.splice(index, 1)
@@ -598,6 +598,17 @@
 
                 // 开始以默认方式排序
                 this.rankSort()
+
+                document.addEventListener('click', (event) => {
+                    if (event.target.classList[0] == 'contain') {
+                        return false
+                    }
+                    else {
+                        for (var i = 0; i < this.show_products.length; i++) {
+                            this.show_products[i].isEdit = false
+                        }
+                    }
+                })
             },
             computed: {
                 total_page() {

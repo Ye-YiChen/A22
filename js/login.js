@@ -62,9 +62,9 @@ $(function () {
             }
         });
     }
-    function tip_box(str) {
-        $('.tip-box').css('display', 'flex')
-        $('.tip-box > p').text(str)
-        $('.cover').css('display', 'block')
-    }
+    // function tip_box(str) {
+    //     $('.tip-box').css('display', 'flex')
+    //     $('.tip-box > p').text(str)
+    //     $('.cover').css('display', 'block')
+    // }
 })
