@@ -206,9 +206,11 @@
                     searchProductID: '',
                     rankParameter: 'pro_state',
                     current_page: 1,
+                    // 每页展示商品数量
                     divide_page: 5,
                     local_products: [
                         {
+
                             pro_ID: '123',
                             pro_name: 'XXX',
                             pro_sum: 10000,
@@ -593,8 +595,7 @@
             },
             mounted() {
                 this.show_products = this.local_products
-                // 每页展示商品数量
-                this.divide_page = 5
+
                 // 开始以默认方式排序
                 this.rankSort()
             },
