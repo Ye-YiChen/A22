@@ -1,4 +1,4 @@
-const SERVER_PATH = '47.113.180.139:8080'
+const SERVER_PATH = '47.113.180.139:90'
 
 //获取url中的参数
 function getUrlParam(name) {
@@ -19,7 +19,7 @@ async function isLogin() {
     var bool = false
     await $.ajax({
         type: "get",
-        url: SERVER_PATH + "/user/status",
+        url: SERVER_PATH + "/user/status?token=" + window.localStorage.getItem("token"),
         // 跨域
         xhrFields: { withCredentials: true },
         success: (result) => {

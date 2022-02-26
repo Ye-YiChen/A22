@@ -61,7 +61,7 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide order-c">
-                    <div class=" order-box" v-for="item in orders" :key="item.item_id">
+                    <div class=" order-box" v-for="item in orders" :key="item.order_id" @click="goDetail(item.order_id)">
                         <div class="order-title" @click="itemInfo()">
                             <div class="min-logo"><img src="./images/ico.png" alt=""></div>
                             <div class="pro-name">{{item.item_name}}</div>

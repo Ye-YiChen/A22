@@ -621,8 +621,10 @@
                         return "尚未开始"
                     } else if (value == 1) {
                         return "正在秒杀"
-                    } else {
+                    } else if(value ==2 ) {
                         return "已经结束"
+                    }else{
+                        return "未知状态"
                     }
                 }
             }

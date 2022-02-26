@@ -150,12 +150,13 @@ new Vue({
         goStoreProduct(id) {
             window.location.href = './product.html?id=' + id
         },
+        
     },
     mounted() {
         // 用户名请求
         $.ajax({
             type: "get",
-            url: SERVER_PATH + "/user/status",
+            url: SERVER_PATH + "/user/status?token=" + window.localStorage.getItem("token"),
             // 跨域
             xhrFields: { withCredentials: true },
             success: function (result) {
@@ -202,7 +203,7 @@ new Vue({
                 }
                 else {
                     for (let i = 0; i < result.data.length; ++i) {
-                    
+
                         this.loans[i].lo_rank = i + 1
                         this.loans[i].lo_num = result.data[i].num
                         this.loans[i].lo_name = result.data[i].name
@@ -228,7 +229,7 @@ new Vue({
                     for (let i = 0; i < result.data.length; ++i) {
                         this.announcement[i].an_info = result.data[i].info
                         this.announcement[i].an_id = result.data[i].id
-                        if(i != result.data.length - 1){
+                        if (i != result.data.length - 1) {
                             this.announcement.push({})
                         }
                     }
