@@ -109,6 +109,7 @@
     margin-top: .2667rem;
     background-color: #fff;
     /* border-bottom: 10px solid #ddd; */
+    overflow: hidden;
 }
 
 .small-ico {
