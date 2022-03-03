@@ -18,7 +18,7 @@ new Vue({
     mounted() {
         $.ajax({
             type: "get",
-            url: SERVER_PATH + '/order/list',
+            url: SERVER_PATH + '/order/list?token=' + window.localStorage.getItem("token"),
             xhrFields: { withCredentials: true },
             success: (response) => {
                 if (response.status != 0) {
@@ -33,7 +33,7 @@ new Vue({
                         this.orders[i].item_name = response.data[i].itemName
                         this.orders[i].item_id = response.data[i].itemId
                         this.orders[i].item_sum = response.data[i].amount
-                        if(i != response.data.length - 1){
+                        if (i != response.data.length - 1) {
                             this.orders.push({})
                         }
                     }
@@ -41,15 +41,18 @@ new Vue({
             }
         });
     },
-    methods: { 
-       turnTab(){
-        this.$refs.tt.classList.remove('current')
-        this.$refs.ut.classList.remove('current')
-        this.$refs.pt.classList.remove('current')
-        this.$refs.at.classList.remove('current')
-        this.$refs.ct.classList.remove('current')
-        event.target.classList.add('current')
-       }
+    methods: {
+        turnTab() {console.log(1);
+            this.$refs.tt.classList.remove('current')
+            this.$refs.ut.classList.remove('current')
+            this.$refs.pt.classList.remove('current')
+            this.$refs.at.classList.remove('current')
+            this.$refs.ct.classList.remove('current')
+            event.target.classList.add('current')
+        },
+        goDetail(order_id) {
+            window.location.href = 'detail.html?order_id=' + order_id
+        }
     },
     filters: {
         // 格式化時間
@@ -57,5 +60,5 @@ new Vue({
             var time = new Date(value)
             return (time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds());
         }
-    }
+    },
 })

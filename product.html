@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="./css/common.css">
     <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
     <!-- flexible.js rem为屏幕像素除以10 -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <script src="./js/vue2-6-12.min.js"></script>
+    <script src="./js/jQuery.min.js"></script>
+    <!-- <script src="./js/vue2-6-12.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <link rel="stylesheet" href="./css/product.css">
@@ -35,31 +37,36 @@
         <div class="cancel-box">知道了</div>
     </div>
     <div class="cover blur"></div>
-    <div class="main" id='product'>
+    <div class="main" id='product' v-cloak>
         <div class="pro-info">
-            <div class="pro-name">{{pro_name}}</div>
-            <div class="pro-type">{{pro_type}}</div>
+            <div class="pro-name">{{product.name}}</div>
+            <div class="pro-type">人民币理财产品</div>
             <div class="label-box">
                 <ul>
-                    <li class="pro-label" v-for='item in pro_labels' :key='item.la_id'>{{item.la_name}}</li>
+                    <li class="pro-label">开放式</li>
+                    <li class="pro-label">固定收益</li>
                 </ul>
             </div>
             <div class="parameter-box">
-                <div class="pro-parameter" v-for="item in pro_parameter" :key="item.pa_id">
-                    <div class="parameter-num">{{item.pa_num}}</div>
-                    <div class="parameter-info">{{item.pa_info}}</div>
+                <div class="pro-parameter">
+                    <div class="parameter-num">{{product.num}}%</div>
+                    <div class="parameter-info">年化利率</div>
+                </div>
+                <div class="pro-parameter">
+                    <div class="parameter-num">{{product.term}}</div>
+                    <div class="parameter-info">产品期限</div>
                 </div>
             </div>
-            <div class="remind" v-if='remind.target'>
-                <p>{{remind.info}}</p>
-                <div class="arrow-top" :style='remind.target==1?"left:1.4rem":"left:6.5rem;"'></div>
+            <div class="remind">
+                <p></p>
+                <div class="arrow-top" style='left:1.4rem'></div>
             </div>
         </div>
         <div class="short-info">
             <div class="small-ico red">&#xe651;</div>
-            <div class="risk green">{{short_info.risk}}</div>|
-            <div class="per-money yellow">单份{{short_info.per_money}}元</div>|
-            <div class="total-num">总额{{short_info.sum}}份</div>
+            <div class="risk green">{{product.risk}}</div>|
+            <div class="per-money yellow">单份{{product.price}}元</div>|
+            <div class="total-num">总额{{product.stock}}份</div>
         </div>
         <div class="rule">
             <div class="rule-title">
@@ -67,9 +74,21 @@
                 <div class="rule-more rotateUp" @click="slide('rule')">&#xe6ae;</div>
             </div>
             <ul class="rule-box" ref="rule">
-                <li class="rule-detail" v-for='item in rules' :key='item.ru_id'>
-                    <span class="rule-name">{{item.ru_name}}</span>
-                    <div class="rule-intro">{{item.ru_intro}}</div>
+                <li class="rule-detail">
+                    <span class="rule-name">限购数量</span>
+                    <div class="rule-intro">{{product.limited}}</div>
+                </li>
+                <li class="rule-detail">
+                    <span class="rule-name">产品总数</span>
+                    <div class="rule-intro">{{product.stock}}</div>
+                </li>
+                <li class="rule-detail">
+                    <span class="rule-name">秒杀开始时间</span>
+                    <div class="rule-intro">{{product.startTime | dateFormat}}</div>
+                </li>
+                <li class="rule-detail">
+                    <span class="rule-name">秒杀结束时间</span>
+                    <div class="rule-intro">{{product.endTime | dateFormat}}</div>
                 </li>
             </ul>
         </div>
@@ -80,48 +99,56 @@
             </div>
             <ul class="specific-box" ref='specific'>
                 <li class="specific-detail">
-                    <span class="specific-name">销售地区</span>
-                    <div class="specific-intro">全国</div>
+                    <span class="specific-name">产品名称</span>
+                    <div class="specific-intro">{{product.name}}</div>
                 </li>
                 <li class="specific-detail">
-                    <span class="specific-name">收益类型</span>
-                    <div class="specific-intro">非保本浮动收益</div>
+                    <span class="specific-name">产品价格</span>
+                    <div class="specific-intro">{{product.price}}</div>
                 </li>
                 <li class="specific-detail">
-                    <span class="specific-name">最低持有天使</span>
-                    <div class="specific-intro">30天</div>
+                    <span class="specific-name">年化利率</span>
+                    <div class="specific-intro">{{product.num}}%</div>
                 </li>
                 <li class="specific-detail">
-                    <span class="specific-name">募集方式</span>
-                    <div class="specific-intro">公募</div>
+                    <span class="specific-name">产品期限</span>
+                    <div class="specific-intro">{{product.term}}天</div>
                 </li>
                 <li class="specific-detail">
-                    <span class="specific-name">投资性质</span>
-                    <div class="specific-intro">固定收益类</div>
+                    <span class="specific-name">起息日时间</span>
+                    <div class="specific-intro">{{product.numTime | dateFormat}}</div>
+                </li>
+                <li class="specific-detail">
+                    <span class="specific-name">到期日时间</span>
+                    <div class="specific-intro">{{product.numTime | dateFormat(product.term)}}</div>
                 </li>
                 <li class="specific-detail">
                     <span class="specific-name">风险等级</span>
-                    <div class="specific-intro">中低风险</div>
+                    <div class="specific-intro">{{product.risk}}</div>
                 </li>
             </ul>
         </div>
-        <div class="rule suggest">
-            <div class="rule-title">
-                <span>风险揭示书、产品说明书及投资者权益须知</span>
-                <div class="rule-more">&#xe6ac;</div>
-            </div>
-            <div class="rule-title">
-                <span>运作公告</span>
-                <div class="rule-more">&#xe6ac;</div>
-            </div>
-            <div class="rule-title">
-                <span>到期公告</span>
-                <div class="rule-more">&#xe6ac;</div>
-            </div>
-            <div class="rule-title">
-                <span>产品协议</span>
-                <div class="rule-more">&#xe6ac;</div>
-            </div>
+    </div>
+
+
+
+    
+    <div class="rule suggest">
+        <div class="rule-title">
+            <span>风险揭示书、产品说明书及投资者权益须知</span>
+            <div class="rule-more">&#xe6ac;</div>
+        </div>
+        <div class="rule-title">
+            <span>运作公告</span>
+            <div class="rule-more">&#xe6ac;</div>
+        </div>
+        <div class="rule-title">
+            <span>到期公告</span>
+            <div class="rule-more">&#xe6ac;</div>
+        </div>
+        <div class="rule-title">
+            <span>产品协议</span>
+            <div class="rule-more">&#xe6ac;</div>
         </div>
     </div>
     <footer class="footer" id='footer'>

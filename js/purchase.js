@@ -42,7 +42,7 @@ $(function () {
                     }
                     tip_box('购买成功！')
                     $('.cancel-box').on('click', function () {
-                        window.location.href='./detail.html?id='+id
+                        window.location.href='./detail.html?order_id='+response.data.id
                     })
                     return false
                 }

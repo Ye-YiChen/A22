@@ -1,4 +1,4 @@
-const SERVER_PATH = '47.113.180.139:8080'
+const SERVER_PATH = '47.113.180.139:90'
 
 //获取url中的参数
 function getUrlParam(name) {
@@ -7,16 +7,7 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 function tip_box(str) {
-
-    // 生成标签 效率低
-    /* var tip_box = $('<div class="tip-box"></div>')
-    $('body').append(tip_box);
-    var tip_title=$('<div class="tip-title">温馨提示</div>')
-    var p = $('<p>请输入正确的账号</p>')
-    var cancel_box=$('<div class="cancel-box">知道了</div>')
-    $('.tip_box').append(tip_title).append(p).append(cancel_box)
-    console.log(tip_box); */
-    $('.tip-box').css('display', 'flex')
+    $('.tip-box').addClass(['animate__animated', 'animate__bounceIn']).css('display', 'flex')
     $('.tip-box > p').text(str)
     $('.cover').css('display', 'block')
 }
@@ -28,7 +19,7 @@ async function isLogin() {
     var bool = false
     await $.ajax({
         type: "get",
-        url: SERVER_PATH + "/user/status",
+        url: SERVER_PATH + "/user/status?token=" + window.localStorage.getItem("token"),
         // 跨域
         xhrFields: { withCredentials: true },
         success: (result) => {

@@ -299,8 +299,8 @@ thead {
 .tip-box {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top:calc(50% - 100px);
+    left: calc(50% - 75px);
     transform: translate(-50%, -100%);
     flex-direction: column;
     justify-content: center;
@@ -348,4 +348,7 @@ thead {
     background-color: grey;
     z-index: 98;
     opacity: .6;
+}
+[v-cloak]{
+    display: none;
 }

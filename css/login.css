@@ -1,5 +1,8 @@
-html {
+/* html {
     background-image: linear-gradient(to right bottom, rgb(236, 202, 208), #EF4C53);
+} */
+html{
+    background: url(../images/bgc.png);
 }
 body{
     
@@ -36,9 +39,9 @@ h2 {
     margin-left: -.4rem;
     font-size: .88rem;
     font-weight: 700;
-    color: #fff;
+    color: #eee;
     text-align: center;
-    text-shadow: .1rem .15rem .1333rem red;
+    text-shadow: .1rem .1rem .1333rem #333;
     letter-spacing: .1rem;
 }
 
@@ -48,7 +51,8 @@ h2 {
     width: 100%;
     padding: .5rem;
     border-radius: .2rem;
-    box-shadow: 0 0 .4rem #EF4C53;
+    /* box-shadow: 0 0 .4rem #EF4C53; */
+    box-shadow: 0 0 .2rem #888;
     box-sizing: border-box;
     /* opacity: .8; */
 }

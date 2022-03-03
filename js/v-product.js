@@ -7,54 +7,25 @@ new Vue({
     data() {
         return {
             id: 0,
-            pro_name: '三湘理财“每月放心买”第2期',
-            pro_type: '人民币理财产品',
-            pro_labels: [
-                {
-                    la_name: '开放式',
-                    la_id: '001'
-                },
-                {
-                    la_name: '公募',
-                    la_id: '002'
-                },
-                {
-                    la_name: '固定收益',
-                    la_id: '003'
-                },
-            ],
-            pro_parameter: [
-                {
-                    pa_num: '3.15%',
-                    pa_info: '业绩比较基准',
-                    pa_id: '001'
-                },
-                {
-                    pa_num: '60',
-                    pa_info: '最低持有期限(天)',
-                    pa_id: '002'
-                }
-            ],
-            remind: {
-                info: '主要投资货币市场工具、债券、证券投资基金、资管计划等，以投资信用债80%-100%，权益资产0-20%，货币市场工具0-20%，杠杆率120%为例，业绩基准参考市场指数及投资策略等确定，不代表产品的未来表现和实际收益。（示例仅供参考）',
-            },
-            short_info: {
-                risk: '中低风险',
-                per_money: 10000,
-                sum: 10000,
-            },
-            rules: [
-                {
-                    ru_name: '首笔起点金额',
-                    ru_intro: '1.00元',
-                    ru_id: '001'
-                },
-                {
-                    ru_name: '单笔起点金额',
-                    ru_intro: '1.00元',
-                    ru_id: '002'
-                }
-            ],
+            product: {
+                "id": 1,
+                "name": "易方达",
+                "num": 3.33,
+                "info": "近一年增长率",
+                "intro": "6个月定期存款",
+                "price": 100000.00,
+                "sales": 666,
+                "limited": 10,
+                "stock": 994,
+                "term": 180,
+                "risk": "中风险",
+                "startTime": "2022-02-09T16:00:00.000+00:00",
+                "endTime": "2026-08-15T06:28:00.000+00:00",
+                "numTime": "2022-03-01T11:17:16.000+00:00",
+                "state": 1,
+                "status": null
+            }
+
         }
     },
     methods: {
@@ -64,15 +35,9 @@ new Vue({
             event.target.classList.toggle('rotateDown')
             event.target.classList.toggle('rotateUp')
         },
+
     },
     mounted() {
-        /* if(!isLogin()){
-            tip_box('请先登录')
-            $('.cancel-box').on('click', function () {
-                window.location.href='./login.html'
-            })
-            return false
-        } */
         this.id = getUrlParam('id'); // 获取产品id
         $.ajax({
             type: "get",
@@ -86,24 +51,18 @@ new Vue({
                     tip_box(response.data.message)
                 }
                 else {
-                    // 产品名称 字符串
-                    this.pro_name = response.data.name
-                    // 产品类型 字符串
-                    this.pro_type = response.data.type
-                    // 产品标签 对象数组[{},{},{}] 两到三个对象
-                    this.pro_labels = response.data.lables
-                    // 产品参数 对象数组 只能两个 
-                    this.pro_parameter = response.data.parameter
-                    // 提示信息 对象    0不提示 1 提示第一个产品参数 2 提示第二个产品参数
-                    // this.remind = response.data.remind
-                    // 产品概述 对象    
-                    this.short_info = response.data.info
-                    // 产品规则 对象数组
-                    this.rules = response.data.rules
+                    this.product = response.data
                 }
             }
         });
 
+    },
+    filters: {
+
+        dateFormat(value, addDay) {
+            var time = new Date(value)
+            return time.getFullYear(1) + "-" + ((Number(time.getMonth()) + 1)) + "-" + (time.getDate()) + " " + (time.getHours()) + ":" + (time.getSeconds())
+        }
     }
 })
 // 控制底部
@@ -116,7 +75,7 @@ new Vue({
             hour_l: 0,
             minute_l: 0,
             second_l: 10,
-            pro_left: 10000 ,// stock
+            pro_left: 10000,// stock
             timer: null
         }
     },
@@ -144,8 +103,8 @@ new Vue({
             return false
         },
         // 查询指定产品数量并更新商品状态
-        async queryProduct(id) {
-            await $.ajax({
+        queryProduct(id) {
+            $.ajax({
                 type: "get",
                 url: SERVER_PATH + "/item/detail/" + this.id,  // 请求产品剩余数量
                 data: {
@@ -158,9 +117,9 @@ new Vue({
             });
         },
         // 查询时指定产品时间并更新
-        async queryTime(id, method) {
+        queryTime(id, method) {
             // method 0 查询开始时间 1 否则查询结束时间
-            await $.ajax({
+            $.ajax({
                 type: "get",
                 url: SERVER_PATH + "/item/detail/" + this.id, // 请求产品临期时间
                 data: {
@@ -189,7 +148,7 @@ new Vue({
         this.queryProduct(this.id)
         this.queryTime(this.id, 0)
         this.timer = setInterval(() => {
-            if(this.state == 1){
+            if (this.state == 1) {
                 clearInterval(this.timer)
             }
             if (this.hour_l <= 0 && this.second_l <= 0 && this.minute_l <= 0) {
@@ -218,7 +177,7 @@ new Vue({
     filters: {
         // 至少显示两位 用0补充
         size2: function (value) {
-            if(value < 0){
+            if (value < 0) {
                 value = 0
             }
             if (value < 10) return "0" + value

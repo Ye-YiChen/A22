@@ -35,7 +35,7 @@ $(function () {
             $('.icon-zhengque').eq(1).css('display', 'none')
         }
     })
-    function login(phone, password) {
+    async function login(phone, password) {
         // 验证
         if ((phone.length != 11 && phone.length != 18) || isNaN(phone) == true) {
             tip_box('请输入正确的账号')
@@ -45,7 +45,7 @@ $(function () {
             tip_box('密码不能为空')
             return false;
         }
-        $.ajax({
+        await $.ajax({
             type: "POST",
             url: SERVER_PATH + "/user/login",
             data: {
@@ -58,13 +58,16 @@ $(function () {
                     tip_box(result.data.message);
                     return false;
                 }
+                // token -> sessionStorage
+                window.localStorage.setItem("token", result.data);
                 window.location.href = "./index.html";
             }
         });
     }
-    function tip_box(str) {
-        $('.tip-box').css('display', 'flex')
-        $('.tip-box > p').text(str)
-        $('.cover').css('display', 'block')
-    }
+    
+    // function tip_box(str) {
+    //     $('.tip-box').css('display', 'flex')
+    //     $('.tip-box > p').text(str)
+    //     $('.cover').css('display', 'block')
+    // }
 })
