@@ -167,7 +167,7 @@ new Vue({
             xhrFields: { withCredentials: true },
             success: function (result) {
                 if (result.status != 0) {
-                    tip_box(response.data.message)
+                    tip_box(result.data.message)
                 } else {
                     $('.user').text(result.data.name)
                 }
