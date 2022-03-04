@@ -60,7 +60,7 @@
         <div class="hello">
             <div class="time">早上好!</div>
             <div class="user">登录/注册</div>
-            <div class="logout" >退出登录</div>
+            <div class="logout">退出登录</div>
         </div>
     </div>
     <div class="main" id='index' v-cloak>
@@ -83,7 +83,8 @@
                 <span class="change" @click='changeRecommand()'>换一批 &#xe636;</span>
             </div>
             <div class="recommand-main">
-                <div class="recommand-box" v-for="item in re_show" :key="item.re_id">
+                <div class="recommand-box" v-for="item in re_show" :key="item.re_id"
+                    @click="goStoreProduct(item.re_id)">
                     <div class="re-name">{{item.re_name}}</div>
                     <div class="re-num">{{item.re_num}}</div>
                     <div class="re-info">{{item.re_info}}</div>
@@ -108,7 +109,7 @@
                     <span class="ad-more" @click='moreLoans()'>&#xe6ac;</span>
                 </div>
                 <ul>
-                    <li class="ad-box" v-for='item in lo_show' :key='item.lo_id'>
+                    <li class="ad-box" v-for='item in lo_show' :key='item.lo_id' @click="goLoanProduct(item.lo_id)">
                         <div class="ad-rank" :class="'cl'+item.lo_rank">{{item.lo_rank}}</div>
                         <div class="ad-main">
                             <div class="ad-num">{{item.lo_num}}</div>
@@ -147,7 +148,7 @@
             <div class="remind-title">
                 <span class="re-ico">&#xe630;</span>
                 <span>专属秘书</span>
-                <div class="remind-more"><span class="temp">全部订单</span>&#xe6ac;</div>
+                <div class="remind-more" @click="moreOrders()"><span class="temp">全部订单</span>&#xe6ac;</div>
             </div>
             <div class="total-order">
                 <div class="appointed orderbox" v-if='remind.appointed'>
@@ -182,9 +183,7 @@
 
     <script src="./js/v-index.js"></script>
     <!-- Swiper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.6/swiper-bundle.min.js"
-        integrity="sha512-4w/aaXboO6KY1E/dqYwfq09sZnM+XDIcWvmHhfxvMQ+qwK84kxgWtNkAqbFNMLYd6EYA3nSgxTSyif/D3vlVMg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper1", {

@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
     <!-- flexible.js rem为屏幕像素除以10 -->
     <script src="./js/flexible.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/jQuery.min.js"></script>
     <script src="./js/common.js"></script>
     <script src="./js/vue2-6-12.min.js"></script>
     <!-- 共同部分 end -->
@@ -34,29 +34,31 @@
         <img src="./images/wide-logo2.png" alt="">
     </div>
     <ul class="pro-show" id='market' v-cloak>
-        <li class="pro-box" v-for='item in products' :key='item.pro_id'>
+        <li class="pro-box" v-for='item in products' :key='item.id'
+        @click="goDetailProduct(item.id,pageType)">
             <div class="pro-title">
                 <div class="min-logo"><img src="./images/ico.png" alt=""></div>
-                <div class="pro-name">{{item.pro_name}}</div>
+                <div class="pro-name">{{item.name}}</div>
                 <div class="pro-detail">&#xe6ac;</div>
             </div>
             <div class="pro-body">
                 <div class="pro-advantage">
-                    <div class="adv-num">{{item.adv_num}}</div>
-                    <div class="adv-name">{{item.adv_name}}</div>
+                    <div class="adv-num">{{item.num}}</div>
+                    <div class="adv-name">{{item.info}}</div>
                 </div>
                 <div class="pro-info">
-                    <div class="pro-important">{{item.pro_important}}</div>
+                    <div class="pro-important">单人限购{{item.limited}}份 | {{item.term}}天</div>
                     <div class="pro-time">
-                        <span class="s-time">{{item.s_time}}</span>
+                        <span class="s-time">{{item.startTime | dateFormat}}</span>
                         <span class="d-time">开始秒杀</span>
                     </div>
                     <ul class="label-box">
-                        <li class="pro-label" v-for='label in item.labels' :key='label.la_id'>{{label.la_name}}</li>
+                        <li class="pro-label">{{item.risk}}</li>
+                        <li class="pro-label">固定收益类</li>
                     </ul>
                 </div>
             </div>
-            <div class="remind red" v-if='item.adv_name=="业绩比较基准"'>
+            <div class="remind red">
                 <div class="arrow-top"></div>
                 <p style="margin: 0;">业绩基准不代表未来表现和实际收益，测算详见说明</p>
             </div>
@@ -82,138 +84,130 @@
             el: '#market',
             data() {
                 return {
-                    products: [
-                        {
-                            pro_name: '月月安心买1',
-                            pro_id: '001',
-                            adv_num: '2.7%',
-                            adv_name: '业绩比较基准',
-                            pro_important: '最低持有1天 | 一元起购',
-                            s_time: '2022/01/21',
-                            labels: [
-                                {
-                                    la_name: '中低风险',
-                                    la_id: '001'
-                                },
-                                {
-                                    la_name: '固定收益类',
-                                    la_id: '002'
-                                }
-
-                            ]
-                        },
-                        {
-                            pro_name: '月月安心买2',
-                            pro_id: '001',
-                            adv_num: '2.7%',
-                            adv_name: '业绩比较基准',
-                            pro_important: '最低持有1天 | 一元起购',
-                            s_time: '2022/01/21',
-                            labels: [
-                                {
-                                    la_name: '中低风险',
-                                    la_id: '001'
-                                },
-                                {
-                                    la_name: '固定收益类',
-                                    la_id: '002'
-                                }
-
-                            ]
-                        },
-                        {
-                            pro_name: '月月安心买3',
-                            pro_id: '001',
-                            adv_num: '2.7%',
-                            adv_name: '业绩比较基准',
-                            pro_important: '最低持有1天 | 一元起购',
-                            s_time: '2022/01/21',
-                            labels: [
-                                {
-                                    la_name: '中低风险',
-                                    la_id: '001'
-                                },
-                                {
-                                    la_name: '固定收益类',
-                                    la_id: '002'
-                                }
-
-                            ]
-                        },
-                        {
-                            pro_name: '月月安心买4',
-                            pro_id: '001',
-                            adv_num: '2.7%',
-                            adv_name: '业绩比较基准',
-                            pro_important: '最低持有1天 | 一元起购',
-                            s_time: '2022/01/21',
-                            labels: [
-                                {
-                                    la_name: '中低风险',
-                                    la_id: '001'
-                                },
-                                {
-                                    la_name: '固定收益类',
-                                    la_id: '002'
-                                }
-
-                            ]
-                        },
-                        {
-                            pro_name: '月月安心买5',
-                            pro_id: '001',
-                            adv_num: '2.7%',
-                            adv_name: '业绩比较基准测试',
-                            pro_important: '最低持有1天 | 一元起购',
-                            s_time: '2022/01/21',
-                            labels: [
-                                {
-                                    la_name: '中低风险',
-                                    la_id: '001'
-                                },
-                                {
-                                    la_name: '固定收益类',
-                                    la_id: '002'
-                                }
-
-                            ]
-                        },
-                        {
-                            pro_name: '月月安心买6',
-                            pro_id: '001',
-                            adv_num: '2.7%',
-                            adv_name: '业绩比较基准',
-                            pro_important: '最低持有1天 | 一元起购',
-                            s_time: '2022/01/21',
-                            labels: [
-                                {
-                                    la_name: '中低风险',
-                                    la_id: '001'
-                                },
-                                {
-                                    la_name: '固定收益类',
-                                    la_id: '002'
-                                }
-
-                            ]
-                        },
-                    ]
+                    pageType: '',
+                    products: [{
+                        "id": 11,
+                        "name": "借贷001",
+                        "num": 3.33,
+                        "info": "借贷利率",
+                        "intro": "这个管理员很懒，暂无简介",
+                        "price": null,
+                        "sales": null,
+                        "limited": 10,
+                        "stock": null,
+                        "term": 30,
+                        "risk": '中风险',
+                        "startTime": "2022-02-09T16:00:00.000+00:00",
+                        "endTime": null,
+                        "numTime": null,
+                        "state": null,
+                        "status": null
+                    },
+                    {
+                        "id": 12,
+                        "name": "借贷002",
+                        "num": 4.44,
+                        "info": "借贷利率",
+                        "intro": "这个管理员很懒，暂无简介",
+                        "price": null,
+                        "sales": null,
+                        "limited":40,
+                        "stock": null,
+                        "term": 90,
+                        "risk": '低风险',
+                        "startTime": null,
+                        "endTime": null,
+                        "numTime": null,
+                        "state": null,
+                        "status": null
+                    },
+                    {
+                        "id": 13,
+                        "name": "借贷003",
+                        "num": 5.55,
+                        "info": "借贷利率",
+                        "intro": "这个管理员很懒，暂无简介",
+                        "price": null,
+                        "sales": null,
+                        "limited": 3,
+                        "stock": null,
+                        "term": 180,
+                        "risk": '高风险',
+                        "startTime": null,
+                        "endTime": null,
+                        "numTime": null,
+                        "state": null,
+                        "status": null
+                    }]
+                }
+            },
+            methods: {
+                goDetailProduct(id,type){
+                    // console.log(id,type);
+                    window.location.href='product.html?type='+type+'&id='+id
                 }
             },
             mounted() {
-                $.ajax({
-                    type: "get",
-                    url: SERVER_PATH + '',
-                    data: "",
-                    xhrFields: { withCredentials: true },
-                    success: (response) => {
-                        if(response.status!= 0){
-                            tip_box(response.data.message)
-                            return false
+                this.pageType = getUrlParam("type")
+                if (this.pageType=='loan') {
+                    $.ajax({
+                        type: "get",
+                        url: SERVER_PATH + '/loan/list',
+                        xhrFields: { withCredentials: true },
+                        success: (response) => {
+                            if (response.status != 0) {
+                                tip_box(response.data.message)
+                                return false
+                            } else {
+                                this.products = response.data
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                    $.ajax({
+                        type: "get",
+                        url: SERVER_PATH + '/deposit/list',
+                        xhrFields: { withCredentials: true },
+                        success: (response) => {
+                            if (response.status != 0) {
+                                tip_box(response.data.message)
+                                return false
+                            } else {
+                                this.products = response.data
+                            }
+                        }
+                    });
+                }
+
             },
+            watch: {
+                pageType() {
+                    // console.log(this.pageType);
+                    if (this.pageType == "loan") {
+                        document.querySelector('.page-name').innerHTML = "贷款"
+                    }
+                    else if (this.pageType == "store") {
+                        document.querySelector('.page-name').innerHTML = "存款"
+
+                    } else {
+                        // console.log(1);
+                        document.querySelector('.page-name').innerHTML = this.type
+
+                    }
+                }
+            },
+            filters: {
+                dateFormat(value, addDay) {
+                    function size2(value) {
+                        if(value<10){
+                            value="0"+value
+                        }
+                        return value
+                    }
+                    var time = new Date(value)
+                    return time.getFullYear(1) + "-" + size2((Number(time.getMonth()) + 1)) + "-" + size2(time.getDate()) + " " + size2(time.getHours()) + ":" + size2(time.getSeconds())
+                }
+            }
         })
     </script>
 </body>

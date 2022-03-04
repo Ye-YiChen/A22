@@ -2,46 +2,23 @@ new Vue({
     el: '#root',
     data() {
         return {
+            id: '',
             item: {
-                it_name: '月月安心买第九期',
-                it_money: 1000.00,
-                it_return: 10.00,
-                it_id: ''
-            },
-            time: {
-                paid_time: '2020-06-03',
-                start_time: '2020-06-04',
-                end_time: '2020-09-04',
-                destroy_time: '2030-09-04'
-            },
-            item_info: [
-                {
-                    info_name: '期望年化回报率',
-                    info_detail: '7.9%',
-                    id: '001',
-                },
-                {
-                    info_name: '封闭期',
-                    info_detail: '90天',
-                    id: '002'
-
-                }, {
-                    info_name: '总金额',
-                    info_detail: '10000.00',
-                    id: '003'
-                }, {
-                    info_name: '总份数',
-                    info_detail: '10份',
-                    id: '004'
-
-                }, {
-                    info_name: '订单编号',
-                    info_detail: 'XXXXXXX',
-                    id: '005'
-
-                }
-            ]
+                "id": "20220226000000000005",
+                "userId": 19081860,
+                "itemId": 1,
+                "itemName": null,
+                "orderPrice": 100000.00,
+                "num": 3.33,
+                "amount": 3,
+                "orderTime": "2022-02-26T11:59:49.000+00:00",
+                "numTime": "2022-03-01T11:17:16.000+00:00",
+                "term": 180,
+                "risk": "中风险"
+            }
         }
+    },
+    computed: {
     },
     mounted() {
         // 未登录返回
@@ -49,27 +26,42 @@ new Vue({
         //     // window.location.href='./login.html'
         // }
 
-        this.item.it_id = getUrlParam('order_id')
+        this.id = getUrlParam('order_id')
 
         // 信息获取
         $.ajax({
             type: "get",
-            url: SERVER_PATH + '/order/detail/' + this.item.it_id,
+            url: SERVER_PATH + '/order/detail/' + this.id,
             success: function (response) {
                 if (response.status != 0) {
                     tip_box(response.data.message)
                     return false
                 } else {
-                    this.item=response.data
+                    this.item = response.data
                 }
             }
         })
-
-
     },
     methods: {
         returnIndex() {
             window.location.href = './index.html'
         }
     },
+    filters: {
+        dateFormat(value, addDay) {
+            function size2(value) {
+                if (value < 10) {
+                    value = "0" + value
+                }
+                return value
+            }
+            var time = new Date(value)
+            if (addDay) {
+
+                time = time.setDate(time.getDate() + addDay)
+                time = new Date(time)
+            }
+            return time.getFullYear(1) + "-" + size2((Number(time.getMonth()) + 1)) + "-" + size2(time.getDate()) + " " + size2(time.getHours()) + ":" + size2(time.getSeconds())
+        }
+    }
 })

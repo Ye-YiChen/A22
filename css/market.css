@@ -114,7 +114,8 @@
     margin-bottom: .4rem;
 }
 .s-time{
-    font-size: .4rem;
+    font-size: .3rem;
+    font-weight: 700;
 }
 .d-time{
     color: red;

@@ -13,7 +13,8 @@
     <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
     <!-- flexible.js rem为屏幕像素除以10 -->
     <script src="./js/flexible.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/jQuery.min.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script> -->
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <script src="./js/common.js"></script>
     <script src="./js/vue2-6-12.min.js"></script>
@@ -31,15 +32,15 @@
         <div class="top-logo"><img src="./images/nor-logo1.png" alt=""></div>
         <div class="card">
             <div class="card-title">
-                <div class="pro-name">{{item.it_name}}</div>
+                <div class="pro-name">{{item.name}}</div>
                 <ul class="pro-box">
                     <li class="pro-short-info">
                         <div class="short-info-name">自有本金(元)</div>
-                        <div class="short-info-detail">{{item.it_money}}</div>
+                        <div class="short-info-detail">{{item.orderPrice}}</div>
                     </li>
                     <li class="pro-short-info">
                         <div class="short-info-name return-ico">累计期望回报(元)</div>
-                        <div class="short-info-detail">{{item.it_return}}</div>
+                        <div class="short-info-detail">{{item.orderPrice*item.num/100*(item.term/360)}}</div>
                     </li>
                 </ul>
             </div>
@@ -68,13 +69,13 @@
             <ul class="time">
                 <div class="top-time">
                     <li>
-                        <div class="time-name">{{time.paid_time}}</div>
+                        <div class="time-name">{{item.orderTime | dateFormat}}</div>
                         <div class="time-detail">支付成功</div>
                     </li>
                     <li></li>
                     
                     <li>
-                        <div class="time-name">{{time.end_time}}</div>
+                        <div class="time-name">{{item.orderTime | dateFormat}}</div>
                         <div class="time-detail">封闭期结束</div>
                     </li>
                     <li></li>
@@ -94,22 +95,42 @@
                     <li></li>
 
                     <li>
-                        <div class="time-name">{{time.start_time}}</div>
+                        <div class="time-name">{{item.orderTime | dateFormat(1)}}</div>
                         <div class="time-detail">开始计算期望回报</div>
                     </li>
                     <li></li>
 
                     <li>
-                        <div class="time-name">{{time.destroy_time}}</div>
+                        <div class="time-name">{{item.numTime | dateFormat(30)}}</div>
                         <div class="time-detail">最晚认领时间</div>
                     </li>
                 </div>
 
             </ul>
             <ul class="specific-info">
-                <li v-for="info in item_info" :key="info.id">
-                    <div class="specific-info-name">{{info.info_name}}</div>
-                    <div class="specific-info-detail">{{info.info_detail}}</div>
+                <li >
+                    <div class="specific-info-name">期望年化回报率</div>
+                    <div class="specific-info-detail">{{item.num}}%</div>
+                </li>
+                <li >
+                    <div class="specific-info-name">封闭期</div>
+                    <div class="specific-info-detail">{{item.term}}天</div>
+                </li>
+                <li >
+                    <div class="specific-info-name">总金额</div>
+                    <div class="specific-info-detail">{{item.orderPrice}}元</div>
+                </li>
+                <li >
+                    <div class="specific-info-name">总份数</div>
+                    <div class="specific-info-detail">{{item.amount}}</div>
+                </li>
+                <li >
+                    <div class="specific-info-name">订单编号</div>
+                    <div class="specific-info-detail">{{item.id}}</div>
+                </li>
+                <li >
+                    <div class="specific-info-name">产品风险</div>
+                    <div class="specific-info-detail">{{item.risk}}</div>
                 </li>
             </ul>
             

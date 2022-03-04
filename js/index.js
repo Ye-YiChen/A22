@@ -1,7 +1,9 @@
 $(function () {
-
+    $('.loans').on('click', function () {
+        window.location.href = "market.html?type=loan"
+    })
     $('.store').on('click', function () {
-        window.location.href = "market.html"
+        window.location.href = "market.html?type=store"
     })
     $('.myorder').on('click', function () {
         window.location.href = "order.html"

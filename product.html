@@ -15,14 +15,13 @@
     <!-- flexible.js rem为屏幕像素除以10 -->
     <script src="./js/jQuery.min.js"></script>
     <!-- <script src="./js/vue2-6-12.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
+    <script src="./js/vue2-6-12.min.js"></script>
     <!-- 共同部分 end -->
     <link rel="stylesheet" href="./fonts/iconfont.css">
     <link rel="stylesheet" href="./css/product.css">
     <script src="./js/dayjs.min.js"></script>
     <script src="./js/common.js"></script>
-    <script src="./js/product.js"></script>
 </head>
 
 <body>
@@ -40,7 +39,7 @@
     <div class="main" id='product' v-cloak>
         <div class="pro-info">
             <div class="pro-name">{{product.name}}</div>
-            <div class="pro-type">人民币理财产品</div>
+            <div class="pro-type">理财产品</div>
             <div class="label-box">
                 <ul>
                     <li class="pro-label">开放式</li>
@@ -58,7 +57,7 @@
                 </div>
             </div>
             <div class="remind">
-                <p></p>
+                <p>业绩比较基准不代表未来表现和实际收益，测算详见说明</p>
                 <div class="arrow-top" style='left:1.4rem'></div>
             </div>
         </div>

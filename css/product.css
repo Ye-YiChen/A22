@@ -80,7 +80,7 @@
     font-size: .3733rem;
     margin: .4rem;
     padding: .2rem .39rem;
-    text-align-last: justify;
+    /* text-align-last: justify; */
     line-height: .5rem;
 }
 

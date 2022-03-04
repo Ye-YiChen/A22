@@ -142,15 +142,21 @@ new Vue({
             }
         },
         moreLoans() {
-            // 更多贷款
+            window.location.href = './market.html?type=loan'
         },
         moreStore() {
-            // 更多存款
+            window.location.href = './market.html?type=store'
+        },
+        moreOrders(){
+            window.location.href = './order.html'
+        },
+        goLoanProduct(id) {
+            window.location.href = './product.html?type=loan&id=' + id
         },
         goStoreProduct(id) {
-            window.location.href = './product.html?id=' + id
+            window.location.href = './product.html?type=store&id=' + id
         },
-        
+
     },
     mounted() {
         // 用户名请求

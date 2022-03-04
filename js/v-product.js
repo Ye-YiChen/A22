@@ -7,6 +7,7 @@ new Vue({
     data() {
         return {
             id: 0,
+            pageType: '',
             product: {
                 "id": 1,
                 "name": "易方达",
@@ -39,6 +40,7 @@ new Vue({
     },
     mounted() {
         this.id = getUrlParam('id'); // 获取产品id
+        this.pageType = getUrlParam("type")
         $.ajax({
             type: "get",
             url: SERVER_PATH + "/item/detail/" + this.id, // 请求地址
@@ -60,8 +62,31 @@ new Vue({
     filters: {
 
         dateFormat(value, addDay) {
+            function size2(value) {
+                if(value<10){
+                    value="0"+value
+                }
+                return value
+            }
             var time = new Date(value)
-            return time.getFullYear(1) + "-" + ((Number(time.getMonth()) + 1)) + "-" + (time.getDate()) + " " + (time.getHours()) + ":" + (time.getSeconds())
+            return time.getFullYear(1) + "-" + size2((Number(time.getMonth()) + 1)) + "-" + size2(time.getDate()) + " " + size2(time.getHours()) + ":" + size2(time.getSeconds())
+        }
+    },
+    watch: {
+        pageType() {
+            console.log(this.pageType);
+            if (this.pageType == "loan") {
+                console.log(1);
+                document.querySelector('.pro-type').innerHTML = "贷款产品"
+            }
+            else if (this.pageType == "store") {
+                document.querySelector('.pro-type').innerHTML = "存款产品"
+
+            } else {
+                // console.log(1);
+                document.querySelector('.pro-type').innerHTML = this.type
+
+            }
         }
     }
 })
